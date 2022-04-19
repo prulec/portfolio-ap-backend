@@ -20,9 +20,10 @@ USE `mydb` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `id` BIGINT NOT NULL,
   `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `first_names` VARCHAR(80) NULL,
-  `last_names` VARCHAR(80) NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `first_names` VARCHAR(80) NOT NULL,
+  `last_names` VARCHAR(80) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 ENGINE = InnoDB;
