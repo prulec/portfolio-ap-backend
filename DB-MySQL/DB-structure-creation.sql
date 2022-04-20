@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Portfolio` (
   `name` VARCHAR(45) NULL,
   `visible` TINYINT NOT NULL,
   `banner_url` VARCHAR(255) NULL,
+  `photo_url` VARCHAR(255) NULL,
   `job_title` VARCHAR(150) NULL,
   `p_statement` VARCHAR(800) NULL,
   `User_id` BIGINT NOT NULL,
