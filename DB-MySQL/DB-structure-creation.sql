@@ -18,12 +18,12 @@ USE `mydb` ;
 -- Table `mydb`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NOT NULL,
   `first_names` VARCHAR(80) NOT NULL,
   `last_names` VARCHAR(80) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
+  `mail` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Portfolio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Portfolio` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `visible` TINYINT NOT NULL,
   `banner_url` VARCHAR(255) NULL,
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`SocialType`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`SocialType` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `icon_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
@@ -67,7 +67,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Social`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Social` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `order` INT NOT NULL,
   `url` VARCHAR(255) NULL,
   `SocialType_id` INT NOT NULL,
   `Portfolio_id` BIGINT NOT NULL,
@@ -91,7 +92,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Experience`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Experience` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `order` INT NOT NULL,
   `logo_url` VARCHAR(255) NULL,
   `enterprise` VARCHAR(120) NULL,
   `time` VARCHAR(100) NULL,
@@ -112,7 +114,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Education`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Education` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `order` INT NOT NULL,
   `logo_url` VARCHAR(255) NULL,
   `institution` VARCHAR(120) NULL,
   `time` VARCHAR(100) NULL,
@@ -132,7 +135,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Skill`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Skill` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `order` INT NOT NULL,
   `name` VARCHAR(30) NULL,
   `level` INT UNSIGNED NULL,
   `level_tag` VARCHAR(100) NULL,
@@ -152,7 +156,8 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Project`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `order` INT NOT NULL,
   `name` VARCHAR(150) NULL,
   `time` VARCHAR(100) NULL,
   `link` VARCHAR(255) NULL,
@@ -172,7 +177,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`ProjectImage`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`ProjectImage` (
-  `id` BIGINT NOT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `order` INT UNSIGNED NOT NULL,
   `title` VARCHAR(45) NULL,
   `image_url` VARCHAR(255) NULL,
