@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Portfolio` (
   `p_statement` VARCHAR(800) NULL,
   `User_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   INDEX `fk_Portfolio_User_idx` (`User_id` ASC) VISIBLE,
   CONSTRAINT `fk_Portfolio_User`
     FOREIGN KEY (`User_id`)
@@ -68,7 +67,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Social` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `order` INT NOT NULL,
+  `order` INT UNSIGNED NOT NULL,
   `url` VARCHAR(255) NULL,
   `SocialType_id` INT NOT NULL,
   `Portfolio_id` BIGINT NOT NULL,
@@ -93,7 +92,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Experience` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `order` INT NOT NULL,
+  `order` INT UNSIGNED NOT NULL,
   `logo_url` VARCHAR(255) NULL,
   `enterprise` VARCHAR(120) NULL,
   `time` VARCHAR(100) NULL,
@@ -115,7 +114,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Education` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `order` INT NOT NULL,
+  `order` INT UNSIGNED NOT NULL,
   `logo_url` VARCHAR(255) NULL,
   `institution` VARCHAR(120) NULL,
   `time` VARCHAR(100) NULL,
@@ -136,13 +135,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Skill` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `order` INT NOT NULL,
-  `name` VARCHAR(30) NULL,
+  `order` INT UNSIGNED NOT NULL,
+  `name` VARCHAR(30) NOT NULL,
   `level` INT UNSIGNED NULL,
   `level_tag` VARCHAR(100) NULL,
   `Portfolio_id` BIGINT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
   INDEX `fk_Skill_Portfolio1_idx` (`Portfolio_id` ASC) VISIBLE,
   CONSTRAINT `fk_Skill_Portfolio1`
     FOREIGN KEY (`Portfolio_id`)
@@ -157,7 +155,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `order` INT NOT NULL,
+  `order` INT UNSIGNED NOT NULL,
   `name` VARCHAR(150) NULL,
   `time` VARCHAR(100) NULL,
   `link` VARCHAR(255) NULL,
