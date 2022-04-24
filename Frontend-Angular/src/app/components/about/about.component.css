@@ -1,0 +1,72 @@
+#profile-img-div {
+    position: relative;
+    margin-left: 50px;
+    width: 200px;
+    height: 200px;
+}
+
+#profile-img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.pencil {
+    max-width: 70%;
+    margin: 15%;
+}
+
+#profile-img-div > .pencil-div {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    opacity: 70%;
+}
+
+#person-name-div {
+    position: relative;
+}
+
+#person-name-div > .pencil-div {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    opacity: 70%;
+}
+
+#job-title-div {
+    position: relative;
+}
+
+#job-title-div > .pencil-div {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    opacity: 70%;
+}
+
+#personal-statement-div {
+    position: relative;
+}
+
+#personal-statement-div > .pencil-div {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background-color: white;
+    opacity: 70%;
+}
