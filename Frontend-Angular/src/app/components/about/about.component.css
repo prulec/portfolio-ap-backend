@@ -1,13 +1,32 @@
-#profile-img-div {
+.container-fluid {
+    padding: 0px;
+}
+
+#about {
+    width: 100%;
+    margin: 0px;
+    border-top: #FF6F6F solid 5px;
+    padding-bottom: 50px;
+}
+
+.column {
     position: relative;
+    padding-top: 100px;
+    overflow: visible;
+}
+
+#photo-div {
+    position: absolute;
+    top: -100px;
     margin-left: 50px;
     width: 200px;
     height: 200px;
 }
 
-#profile-img {
+#photo-img {
     max-width: 100%;
     border-radius: 50%;
+    border: black solid 3px;
 }
 
 .pencil {
@@ -15,7 +34,7 @@
     margin: 15%;
 }
 
-#profile-img-div > .pencil-div {
+#photo-div > .pencil-div {
     position: absolute;
     right: 0px;
     bottom: 0px;
@@ -28,42 +47,71 @@
 
 #person-name-div {
     position: relative;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+#person-name-div > h1 {
+    font-size: 30px;
 }
 
 #person-name-div > .pencil-div {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 42px;
-    height: 42px;
-    border-radius: 21px;
+    right: calc(50% - 18px);
+    bottom: calc(50% - 18px);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
     background-color: white;
     opacity: 70%;
 }
 
 #job-title-div {
     position: relative;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+#job-title-div > h2 {
+    font-size: 24px;
+    margin-bottom: 0px;
 }
 
 #job-title-div > .pencil-div {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 42px;
-    height: 42px;
-    border-radius: 21px;
+    right: calc(50% - 15px);;
+    bottom: calc(50% - 15px);;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
     background-color: white;
     opacity: 70%;
 }
 
 #personal-statement-div {
     position: relative;
+    padding-top: 10px;
+}
+
+#text-block {
+    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+#personal-statement-div > div > p {
+    position: absolute;
+    max-height: 100%;
+    bottom: 0px;
+    margin: 0px;
+    overflow-y: scroll;
 }
 
 #personal-statement-div > .pencil-div {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 40px;
+    bottom: 15px;
     width: 42px;
     height: 42px;
     border-radius: 21px;
