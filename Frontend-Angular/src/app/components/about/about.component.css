@@ -91,6 +91,7 @@
 #personal-statement-div {
     position: relative;
     padding-top: 10px;
+    padding-right: 10px;
 }
 
 #text-block {
@@ -110,11 +111,47 @@
 
 #personal-statement-div > .pencil-div {
     position: absolute;
-    right: 40px;
+    right: 45px;
     bottom: 15px;
     width: 42px;
     height: 42px;
     border-radius: 21px;
     background-color: white;
     opacity: 70%;
+}
+
+@media (max-width: 575px) {
+    #about {
+        padding-bottom: 20px;
+    }
+    .column {
+        padding-top: 0px;
+        padding-right: 20px;
+    }
+    #person-name-div {
+        margin-left: 150px;
+    }
+    #person-name-div > h1 {
+        font-size: 26px;
+        text-align: right;
+    }
+    #job-title-div {
+        margin-left: 150px;
+    }
+    #job-title-div > h2 {
+        font-size: 20px;
+        text-align: right;
+    }
+    #photo-div {
+        top: -65px;
+        margin-left: 10px;
+        width: 130px;
+        height: 130px;
+    }
+    #personal-statement-div {
+        max-height: 300px;
+    }
+    #personal-statement-div > div > p {
+        position: relative;
+    }
 }
