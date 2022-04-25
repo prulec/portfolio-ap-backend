@@ -12,11 +12,11 @@
     height: 5px;
 }
 
-#title > h1 {
+#title > h2 {
     display: inline;
     position: relative;
     border-radius: 30px;
-    padding: 5px 10px;
+    padding: 5px 15px;
     background-color: #CC8CFF;
 }
 
