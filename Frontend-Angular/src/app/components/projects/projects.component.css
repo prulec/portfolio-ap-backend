@@ -1,0 +1,40 @@
+#title {
+    position: relative;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#title > div {
+    position: absolute;
+    top: 43%;
+    width: 100%;
+    background-color: #FFD66D;
+    height: 5px;
+}
+
+#title > h2 {
+    display: inline;
+    position: relative;
+    border-radius: 30px;
+    padding: 5px 15px;
+    background-color: #FFD66D;
+}
+
+#title > .add-div {
+    position: absolute;
+    right: 35px;
+    top: calc(50% - 18px);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: white;
+    opacity: 70%;
+}
+
+.add-img {
+    max-width: 100%;
+}
+
+#projects-div {
+    margin-bottom: 25px;
+}
