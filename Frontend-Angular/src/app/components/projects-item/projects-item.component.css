@@ -3,13 +3,12 @@
     border-radius: 10px;
     display: flex;
     flex-direction: row;
-    margin: 5px;
     background-color: #F3F3F3;
 }
 
 #logo-div {
-    min-width: 80px;
-    height: 80px;
+    min-width: 160px;
+    height: 160px;
     margin: 5px;
     border: #a3a3a3 solid 2px;
     border-radius: 10px;
