@@ -1,38 +1,31 @@
-.container-fluid {
-    padding: 0px;
-}
-
-.row {
-    border: black solid 2px;
+#experience-item {
+    border: #BFBFBF solid 2px;
     border-radius: 10px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    background-color: white;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    background-color: #F3F3F3;
 }
 
 #logo-div {
-    position: relative;
-    padding: 0px;
+    min-width: 80px;
+    height: 80px;
+    margin: 5px;
+    border: #a3a3a3 solid 2px;
+    border-radius: 10px;
+    background-color: #cb8cff5f;
 }
 
 #logo-div > div {
-    position: absolute;
-    border: black solid 2px;
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 60px;
-    height: 60px;
+    height: 100%;
+    margin: 0px;
     text-align: center;
-    left: calc(50% - 30px);
+    padding-top: calc(50% - 13px);
 }
 
-
-
-#datos-div {
-    margin: 0px;
-    padding: 0px 0px 0px 10px;
+#logo-div > div > p {
+    line-height: 20px;
+    padding-bottom: 2px;
 }
 
 #datos-div > p {
