@@ -1,0 +1,20 @@
+
+#contact {
+    margin: 0px;
+    padding-top: 20px;
+    min-height: 150px;
+    background-color: #2B2B2B;
+    text-align: center;
+}
+
+#contact > h5 {
+    margin-bottom: 0px;
+    color: #FFFFFF;
+}
+
+#contact > h5 > img {
+    position: relative;
+    top: -5px;
+    object-fit: scale-down;
+    height: 25px;
+}
