@@ -1,4 +1,9 @@
+#project-container {
+    position: relative;
+}
+
 #projects-item {
+    position: relative;
     border: #BFBFBF solid 2px;
     border-radius: 10px;
     display: flex;
@@ -30,4 +35,64 @@
 #datos-div > p {
     margin: 0px;
     padding: 0px;
+}
+
+
+/* EDIT ICONS */
+
+#edit-div {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 150px;
+    margin-bottom: 13px;
+    right: 5px;
+    bottom: 0px;
+}
+
+#edit-div > .pencil-div {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 4px black;
+    background-color: white;
+    opacity: 70%;
+}
+
+.pencil {
+    max-width: 70%;
+    margin: 15%;
+}
+
+#edit-div > .arrows-div {
+    right: 3px;
+    bottom: 3px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 4px black;
+    background-color: white;
+    opacity: 70%;
+}
+
+.arrows {
+    max-width: 70%;
+    margin: 15%;
+}
+
+#edit-div > .trash-div {
+    left: 3px;
+    bottom: 3px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    box-shadow: 0px 0px 4px black;
+    background-color: rgb(249, 65, 65);
+    opacity: 70%;
+}
+
+.trash {
+    max-width: 70%;
+    margin: 15%;
 }
