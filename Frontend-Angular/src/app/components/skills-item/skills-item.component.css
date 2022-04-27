@@ -1,0 +1,141 @@
+
+
+#skills-item {
+    display: flex;
+    flex-direction: row;
+    border: #BFBFBF solid 2px;
+    border-radius: 10px;
+    background-color: #F3F3F3;
+
+    --level: 0;
+    --level-until-50: calc(var(--level) * 180deg / 50);
+    --level-above-50: calc((var(--level) - 50) * 180deg / 50);
+    --border-width-ring: 5px;
+}
+
+/* ANILLO DE PROGRESO */
+
+#progress-div {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    min-width: 160px;
+    height: 160px;
+    margin: 5px;
+    border: #a3a3a3 solid 2px;
+    border-radius: 80px;
+}
+
+/* Parte Izquierda */
+
+#progress-div > #left-div {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#progress-div > #left-div > .semi-full-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#progress-div > #left-div > .semi-empty-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: rotate(var(--level-above-50));
+    transform-origin: 100% 50%;
+}
+
+#progress-div > #left-div > .semi-full-ring > .full-ring {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    border-radius: 50%;
+    border: green solid var(--border-width-ring);
+}
+
+#progress-div > #left-div > .semi-empty-ring > .empty-ring {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    border-radius: 50%;
+    border: #F3F3F3 solid calc(var(--border-width-ring) + 1px);
+}
+
+/* Parte Derecha */
+
+#progress-div > #right-div {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#progress-div > #right-div > .semi-full-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#progress-div > #right-div > .semi-empty-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: rotate(var(--level-until-50));
+    transform-origin: 0% 50%;
+}
+
+#progress-div > #right-div > .semi-full-ring > .full-ring {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: -100%;
+    border-radius: 50%;
+    border: green solid var(--border-width-ring);
+}
+
+#progress-div > #right-div > .semi-empty-ring > .empty-ring {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    left: -100%;
+    border-radius: 50%;
+    border: #F3F3F3 solid calc(var(--border-width-ring) + 1px);
+}
+
+/* TEXTO DEL ANILLO */
+
+#progress-div > #level-text-div {
+    height: 100%;
+    text-align: center;
+    padding-top: calc(50% - 13px);
+}
+
+#progress-div > #level-text-div > p {
+    line-height: 20px;
+    padding-bottom: 2px;
+}
+
+/* TEXTO FUERA DEL ANILLO */
+
+#data-div {
+    display: flex;
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+#data-div > div {
+    align-self: center;
+}
+
+#data-div > div > p {
+    margin: 0px;
+}
