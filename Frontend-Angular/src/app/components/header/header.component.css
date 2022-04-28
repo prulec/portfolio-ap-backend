@@ -59,6 +59,7 @@
     height: 38px;
     margin-left: 15px;
 }
+.social-icon:hover {opacity: 80%;}
 
 .social-img {
     max-width: 100%;
@@ -79,6 +80,7 @@
     font-size: large;
     border-radius: 10px;
 }
+#login-btn:hover {opacity: 80%;}
 
 #username {
     color: #d7d7d7;
@@ -98,9 +100,7 @@
 }
 
 #eye-div {
-    color: white;
     height: 40px;
-    opacity: 50%;
     text-align: right;
     padding-right: 35px;
     margin-top: 10px;
@@ -110,8 +110,10 @@
     height:100%;
     border-radius: 50%;
     background-color: white;
+    opacity: 50%;
     box-shadow: 0px 0px 4px white;
 }
+#eye-img:hover {opacity: 80%;}
 
 #bottom-right-div {
     position: absolute;
@@ -124,6 +126,7 @@
     opacity: 50%;
     box-shadow: 0px 0px 4px white;
 }
+#bottom-right-div:hover {opacity: 80%;}
 
 #pencil {
     max-width: 70%;

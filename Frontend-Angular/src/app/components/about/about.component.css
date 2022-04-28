@@ -45,6 +45,7 @@
     opacity: 70%;
     box-shadow: 0px 0px 4px black;
 }
+#photo-div > .pencil-div:hover {opacity: 90%;}
 
 #person-name-div {
     position: relative;
@@ -67,6 +68,7 @@
     opacity: 70%;
     box-shadow: 0px 0px 4px black;
 }
+#person-name-div > .pencil-div:hover {opacity: 90%;}
 
 #job-title-div {
     position: relative;
@@ -90,6 +92,7 @@
     opacity: 70%;
     box-shadow: 0px 0px 4px black;
 }
+#job-title-div > .pencil-div:hover {opacity: 90%;}
 
 #personal-statement-div {
     position: relative;
@@ -123,6 +126,7 @@
     opacity: 70%;
     box-shadow: 0px 0px 4px black;
 }
+#personal-statement-div > .pencil-div:hover {opacity: 90%;}
 
 @media (max-width: 575px) {
     #about {

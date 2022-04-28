@@ -55,6 +55,7 @@
     background-color: white;
     opacity: 70%;
 }
+#edit-div > .pencil-div:hover {opacity: 90%;}
 
 .pencil {
     max-width: 70%;
@@ -71,6 +72,7 @@
     background-color: white;
     opacity: 70%;
 }
+#edit-div > .arrows-div:hover {opacity: 90%;}
 
 .arrows {
     max-width: 70%;
@@ -87,6 +89,7 @@
     background-color: rgb(249, 65, 65);
     opacity: 70%;
 }
+#edit-div > .trash-div:hover {opacity: 90%;}
 
 .trash {
     max-width: 70%;
