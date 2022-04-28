@@ -16,6 +16,11 @@ import { EducationItemComponent } from './components/education-item/education-it
 import { ProjectsItemComponent } from './components/projects-item/projects-item.component';
 import { SkillsItemComponent } from './components/skills-item/skills-item.component';
 import { ProjectGalleryComponent } from './components/project-gallery/project-gallery.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { ProjectGalleryComponent } from './components/project-gallery/project-ga
     EducationItemComponent,
     ProjectsItemComponent,
     SkillsItemComponent,
-    ProjectGalleryComponent
+    ProjectGalleryComponent,
+    ContactFormComponent,
+    LoginComponent,
+    EditItemComponent,
+    AddItemComponent,
+    DeleteItemComponent
   ],
   imports: [
     BrowserModule,
