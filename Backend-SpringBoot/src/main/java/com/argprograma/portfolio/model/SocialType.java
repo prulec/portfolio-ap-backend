@@ -1,13 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.argprograma.portfolio.model;
 
-/**
- *
- * @author pablo
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+@Entity
 public class SocialType {
+    
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column (unique=true)
+    private String name;
+    private String iconUrl;
     
 }
