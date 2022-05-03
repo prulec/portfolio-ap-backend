@@ -14,15 +14,20 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique=true)
+    
+    @Column(unique=true, length=45)
     private String username;
-    @Column(nullable=false)
+    
+    @Column(nullable=false, length=45)
     private String password;
-    @Column(nullable=false)
+    
+    @Column(nullable=false, length=80)
     private String firstName;
-    @Column(nullable=false)
+    
+    @Column(nullable=false, length=80)
     private String lastName;
-    @Column(nullable=false)
+    
+    @Column(nullable=false, length=100)
     private String email;
     
 }

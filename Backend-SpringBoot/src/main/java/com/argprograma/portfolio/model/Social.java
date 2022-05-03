@@ -14,8 +14,11 @@ public class Social {
     @Id
     @GeneratedValue
     private Long id;
+    
     @Column (nullable=false)
     private int order;
+    
+    @Column (length=255)
     private String url;
     
 }

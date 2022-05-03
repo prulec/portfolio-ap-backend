@@ -14,8 +14,11 @@ public class SocialType {
     @Id
     @GeneratedValue
     private Long id;
-    @Column (unique=true)
+    
+    @Column (unique=true, length=45)
     private String name;
+    
+    @Column (length=255)
     private String iconUrl;
     
 }
