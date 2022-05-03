@@ -29,10 +29,7 @@ public class Skill {
     @Column (length=100)
     private String levelTag;
     
-    @ManyToOne
-    @JoinColumn (name = "portfolio_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Portfolio portfolio;
     
 }

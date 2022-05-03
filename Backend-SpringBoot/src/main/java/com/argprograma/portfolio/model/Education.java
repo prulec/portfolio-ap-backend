@@ -33,10 +33,7 @@ public class Education {
     @Column (length=100)
     private String title;
     
-    @ManyToOne
-    @JoinColumn (name = "portfolio_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Portfolio portfolio;
     
 }

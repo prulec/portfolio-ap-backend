@@ -27,10 +27,7 @@ public class ProjectImage {
     @Column (length=255)
     private String imageUrl;
     
-    @ManyToOne
-    @JoinColumn (name = "project_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Project project;
     
 }

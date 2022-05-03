@@ -30,10 +30,7 @@ public class Social {
     )
     private SocialType socialType;
     
-    @ManyToOne
-    @JoinColumn (name = "portfolio_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Portfolio portfolio;
     
 }

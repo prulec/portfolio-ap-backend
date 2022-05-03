@@ -36,10 +36,7 @@ public class Experience {
     @Column (length=255)
     private String tasks;
     
-    @ManyToOne
-    @JoinColumn (name = "portfolio_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Portfolio portfolio;
     
 }

@@ -37,10 +37,7 @@ public class Project {
     @Column (length=500)
     private String description;
     
-    @ManyToOne
-    @JoinColumn (name = "portfolio_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private Portfolio portfolio;
     
     @OneToMany (mappedBy="project", fetch = FetchType.LAZY)

@@ -20,7 +20,7 @@ public class Portfolio {
     
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     
     @Column (unique=true, length=45)
     private String name;
@@ -40,10 +40,7 @@ public class Portfolio {
     @Column (length=800)
     private String pStatement;
     
-    @ManyToOne
-    @JoinColumn (name = "user_id",
-		foreignKey = @ForeignKey
-    )
+    @ManyToOne (optional=false)
     private User user;
     
     @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
