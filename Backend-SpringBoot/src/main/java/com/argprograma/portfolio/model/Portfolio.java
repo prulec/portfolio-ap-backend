@@ -1,9 +1,16 @@
 package com.argprograma.portfolio.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,5 +39,26 @@ public class Portfolio {
     
     @Column (length=800)
     private String pStatement;
+    
+    @ManyToOne
+    @JoinColumn (name = "user_id",
+		foreignKey = @ForeignKey
+    )
+    private User user;
+    
+    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    private Set<Social> socialSet = new HashSet<>();
+    
+    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    private Set<Experience> experienceSet = new HashSet<>();
+    
+    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    private Set<Education> educationSet = new HashSet<>();
+    
+    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    private Set<Skill> skillSet = new HashSet<>();
+    
+    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    private Set<Project> projectSet = new HashSet<>();
     
 }

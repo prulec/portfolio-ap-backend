@@ -2,8 +2,11 @@ package com.argprograma.portfolio.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +19,7 @@ public class Education {
     private Long id;
     
     @Column (nullable=false)
-    private int order;
+    private int itemOrder;
     
     @Column (length=255)
     private String logoUrl;
@@ -25,9 +28,15 @@ public class Education {
     private String institution;
     
     @Column (length=100)
-    private String time;
+    private String educationTime;
     
     @Column (length=100)
     private String title;
+    
+    @ManyToOne
+    @JoinColumn (name = "portfolio_id",
+		foreignKey = @ForeignKey
+    )
+    private Portfolio portfolio;
     
 }
