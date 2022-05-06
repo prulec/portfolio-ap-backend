@@ -3,7 +3,10 @@ package com.argprograma.portfolio.controller;
 import com.argprograma.portfolio.dto.PortfolioData;
 import com.argprograma.portfolio.dto.UserData;
 import com.argprograma.portfolio.model.SocialType;
+import com.argprograma.portfolio.model.User;
+import com.argprograma.portfolio.service.IUserService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,12 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AdminController {
     
+    @Autowired
+    private IUserService userService;
+    
     /* User */
     
     @PostMapping ("adduser")
-    public String addUser (@RequestBody UserData data) {
+    public User addUser (@RequestBody UserData data) {
         // Agrega usuario, pasando 'null' en 'id'
-        return "User added";
+        User user = new User();
+        user.setId(null);
+        user.setUsername(data.getUsername());
+        user.setPassword(data.getPassword());
+        user.setFirstName(data.getFirstName());
+        user.setLastName(data.getLastName());
+        user.setEmail(data.getEmail());        
+        return userService.createUser(user);
     }
     
     @GetMapping ("listusers")
