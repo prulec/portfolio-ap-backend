@@ -4,9 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class HeaderAboutData {
+public class OrderData {
     
-    private String field;
-    private String Value;
+    private Long id;
+    private String section;
+    private int newItemOrder;
     
 }

@@ -4,6 +4,7 @@ import com.argprograma.portfolio.dto.EducationData;
 import com.argprograma.portfolio.dto.ExperienceData;
 import com.argprograma.portfolio.dto.EditUserData;
 import com.argprograma.portfolio.dto.HeaderAboutData;
+import com.argprograma.portfolio.dto.OrderData;
 import com.argprograma.portfolio.dto.ProjectData;
 import com.argprograma.portfolio.dto.ProjectImageData;
 import com.argprograma.portfolio.dto.SkillData;
@@ -36,6 +37,7 @@ public class EditController {
     
     @PatchMapping ("{portfolio_id}/userdata/update")
     public String updateUserData (@RequestBody EditUserData data) {
+        // Edición de datos de usuario en el modo Edit: fullname y email
         return "User data updated";
     }
     
@@ -43,6 +45,9 @@ public class EditController {
     public String updateHeaderAbout 
         (@PathVariable Long portfolio_id,
          @RequestBody HeaderAboutData data) {
+        // Edición de un campo del Header o de la sección About
+        // excepto Visibilidad del portfolio, Nombre completo de usuario
+        // y Redes sociales
         return "Header&About updated";
     }
         
@@ -133,6 +138,14 @@ public class EditController {
         // Secciones: Social, Experience, Education, Skills, 
         //            Projects, ProjectImages
         return "Item deleted";
+    }
+    
+    
+    /* Change order */
+    
+    @PatchMapping ("changeorder")
+    public String changeOrderItem (@RequestBody OrderData data) {
+        return "Order changed";
     }
     
 }
