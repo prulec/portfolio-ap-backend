@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.service;
 
+import com.argprograma.portfolio.model.Portfolio;
 import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.repository.UserRepository;
 import java.util.List;
@@ -11,6 +12,7 @@ public class UserService implements IUserService {
     
     @Autowired
     private UserRepository userRepo;
+    private PortfolioService portfolioService;
 
     @Override
     public User createUser(User user) {
@@ -39,6 +41,9 @@ public class UserService implements IUserService {
 
     @Override
     public void deleteUser (User user) {
+        for (Portfolio portfolio : user.getPortfolioSet()) {
+            portfolioService.deletePortfolio(portfolio);
+        }
         userRepo.delete(user);
     }
     

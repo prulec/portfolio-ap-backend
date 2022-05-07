@@ -31,8 +31,6 @@ public class AdminController {
     private IUserService userService;
     @Autowired
     private IPortfolioService portfolioService;
-    @Autowired
-    private EditController editController;
     
     /* User */
     
@@ -96,9 +94,6 @@ public class AdminController {
         // Borra usuario y todos los portfolios que le pertenecen
         User user = userService.findUserByUsername(username);
         if (user!=null) {
-            for (Portfolio portfolio : user.getPortfolioSet()) {
-                this.deletePortfolio(portfolio.getId());
-            }
             userService.deleteUser(user);
             System.out.println("Usuario " + user.getUsername() + " eliminado!");
         } else System.out.println("El username no existe...");
@@ -163,21 +158,6 @@ public class AdminController {
         // eliminando los items que referencian al portfolio
         Portfolio portfolio = portfolioService.findPortfolioById(portfolio_id);
         if (portfolio!=null) {
-            for (Social social : portfolio.getSocialSet()) {
-                editController.deleteItem("social",social.getId());
-            }
-            for (Experience experience : portfolio.getExperienceSet()) {
-                editController.deleteItem("experience",experience.getId());
-            }
-            for (Education education : portfolio.getEducationSet()) {
-                editController.deleteItem("education",education.getId());
-            }
-            for (Skill skill : portfolio.getSkillSet()) {
-                editController.deleteItem("skill",skill.getId());
-            }
-            for (Project project : portfolio.getProjectSet()) {
-                editController.deleteItem("project",project.getId());
-            }
             portfolioService.deletePortfolio(portfolio);
             System.out.println("Portfolio " + portfolio.getName() + " eliminado!");
         } else System.out.println("El portfolio no existe...");
