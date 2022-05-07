@@ -2,15 +2,11 @@ package com.argprograma.portfolio.controller;
 
 import com.argprograma.portfolio.dto.PortfolioData;
 import com.argprograma.portfolio.dto.UserData;
-import com.argprograma.portfolio.model.Education;
-import com.argprograma.portfolio.model.Experience;
 import com.argprograma.portfolio.model.Portfolio;
-import com.argprograma.portfolio.model.Project;
-import com.argprograma.portfolio.model.Skill;
-import com.argprograma.portfolio.model.Social;
 import com.argprograma.portfolio.model.SocialType;
 import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.service.IPortfolioService;
+import com.argprograma.portfolio.service.ISocialTypeService;
 import com.argprograma.portfolio.service.IUserService;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +27,8 @@ public class AdminController {
     private IUserService userService;
     @Autowired
     private IPortfolioService portfolioService;
+    @Autowired
+    private ISocialTypeService socialTypeService;
     
     /* User */
     
@@ -85,7 +83,7 @@ public class AdminController {
             if (!data.getLastName().isEmpty()) user.setLastName(data.getLastName());
             if (!data.getEmail().isEmpty()) user.setEmail(data.getEmail());
             return userService.updateUser(user);
-        }
+        } else System.out.println("El User no existe...");
         return user;
     }
     
@@ -167,28 +165,43 @@ public class AdminController {
     /* Portfolio --> SocialType */
     
     @PostMapping ("addsocialtype")
-    public String createSocialType (@RequestBody SocialType data) {
+    public SocialType createSocialType (@RequestBody SocialType data) {
         // Agrega un tipo de red social, asignando null a id
-        return "Social type added";
-    }
-    
-    @PutMapping ("updatesocialtype")
-    public String updateSocialType (@RequestBody SocialType data) {
-        // Actualiza SocialType que corresponde al id recibido
-        return "Social type updated";
-    }
-    
-    @DeleteMapping ("deletesocialtype/{socialtype_id}")
-    public String deleteSocialType (@PathVariable Long socialtype_id) {
-        // Elimina SocialType correspondiente al id de la ruta
-        // y todos los elementos Social que lo referencien
-        return "Social type deleted";
+        SocialType socialType  = new SocialType();
+        socialType.setId(null);
+        socialType.setName(data.getName());
+        socialType.setIconUrl(data.getIconUrl());
+        return socialTypeService.createSocialType(socialType);
     }
     
     @GetMapping ("socialtypes")
     public List<SocialType> getSocialTypes () {
         // Devuelve todos los tipos de redes sociales registradas
-        return null;
+        return socialTypeService.getSocialTypes();
+    }
+    
+    @PutMapping ("updatesocialtype")
+    public SocialType updateSocialType (@RequestBody SocialType data) {
+        // Actualiza SocialType que corresponde al id recibido
+        SocialType socialType = socialTypeService.findSocialTypeById(data.getId());
+        if (socialType!=null) {
+            socialType.setName(data.getName());
+            socialType.setIconUrl(data.getIconUrl());
+            return socialTypeService.updateSocialType(socialType);
+        }
+        System.out.println("El Social type no existe...");
+        return socialType;
+    }
+    
+    @DeleteMapping ("deletesocialtype/{socialtype_id}")
+    public void deleteSocialType (@PathVariable Long socialtype_id) {
+        // Elimina SocialType correspondiente al id de la ruta
+        // y todos los elementos Social que lo referencien
+        SocialType socialType = socialTypeService.findSocialTypeById(socialtype_id);
+        if (socialType!=null) {
+            socialTypeService.deleteSocialType(socialType);
+            System.out.println("SocialType " + socialType.getName() + " eliminado!");
+        } else System.out.println("El Social type no existe...");
     }
     
 }

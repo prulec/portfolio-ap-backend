@@ -32,9 +32,8 @@ public class PortfolioService implements IPortfolioService {
     @Override
     public Portfolio createPortfolio(Portfolio portfolio) {
         Portfolio savedPortfolio = portfolioRepo.save(portfolio);
-        User user = savedPortfolio.getUser();
-        user.getPortfolioSet().add(savedPortfolio);
-        userService.updateUser(user);
+        savedPortfolio.getUser().getPortfolioSet().add(savedPortfolio);
+        userService.updateUser(savedPortfolio.getUser());
         return savedPortfolio;
     }
 
