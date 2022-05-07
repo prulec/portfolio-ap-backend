@@ -29,7 +29,7 @@ public class UserService implements IUserService {
 
     @Override
     public User findUserById(Long id) {
-        return userRepo.getById(id);
+        return userRepo.findById(id).orElse(null);
     }
 
     @Override
@@ -38,11 +38,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean deleteUserByUsername(String username) {
-        User user = userRepo.findByUsername(username);
-        if (user==null) return false;
+    public void deleteUser (User user) {
         userRepo.delete(user);
-        return true;
     }
     
 }

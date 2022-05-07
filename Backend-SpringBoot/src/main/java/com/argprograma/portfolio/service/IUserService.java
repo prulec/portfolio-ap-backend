@@ -9,5 +9,5 @@ public interface IUserService {
     public User findUserByUsername (String username);
     public User findUserById (Long id);
     public User updateUser (User user);
-    public boolean deleteUserByUsername (String username);
+    public void deleteUser (User user);
 }

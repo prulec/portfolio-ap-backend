@@ -47,7 +47,8 @@ public class EditController {
          @RequestBody HeaderAboutData data) {
         // Edición de un campo del Header o de la sección About
         // excepto Visibilidad del portfolio, Nombre completo de usuario
-        // y Redes sociales
+        // y Redes sociales, serían: Url del banner, Url de la foto, 
+        // Título profesional, Breve descripción personal
         return "Header&About updated";
     }
         
@@ -133,11 +134,10 @@ public class EditController {
     /* Delete Item */
     
     @DeleteMapping ("deleteitem/{section}/{id}")
-    public String deleteItem (@PathVariable String section,
+    public void deleteItem (@PathVariable String section,
                               @PathVariable Long id) {
         // Secciones: Social, Experience, Education, Skills, 
         //            Projects, ProjectImages
-        return "Item deleted";
     }
     
     

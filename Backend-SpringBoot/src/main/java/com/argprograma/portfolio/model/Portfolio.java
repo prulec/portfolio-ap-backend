@@ -24,7 +24,7 @@ public class Portfolio {
     private String name;
     
     @Column (nullable=false)
-    private Boolean visible;
+    private boolean visible;
     
     @Column (length=255)
     private String bannerUrl;
