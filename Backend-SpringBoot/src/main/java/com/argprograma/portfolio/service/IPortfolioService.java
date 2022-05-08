@@ -5,6 +5,7 @@ import com.argprograma.portfolio.model.Portfolio;
 public interface IPortfolioService {
     public Portfolio createPortfolio (Portfolio portfolio);
     public Portfolio findPortfolioById (Long id);
+    public Portfolio findPortfolioByName (String name);
     public Portfolio updatePortfolio (Portfolio portfolio);
     public void deletePortfolio (Portfolio portfolio);
 }

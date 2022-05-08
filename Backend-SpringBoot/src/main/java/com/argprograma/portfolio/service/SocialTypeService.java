@@ -26,6 +26,11 @@ public class SocialTypeService implements ISocialTypeService {
     }
 
     @Override
+    public SocialType findSocialTypeByName(String name) {
+        return socialTypeRepo.findByName(name);
+    }
+
+    @Override
     public List<SocialType> getSocialTypes() {
         return socialTypeRepo.findAll();
     }

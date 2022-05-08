@@ -43,6 +43,11 @@ public class PortfolioService implements IPortfolioService {
     }
 
     @Override
+    public Portfolio findPortfolioByName(String name) {
+        return portfolioRepo.findByName(name);
+    }
+
+    @Override
     public Portfolio updatePortfolio(Portfolio portfolio) {
         return portfolioRepo.save(portfolio);
     }

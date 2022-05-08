@@ -16,6 +16,14 @@ public class SocialService implements ISocialService {
     private PortfolioService portfolioService;
 
     @Override
+    public Social createSocial(Social social) {
+        Social savedSocial = socialRepo.save(social);
+        savedSocial.getPortfolio().getSocialSet().add(savedSocial);
+        portfolioService.updatePortfolio(savedSocial.getPortfolio());
+        return savedSocial;
+    }
+
+    @Override
     public List<Social> findSocialBySocialType(SocialType socialType) {
         return socialRepo.findAllBySocialType(socialType);
     }

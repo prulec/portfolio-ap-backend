@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SocialTypeRepository extends JpaRepository <SocialType, Long> {
-    
+    SocialType findByName (String name);
 }
