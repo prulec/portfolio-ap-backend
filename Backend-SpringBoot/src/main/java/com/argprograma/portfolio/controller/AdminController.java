@@ -150,12 +150,12 @@ public class AdminController {
         return portfolio;
     }
     
-    @DeleteMapping ("deleteportfolio/{portfolio_id}")
-    public void deletePortfolio (@PathVariable Long portfolio_id) {
-        // Elimina portfolio que corresponde al id recibido
+    @DeleteMapping ("deleteportfolio/{portfolio_name}")
+    public void deletePortfolio (@PathVariable String portfolio_name) {
+        // Elimina portfolio que corresponde al portfolio_name recibido
         // actualizando lista del usuario correspondiente y
         // eliminando los items que referencian al portfolio
-        Portfolio portfolio = portfolioService.findPortfolioById(portfolio_id);
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         if (portfolio!=null) {
             portfolioService.deletePortfolio(portfolio);
             System.out.println("Portfolio " + portfolio.getName() + " eliminado!");

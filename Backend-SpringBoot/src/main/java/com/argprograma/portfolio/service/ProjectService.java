@@ -17,6 +17,19 @@ public class ProjectService implements IProjectService {
     private PortfolioService portfolioService;
 
     @Override
+    public Project createProject(Project project) {
+        Project savedProject = projectRepo.save(project);
+        savedProject.getPortfolio().getProjectSet().add(savedProject);
+        portfolioService.updatePortfolio(savedProject.getPortfolio());
+        return savedProject;
+    }
+
+    @Override
+    public Project findProjectById(Long id) {
+        return projectRepo.findById(id).orElse(null);
+    }
+
+    @Override
     public Project updateProject(Project project) {
         return projectRepo.save(project);
     }

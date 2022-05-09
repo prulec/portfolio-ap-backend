@@ -14,6 +14,14 @@ public class ExperienceService implements IExperienceService {
     private PortfolioService portfolioService;
 
     @Override
+    public Experience createExperience(Experience experience) {
+        Experience savedExperience = experienceRepo.save(experience);
+        savedExperience.getPortfolio().getExperienceSet().add(savedExperience);
+        portfolioService.updatePortfolio(savedExperience.getPortfolio());
+        return savedExperience;
+    }
+
+    @Override
     public void deleteExperience(Experience experience) {
         experience.getPortfolio().getExperienceSet().remove(experience);
         portfolioService.updatePortfolio(experience.getPortfolio());

@@ -42,6 +42,9 @@ public class SocialTypeService implements ISocialTypeService {
 
     @Override
     public void deleteSocialType(SocialType socialType) {
+        for (Social social : socialType.getSocialSet()) {
+            socialService.deleteSocial(social);
+        }
         socialTypeRepo.delete(socialType);
     }
 }

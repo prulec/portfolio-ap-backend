@@ -12,6 +12,8 @@ public class SocialService implements ISocialService {
     private SocialRepository socialRepo;
     @Autowired
     private PortfolioService portfolioService;
+    @Autowired
+    private SocialTypeService socialTypeService;
 
     @Override
     public Social createSocial(Social social) {
@@ -24,7 +26,9 @@ public class SocialService implements ISocialService {
     @Override
     public void deleteSocial(Social social) {
         social.getPortfolio().getSocialSet().remove(social);
+        social.getSocialType().getSocialSet().remove(social);
         portfolioService.updatePortfolio(social.getPortfolio());
+        socialTypeService.updateSocialType(social.getSocialType());
     }
     
 }

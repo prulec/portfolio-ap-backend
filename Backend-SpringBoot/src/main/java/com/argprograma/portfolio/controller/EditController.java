@@ -9,10 +9,20 @@ import com.argprograma.portfolio.dto.ProjectData;
 import com.argprograma.portfolio.dto.ProjectImageData;
 import com.argprograma.portfolio.dto.SkillData;
 import com.argprograma.portfolio.dto.SocialData;
+import com.argprograma.portfolio.model.Education;
+import com.argprograma.portfolio.model.Experience;
 import com.argprograma.portfolio.model.Portfolio;
+import com.argprograma.portfolio.model.Project;
+import com.argprograma.portfolio.model.ProjectImage;
+import com.argprograma.portfolio.model.Skill;
 import com.argprograma.portfolio.model.Social;
 import com.argprograma.portfolio.model.User;
+import com.argprograma.portfolio.service.EducationService;
+import com.argprograma.portfolio.service.ExperienceService;
 import com.argprograma.portfolio.service.PortfolioService;
+import com.argprograma.portfolio.service.ProjectImageService;
+import com.argprograma.portfolio.service.ProjectService;
+import com.argprograma.portfolio.service.SkillService;
 import com.argprograma.portfolio.service.SocialService;
 import com.argprograma.portfolio.service.SocialTypeService;
 import com.argprograma.portfolio.service.UserService;
@@ -37,6 +47,16 @@ public class EditController {
     private SocialTypeService socialTypeService;
     @Autowired
     private SocialService socialService;
+    @Autowired
+    private ExperienceService experienceService;
+    @Autowired
+    private EducationService educationService;
+    @Autowired
+    private SkillService skillService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private ProjectImageService projectImageService;
     
     /* Portfolio */
     
@@ -105,7 +125,7 @@ public class EditController {
     
     @PostMapping ("{portfolio_name}/social/add")
     public Social addSocial (@PathVariable String portfolio_name,
-                                @RequestBody SocialData data) {
+                             @RequestBody SocialData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         Social social = new Social();
         if (portfolio!=null) {
@@ -121,72 +141,135 @@ public class EditController {
     }
     
     @PostMapping ("{portfolio_name}/experience/add")
-    public String addExperience (@PathVariable String portfolio_name,
-                                 @RequestBody ExperienceData data) {
-        return "Experience added";
+    public Experience addExperience (@PathVariable String portfolio_name,
+                                     @RequestBody ExperienceData data) {
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        Experience experience = new Experience();
+        if (portfolio!=null) {
+            experience.setId(null);
+            experience.setItemOrder(portfolio.getExperienceSet().size()+1);
+            experience.setLogoUrl(data.getLogoUrl());
+            experience.setEnterprise(data.getEnterprise());
+            experience.setExperienceTime(data.getExperienceTime());
+            experience.setPosition(data.getPosition());
+            experience.setTasks(data.getTasks());
+            experience.setPortfolio(portfolio);
+            return experienceService.createExperience(experience);
+        }
+        System.out.println("El Portfolio con ese name no existe...");
+        return experience;
     }
     
     @PostMapping ("{portfolio_name}/education/add")
-    public String addEducation (@PathVariable String portfolio_name,
-                                @RequestBody EducationData data) {
-        return "Education added";
+    public Education addEducation (@PathVariable String portfolio_name,
+                                   @RequestBody EducationData data) {
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        Education education = new Education();
+        if (portfolio!=null) {
+            education.setId(null);
+            education.setItemOrder(portfolio.getEducationSet().size()+1);
+            education.setLogoUrl(data.getLogoUrl());
+            education.setInstitution(data.getInstitution());
+            education.setEducationTime(data.getEducationTime());
+            education.setTitle(data.getTitle());
+            education.setPortfolio(portfolio);
+            return educationService.createEducation(education);
+        }
+        System.out.println("El Portfolio con ese name no existe...");
+        return education;
     }
     
     @PostMapping ("{portfolio_name}/skill/add")
-    public String addSkill (@PathVariable String portfolio_name,
-                            @RequestBody SkillData data) {
-        return "Skill added";
+    public Skill addSkill (@PathVariable String portfolio_name,
+                           @RequestBody SkillData data) {
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        Skill skill = new Skill();
+        if (portfolio!=null) {
+            skill.setId(null);
+            skill.setItemOrder(portfolio.getSkillSet().size()+1);
+            skill.setName(data.getName());
+            skill.setSkillLevel(data.getSkillLevel());
+            skill.setLevelTag(data.getLevelTag());
+            skill.setPortfolio(portfolio);
+            return skillService.createSkill(skill);
+        }
+        System.out.println("El Portfolio con ese name no existe...");
+        return skill;
     }
     
     @PostMapping ("{portfolio_name}/project/add")
-    public String addProject (@PathVariable String portfolio_name,
-                              @RequestBody ProjectData data) {
-        return "Project added";
+    public Project addProject (@PathVariable String portfolio_name,
+                               @RequestBody ProjectData data) {
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        Project project = new Project();
+        if (portfolio!=null) {
+            project.setId(null);
+            project.setItemOrder(portfolio.getProjectSet().size()+1);
+            project.setName(data.getName());
+            project.setProjectTime(data.getProjectTime());
+            project.setLink(data.getLink());
+            project.setDescription(data.getDescription());
+            project.setPortfolio(portfolio);
+            return projectService.createProject(project);
+        }
+        System.out.println("El Portfolio con ese name no existe...");
+        return project;
     }
     
     @PostMapping ("{project_id}/image/add")
-    public String addProjectImage (@PathVariable Long project_id,
-                                   @RequestBody ProjectImageData data) {
-        return "Project image added";
+    public ProjectImage addProjectImage (@PathVariable Long project_id,
+                                         @RequestBody ProjectImageData data) {
+        Project project = projectService.findProjectById(project_id);
+        ProjectImage projectImage = new ProjectImage();
+        if (project!=null) {
+            projectImage.setId(null);
+            projectImage.setItemOrder(project.getProjectImageSet().size()+1);
+            projectImage.setTitle(data.getTitle());
+            projectImage.setImageUrl(data.getImageUrl());
+            projectImage.setProject(project);
+            return projectImageService.createProjectImage(projectImage);
+        }
+        System.out.println("El Proyecto no existe...");
+        return projectImage;
     }
     
     
     /* Update Item */
     
     @PatchMapping ("{portfolio_name}/social/update")
-    public String updateSocial (@PathVariable String portfolio_name,
+    public Social updateSocial (@PathVariable String portfolio_name,
                                 @RequestBody SocialData data) {
-        return "Social updated";
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/experience/update")
-    public String updateExperience (@PathVariable String portfolio_name,
-                                    @RequestBody ExperienceData data) {
-        return "Experience updated";
+    public Experience updateExperience (@PathVariable String portfolio_name,
+                                        @RequestBody ExperienceData data) {
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/education/update")
-    public String updateEducation (@PathVariable String portfolio_name,
-                                   @RequestBody EducationData data) {
-        return "Education updated";
+    public Education updateEducation (@PathVariable String portfolio_name,
+                                      @RequestBody EducationData data) {
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/skill/update")
-    public String updateSkill (@PathVariable String portfolio_name,
-                               @RequestBody SkillData data) {
-        return "Skill updated";
+    public Skill updateSkill (@PathVariable String portfolio_name,
+                              @RequestBody SkillData data) {
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/project/update")
-    public String updateProject (@PathVariable String portfolio_name,
-                                 @RequestBody ProjectData data) {
-        return "Project updated";
+    public Project updateProject (@PathVariable String portfolio_name,
+                                  @RequestBody ProjectData data) {
+        return null;
     }
     
     @PatchMapping ("{project_id}/image/update")
-    public String updateProjectImage (@PathVariable Long project_id,
-                                      @RequestBody ProjectImageData data) {
-        return "Project image updated";
+    public ProjectImage updateProjectImage (@PathVariable Long project_id,
+                                            @RequestBody ProjectImageData data) {
+        return null;
     }
     
     
@@ -194,7 +277,7 @@ public class EditController {
     
     @DeleteMapping ("deleteitem/{section}/{id}")
     public void deleteItem (@PathVariable String section,
-                              @PathVariable Long id) {
+                            @PathVariable Long id) {
         // Secciones: Social, Experience, Education, Skills, 
         //            Projects, ProjectImages
     }

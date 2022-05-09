@@ -14,6 +14,14 @@ public class EducationService implements IEducationService {
     private PortfolioService portfolioService;
 
     @Override
+    public Education createEducation(Education education) {
+        Education savedEducation = educationRepo.save(education);
+        savedEducation.getPortfolio().getEducationSet().add(savedEducation);
+        portfolioService.updatePortfolio(savedEducation.getPortfolio());
+        return savedEducation;
+    }
+
+    @Override
     public void deleteEducation(Education education) {
         education.getPortfolio().getEducationSet().remove(education);
         portfolioService.updatePortfolio(education.getPortfolio());

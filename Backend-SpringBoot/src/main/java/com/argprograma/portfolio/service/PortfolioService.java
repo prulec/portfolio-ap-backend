@@ -1,12 +1,7 @@
 package com.argprograma.portfolio.service;
 
-import com.argprograma.portfolio.model.Education;
-import com.argprograma.portfolio.model.Experience;
 import com.argprograma.portfolio.model.Portfolio;
-import com.argprograma.portfolio.model.Project;
-import com.argprograma.portfolio.model.Skill;
 import com.argprograma.portfolio.model.Social;
-import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.repository.PortfolioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +15,6 @@ public class PortfolioService implements IPortfolioService {
     private UserService userService;
     @Autowired
     private SocialService socialService;
-    @Autowired
-    private ExperienceService experienceService;
-    @Autowired
-    private EducationService educationService;
-    @Autowired
-    private SkillService skillService;
-    @Autowired
-    private ProjectService projectService;
 
     @Override
     public Portfolio createPortfolio(Portfolio portfolio) {
@@ -54,6 +41,9 @@ public class PortfolioService implements IPortfolioService {
 
     @Override
     public void deletePortfolio(Portfolio portfolio) {
+        for (Social social : portfolio.getSocialSet()) {
+            socialService.deleteSocial(social);
+        }
         portfolio.getUser().getPortfolioSet().remove(portfolio);
         userService.updateUser(portfolio.getUser());
     }

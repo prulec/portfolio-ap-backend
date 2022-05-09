@@ -14,6 +14,14 @@ public class ProjectImageService implements IProjectImageService {
     private ProjectService projectService;
 
     @Override
+    public ProjectImage createProjectImage(ProjectImage projectImage) {
+        ProjectImage savedprojectImage = projectImageRepo.save(projectImage);
+        savedprojectImage.getProject().getProjectImageSet().add(savedprojectImage);
+        projectService.updateProject(savedprojectImage.getProject());
+        return savedprojectImage;
+    }
+
+    @Override
     public void deleteProjectImage(ProjectImage projectImage) {
         projectImage.getProject().getProjectImageSet().remove(projectImage);
         projectService.updateProject(projectImage.getProject());
