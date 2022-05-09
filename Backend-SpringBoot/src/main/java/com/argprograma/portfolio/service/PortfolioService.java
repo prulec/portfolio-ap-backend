@@ -54,24 +54,8 @@ public class PortfolioService implements IPortfolioService {
 
     @Override
     public void deletePortfolio(Portfolio portfolio) {
-        for (Social social : portfolio.getSocialSet()) {
-            socialService.deleteSocial(social);
-        }
-        for (Experience experience : portfolio.getExperienceSet()) {
-            experienceService.deleteExperience(experience);
-        }
-        for (Education education : portfolio.getEducationSet()) {
-            educationService.deleteEducation(education);
-        }
-        for (Skill skill : portfolio.getSkillSet()) {
-            skillService.deleteSkill(skill);
-        }
-        for (Project project : portfolio.getProjectSet()) {
-            projectService.deleteProject(project);
-        }
         portfolio.getUser().getPortfolioSet().remove(portfolio);
         userService.updateUser(portfolio.getUser());
-        portfolioRepo.delete(portfolio);
     }
     
 }

@@ -2,6 +2,7 @@ package com.argprograma.portfolio.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,19 +42,34 @@ public class Portfolio {
     @ManyToOne (optional=false)
     private User user;
     
-    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="portfolio",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Social> socialSet = new HashSet<>();
     
-    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="portfolio",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Experience> experienceSet = new HashSet<>();
     
-    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="portfolio",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Education> educationSet = new HashSet<>();
     
-    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="portfolio",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Skill> skillSet = new HashSet<>();
     
-    @OneToMany (mappedBy="portfolio", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="portfolio",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Project> projectSet = new HashSet<>();
     
 }

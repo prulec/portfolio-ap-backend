@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface ISocialService {
     public Social createSocial (Social social);
-    public List<Social> findSocialBySocialType (SocialType socialType);
     public void deleteSocial (Social social);
 }

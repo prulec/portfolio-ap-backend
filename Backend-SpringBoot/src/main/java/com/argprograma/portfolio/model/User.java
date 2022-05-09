@@ -2,6 +2,7 @@ package com.argprograma.portfolio.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,10 @@ public class User {
     @Column (nullable=false, length=100)
     private String email;
     
-    @OneToMany (mappedBy="user", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy="user",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<Portfolio> portfolioSet = new HashSet<>();
     
 }

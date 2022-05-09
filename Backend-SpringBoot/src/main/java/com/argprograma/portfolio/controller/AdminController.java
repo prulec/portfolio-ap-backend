@@ -1,6 +1,7 @@
 package com.argprograma.portfolio.controller;
 
 import com.argprograma.portfolio.dto.PortfolioData;
+import com.argprograma.portfolio.dto.SocialTypeData;
 import com.argprograma.portfolio.dto.UserData;
 import com.argprograma.portfolio.model.Portfolio;
 import com.argprograma.portfolio.model.SocialType;
@@ -102,9 +103,9 @@ public class AdminController {
     
     @PostMapping ("addportfolio/{username}")
     public Portfolio createPortfolio (@PathVariable String username,
-                                @RequestBody PortfolioData data) {
-        // Agrega portfolio recibiendo id, name,
-        // y asignando: visible=false, user buscando por username
+                                      @RequestBody PortfolioData data) {
+        // Agrega portfolio recibiendo username, y asignando: 
+        // id=null, name (data), visible=false, user buscando por username
         User user = userService.findUserByUsername(username);
         Portfolio portfolio = new Portfolio();
         if (user!=null) {
@@ -165,7 +166,7 @@ public class AdminController {
     /* Portfolio --> SocialType */
     
     @PostMapping ("addsocialtype")
-    public SocialType createSocialType (@RequestBody SocialType data) {
+    public SocialType createSocialType (@RequestBody SocialTypeData data) {
         // Agrega un tipo de red social, asignando null a id
         SocialType socialType  = new SocialType();
         socialType.setId(null);
@@ -175,22 +176,35 @@ public class AdminController {
     }
     
     @GetMapping ("socialtypes")
-    public List<SocialType> getSocialTypes () {
+    public List<SocialTypeData> getSocialTypes () {
         // Devuelve todos los tipos de redes sociales registradas
-        return socialTypeService.getSocialTypes();
+        List<SocialType> socialTypes = new ArrayList<>(socialTypeService.getSocialTypes());
+        List<SocialTypeData> socialTypesData = new ArrayList<>();
+        for (int i = 0; i < socialTypes.size(); i++) {
+            socialTypesData.add(new SocialTypeData());
+            SocialTypeData socialTypeData = socialTypesData.get(i);
+            SocialType socialType = socialTypes.get(i);
+            socialTypeData.setId(socialType.getId());
+            socialTypeData.setName(socialType.getName());
+            socialTypeData.setIconUrl(socialType.getIconUrl());
+        }
+        return socialTypesData;
     }
     
     @PutMapping ("updatesocialtype")
-    public SocialType updateSocialType (@RequestBody SocialType data) {
+    public SocialTypeData updateSocialType (@RequestBody SocialTypeData data) {
         // Actualiza SocialType que corresponde al id recibido
         SocialType socialType = socialTypeService.findSocialTypeById(data.getId());
+        SocialTypeData socialTypeData = new SocialTypeData();
         if (socialType!=null) {
             socialType.setName(data.getName());
             socialType.setIconUrl(data.getIconUrl());
-            return socialTypeService.updateSocialType(socialType);
-        }
-        System.out.println("El Social type no existe...");
-        return socialType;
+            socialType = socialTypeService.updateSocialType(socialType);
+            socialTypeData.setId(socialType.getId());
+            socialTypeData.setName(socialType.getName());
+            socialTypeData.setIconUrl(socialType.getIconUrl());
+        } else System.out.println("El Social type no existe...");
+        return socialTypeData;
     }
     
     @DeleteMapping ("deletesocialtype/{socialtype_id}")

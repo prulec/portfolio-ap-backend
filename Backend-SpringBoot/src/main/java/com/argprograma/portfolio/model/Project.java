@@ -2,6 +2,7 @@ package com.argprograma.portfolio.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,10 @@ public class Project {
     @ManyToOne (optional=false)
     private Portfolio portfolio;
     
-    @OneToMany (mappedBy="project", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "project",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true,
+                fetch = FetchType.LAZY)
     private Set<ProjectImage> projectImageSet = new HashSet<>();
     
 }
