@@ -24,6 +24,37 @@ public class SocialService implements ISocialService {
     }
 
     @Override
+    public Social findSocialById (Long id) {
+        return socialRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Social updateSocial(Social social) {
+        return socialRepo.save(social);
+    }
+
+    @Override
+    public Social changeOrderSocial(Social social, int newOrder) {
+        int currentOrder = social.getItemOrder();
+        if (newOrder < currentOrder) {
+            for (Social item : social.getPortfolio().getSocialSet()) {
+                if (item.getItemOrder()>=newOrder && item.getItemOrder()<currentOrder) {
+                    item.setItemOrder(item.getItemOrder()+1);
+                }
+            }
+        } else if (newOrder > currentOrder) {
+            for (Social item : social.getPortfolio().getSocialSet()) {
+                if (item.getItemOrder()<=newOrder && item.getItemOrder()>currentOrder) {
+                    item.setItemOrder(item.getItemOrder()-1);
+                }
+            }
+        }
+        social.setItemOrder(newOrder);
+        portfolioService.updatePortfolio(social.getPortfolio());
+        return social;
+    }
+
+    @Override
     public void deleteSocial(Social social) {
         social.getPortfolio().getSocialSet().remove(social);
         social.getSocialType().getSocialSet().remove(social);

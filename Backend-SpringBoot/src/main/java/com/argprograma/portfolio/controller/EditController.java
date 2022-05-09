@@ -16,6 +16,7 @@ import com.argprograma.portfolio.model.Project;
 import com.argprograma.portfolio.model.ProjectImage;
 import com.argprograma.portfolio.model.Skill;
 import com.argprograma.portfolio.model.Social;
+import com.argprograma.portfolio.model.SocialType;
 import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.service.EducationService;
 import com.argprograma.portfolio.service.ExperienceService;
@@ -60,7 +61,7 @@ public class EditController {
     
     /* Portfolio */
     
-    @GetMapping ("{portfolio_name}")
+    @GetMapping ("{portfolio_name}/edit")
     public Portfolio getPortfolio (@PathVariable String portfolio_name){
         // Traer el objeto completo Portfolio con el name del portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
@@ -236,40 +237,83 @@ public class EditController {
     
     /* Update Item */
     
-    @PatchMapping ("{portfolio_name}/social/update")
-    public Social updateSocial (@PathVariable String portfolio_name,
-                                @RequestBody SocialData data) {
-        return null;
+    @PatchMapping ("social/update")
+    public Social updateSocial (@RequestBody SocialData data) {
+        Social social = socialService.findSocialById(data.getId());
+        if (social!=null) {
+            if (!data.getUrl().isEmpty()) social.setUrl(data.getUrl());
+            if (!data.getSocialTypeName().isEmpty()) {
+                SocialType socialType = socialTypeService.findSocialTypeByName(data.getSocialTypeName());
+                if (socialType!=null) {
+                    social.setSocialType(socialType);                    
+                } else System.out.println("El Social type no existe...");
+            }
+            return socialService.updateSocial(social);
+        } else System.out.println("El Social no existe...");
+        return social;
     }
     
-    @PatchMapping ("{portfolio_name}/experience/update")
-    public Experience updateExperience (@PathVariable String portfolio_name,
-                                        @RequestBody ExperienceData data) {
-        return null;
+    @PatchMapping ("experience/update")
+    public Experience updateExperience (@RequestBody ExperienceData data) {
+        Experience experience = experienceService.findExperienceById(data.getId());
+        if (experience!=null) {
+            if (!data.getLogoUrl().isEmpty()) experience.setLogoUrl(data.getLogoUrl());
+            if (!data.getEnterprise().isEmpty()) experience.setEnterprise(data.getEnterprise());
+            if (!data.getExperienceTime().isEmpty()) experience.setExperienceTime(data.getExperienceTime());
+            if (!data.getPosition().isEmpty()) experience.setPosition(data.getPosition());
+            if (!data.getTasks().isEmpty()) experience.setTasks(data.getTasks());
+            return experienceService.updateExperience(experience);
+        } else System.out.println("La Experience no existe...");
+        return experience;
     }
     
-    @PatchMapping ("{portfolio_name}/education/update")
-    public Education updateEducation (@PathVariable String portfolio_name,
-                                      @RequestBody EducationData data) {
-        return null;
+    @PatchMapping ("education/update")
+    public Education updateEducation (@RequestBody EducationData data) {
+        Education education = educationService.findEducationById(data.getId());
+        if (education!=null) {
+            if (!data.getLogoUrl().isEmpty()) education.setLogoUrl(data.getLogoUrl());
+            if (!data.getInstitution().isEmpty()) education.setInstitution(data.getInstitution());
+            if (!data.getEducationTime().isEmpty()) education.setEducationTime(data.getEducationTime());
+            if (!data.getTitle().isEmpty()) education.setTitle(data.getTitle());
+            return educationService.updateEducation(education);
+        } else System.out.println("La Education no existe...");
+        return education;
     }
     
-    @PatchMapping ("{portfolio_name}/skill/update")
-    public Skill updateSkill (@PathVariable String portfolio_name,
-                              @RequestBody SkillData data) {
-        return null;
+    @PatchMapping ("skill/update")
+    public Skill updateSkill (@RequestBody SkillData data) {
+        Skill skill = skillService.findSkillById(data.getId());
+        if (skill!=null) {
+            if (!data.getName().isEmpty()) skill.setName(data.getName());
+            if (data.getSkillLevel()!=null) skill.setSkillLevel(data.getSkillLevel());
+            if (!data.getLevelTag().isEmpty()) skill.setLevelTag(data.getLevelTag());
+            return skillService.updateSkill(skill);
+        } else System.out.println("La Skill no existe...");
+        return skill;
     }
     
-    @PatchMapping ("{portfolio_name}/project/update")
-    public Project updateProject (@PathVariable String portfolio_name,
-                                  @RequestBody ProjectData data) {
-        return null;
+    @PatchMapping ("project/update")
+    public Project updateProject (@RequestBody ProjectData data) {
+        Project project = projectService.findProjectById(data.getId());
+        if (project!=null) {
+            if (!data.getName().isEmpty()) project.setName(data.getName());
+            if (!data.getProjectTime().isEmpty()) project.setProjectTime(data.getProjectTime());
+            if (!data.getLink().isEmpty()) project.setLink(data.getLink());
+            if (!data.getDescription().isEmpty()) project.setDescription(data.getDescription());
+            return projectService.updateProject(project);
+        } else System.out.println("El Project no existe...");
+        return project;
     }
     
-    @PatchMapping ("{project_id}/image/update")
-    public ProjectImage updateProjectImage (@PathVariable Long project_id,
-                                            @RequestBody ProjectImageData data) {
-        return null;
+    @PatchMapping ("image/update")
+    public ProjectImage updateProjectImage (@RequestBody ProjectImageData data) {
+        ProjectImage projectImage = projectImageService.findProjectImageById(data.getId());
+        if (projectImage!=null) {
+            if (!data.getTitle().isEmpty()) projectImage.setTitle(data.getTitle());
+            if (!data.getImageUrl().isEmpty()) projectImage.setImageUrl(data.getImageUrl());
+            return projectImageService.updateProjectImage(projectImage);
+        } else System.out.println("La Project image no existe...");
+        return projectImage;
     }
     
     
@@ -280,6 +324,51 @@ public class EditController {
                             @PathVariable Long id) {
         // Secciones: Social, Experience, Education, Skills, 
         //            Projects, ProjectImages
+        switch (section) {
+            case "social" -> {
+                Social social = socialService.findSocialById(id);
+                if (social!=null) {
+                    socialService.deleteSocial(social);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            case "experience" -> {
+                Experience experience = experienceService.findExperienceById(id);
+                if (experience!=null) {
+                    experienceService.deleteExperience(experience);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            case "education" -> {
+                Education education = educationService.findEducationById(id);
+                if (education!=null) {
+                    educationService.deleteEducation(education);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            case "skill" -> {
+                Skill skill = skillService.findSkillById(id);
+                if (skill!=null) {
+                    skillService.deleteSkill(skill);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            case "project" -> {
+                Project project = projectService.findProjectById(id);
+                if (project!=null) {
+                    projectService.deleteProject(project);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            case "projectimage" -> {
+                ProjectImage projectImage = projectImageService.findProjectImageById(id);
+                if (projectImage!=null) {
+                    projectImageService.deleteProjectImage(projectImage);
+                    System.out.println(section + ": " + id + " eliminado!");
+                } else System.out.println(section + " no existe...");
+            }
+            default -> System.out.println("La section ingresada no es válida...");
+        }
     }
     
     
@@ -287,7 +376,79 @@ public class EditController {
     
     @PatchMapping ("changeorder")
     public String changeOrderItem (@RequestBody OrderData data) {
-        return "Order changed";
+        switch (data.getSection()) {
+            case "social" -> {
+                Social social = socialService.findSocialById(data.getId());
+                if (social!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=social.getPortfolio().getSocialSet().size()) {
+                        socialService.changeOrderSocial(social,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            case "experience" -> {
+                Experience experience = experienceService.findExperienceById(data.getId());
+                if (experience!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=experience.getPortfolio().getExperienceSet().size()) {
+                        experienceService.changeOrderExperience(experience,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            case "education" -> {
+                Education education = educationService.findEducationById(data.getId());
+                if (education!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=education.getPortfolio().getEducationSet().size()) {
+                        educationService.changeOrderEducation(education,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            case "skill" -> {
+                Skill skill = skillService.findSkillById(data.getId());
+                if (skill!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=skill.getPortfolio().getSkillSet().size()) {
+                        skillService.changeOrderSkill(skill,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            case "project" -> {
+                Project project = projectService.findProjectById(data.getId());
+                if (project!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=project.getPortfolio().getProjectSet().size()) {
+                        projectService.changeOrderProject(project,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            case "projectimage" -> {
+                ProjectImage projectImage = projectImageService.findProjectImageById(data.getId());
+                if (projectImage!=null) {
+                    int newOrder = data.getNewItemOrder();
+                    if (newOrder>0 && newOrder<=projectImage.getProject().getProjectImageSet().size()) {
+                        projectImageService.changeOrderProjectImage(projectImage,data.getNewItemOrder());
+                    } else {
+                        return "El nuevo orden no es válido...";
+                    }
+                } else return data.getSection() + ", id " + data.getId() + " no existe...";
+            }
+            default -> {
+                return "La section ingresada no es válida...";
+            }
+        }
+        return "Section: " + data.getSection() + ", Id: " + data.getId()
+                + "\nNew order position: " + data.getNewItemOrder();
     }
     
 }

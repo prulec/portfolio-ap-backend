@@ -8,7 +8,7 @@ public class ProjectData {
     
     private Long id;
     private String name;
-    private String ProjectTime;
+    private String projectTime;
     private String link;
     private String description;
     

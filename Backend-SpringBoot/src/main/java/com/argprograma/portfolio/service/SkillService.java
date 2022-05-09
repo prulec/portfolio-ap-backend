@@ -22,10 +22,40 @@ public class SkillService implements ISkillService {
     }
 
     @Override
+    public Skill findSkillById(Long id) {
+        return skillRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Skill updateSkill(Skill skill) {
+        return skillRepo.save(skill);
+    }
+
+    @Override
+    public Skill changeOrderSkill(Skill skill, int newOrder) {
+        int currentOrder = skill.getItemOrder();
+        if (newOrder < currentOrder) {
+            for (Skill item : skill.getPortfolio().getSkillSet()) {
+                if (item.getItemOrder()>=newOrder && item.getItemOrder()<currentOrder) {
+                    item.setItemOrder(item.getItemOrder()+1);
+                }
+            }
+        } else if (newOrder > currentOrder) {
+            for (Skill item : skill.getPortfolio().getSkillSet()) {
+                if (item.getItemOrder()<=newOrder && item.getItemOrder()>currentOrder) {
+                    item.setItemOrder(item.getItemOrder()-1);
+                }
+            }
+        }
+        skill.setItemOrder(newOrder);
+        portfolioService.updatePortfolio(skill.getPortfolio());
+        return skill;
+    }
+
+    @Override
     public void deleteSkill(Skill skill) {
         skill.getPortfolio().getSkillSet().remove(skill);
         portfolioService.updatePortfolio(skill.getPortfolio());
-        skillRepo.delete(skill);
     }
     
 }

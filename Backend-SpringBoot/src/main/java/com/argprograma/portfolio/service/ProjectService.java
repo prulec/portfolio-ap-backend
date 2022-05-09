@@ -35,13 +35,33 @@ public class ProjectService implements IProjectService {
     }
 
     @Override
+    public Project changeOrderProject(Project project, int newOrder) {
+        int currentOrder = project.getItemOrder();
+        if (newOrder < currentOrder) {
+            for (Project item : project.getPortfolio().getProjectSet()) {
+                if (item.getItemOrder()>=newOrder && item.getItemOrder()<currentOrder) {
+                    item.setItemOrder(item.getItemOrder()+1);
+                }
+            }
+        } else if (newOrder > currentOrder) {
+            for (Project item : project.getPortfolio().getProjectSet()) {
+                if (item.getItemOrder()<=newOrder && item.getItemOrder()>currentOrder) {
+                    item.setItemOrder(item.getItemOrder()-1);
+                }
+            }
+        }
+        project.setItemOrder(newOrder);
+        portfolioService.updatePortfolio(project.getPortfolio());
+        return project;
+    }
+
+    @Override
     public void deleteProject(Project project) {
         for (ProjectImage projectImage : project.getProjectImageSet()) {
             projectImageService.deleteProjectImage(projectImage);
         }
         project.getPortfolio().getProjectSet().remove(project);
         portfolioService.updatePortfolio(project.getPortfolio());
-        projectRepo.delete(project);
     }
     
 }

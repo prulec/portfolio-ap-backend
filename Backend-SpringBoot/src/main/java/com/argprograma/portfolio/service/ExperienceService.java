@@ -22,10 +22,40 @@ public class ExperienceService implements IExperienceService {
     }
 
     @Override
+    public Experience findExperienceById(Long id) {
+        return experienceRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Experience updateExperience(Experience experience) {
+        return experienceRepo.save(experience);
+    }
+
+    @Override
+    public Experience changeOrderExperience(Experience experience, int newOrder) {
+        int currentOrder = experience.getItemOrder();
+        if (newOrder < currentOrder) {
+            for (Experience item : experience.getPortfolio().getExperienceSet()) {
+                if (item.getItemOrder()>=newOrder && item.getItemOrder()<currentOrder) {
+                    item.setItemOrder(item.getItemOrder()+1);
+                }
+            }
+        } else if (newOrder > currentOrder) {
+            for (Experience item : experience.getPortfolio().getExperienceSet()) {
+                if (item.getItemOrder()<=newOrder && item.getItemOrder()>currentOrder) {
+                    item.setItemOrder(item.getItemOrder()-1);
+                }
+            }
+        }
+        experience.setItemOrder(newOrder);
+        portfolioService.updatePortfolio(experience.getPortfolio());
+        return experience;
+    }
+
+    @Override
     public void deleteExperience(Experience experience) {
         experience.getPortfolio().getExperienceSet().remove(experience);
         portfolioService.updatePortfolio(experience.getPortfolio());
-        experienceRepo.delete(experience);
     }
     
 }
