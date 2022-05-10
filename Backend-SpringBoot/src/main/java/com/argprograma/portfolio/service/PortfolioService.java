@@ -12,9 +12,7 @@ public class PortfolioService implements IPortfolioService {
     @Autowired
     private PortfolioRepository portfolioRepo;
     @Autowired
-    private UserService userService;
-    @Autowired
-    private SocialService socialService;
+    private IUserService userService;
 
     @Override
     public Portfolio createPortfolio(Portfolio portfolio) {
@@ -41,11 +39,15 @@ public class PortfolioService implements IPortfolioService {
 
     @Override
     public void deletePortfolio(Portfolio portfolio) {
-        for (Social social : portfolio.getSocialSet()) {
-            socialService.deleteSocial(social);
-        }
         portfolio.getUser().getPortfolioSet().remove(portfolio);
         userService.updateUser(portfolio.getUser());
+    }
+
+    @Override
+    public Portfolio disconnectSocial(Social social) {
+        Portfolio portfolio = social.getPortfolio();
+        portfolio.getSocialSet().remove(social);
+        return this.updatePortfolio(portfolio);
     }
     
 }

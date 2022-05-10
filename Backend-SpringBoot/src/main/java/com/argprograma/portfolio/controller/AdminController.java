@@ -1,9 +1,12 @@
 package com.argprograma.portfolio.controller;
 
 import com.argprograma.portfolio.dto.PortfolioData;
+import com.argprograma.portfolio.dto.PortfolioOut;
 import com.argprograma.portfolio.dto.SocialTypeData;
 import com.argprograma.portfolio.dto.UserData;
+import com.argprograma.portfolio.dto.UserOut;
 import com.argprograma.portfolio.model.Portfolio;
+import com.argprograma.portfolio.model.Social;
 import com.argprograma.portfolio.model.SocialType;
 import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.service.IPortfolioService;
@@ -58,23 +61,17 @@ public class AdminController {
     }
     
     @GetMapping ("user/{username}")
-    public UserData getUser (@PathVariable String username) {
-        // Muestra datos de usuario SIN la lista de portfolios
-        UserData userData = new UserData();
+    public UserOut getUser (@PathVariable String username) {
+        // Muestra datos de usuario con la lista de portfolios
         User user = userService.findUserByUsername(username);
         if (user!=null) {
-            userData.setId(user.getId());
-            userData.setUsername(user.getUsername());
-            userData.setPassword(user.getPassword());
-            userData.setFirstName(user.getFirstName());
-            userData.setLastName(user.getLastName());
-            userData.setEmail(user.getEmail());
+            return new UserOut(user);
         } else System.out.println("El username no existe...");
-        return userData;
+        return null;
     }
     
     @PatchMapping ("updateuser")
-    public User updateUser (@RequestBody UserData data) {
+    public UserOut updateUser (@RequestBody UserData data) {
         // Actualiza datos de usuario que corresponda con id recibida
         User user = userService.findUserById(data.getId());
         if (user!=null) {
@@ -83,9 +80,9 @@ public class AdminController {
             if (!data.getFirstName().isEmpty()) user.setFirstName(data.getFirstName());
             if (!data.getLastName().isEmpty()) user.setLastName(data.getLastName());
             if (!data.getEmail().isEmpty()) user.setEmail(data.getEmail());
-            return userService.updateUser(user);
+            return new UserOut (userService.updateUser(user));
         } else System.out.println("El User no existe...");
-        return user;
+        return null;
     }
     
     @DeleteMapping ("deleteuser/{username}")
@@ -93,6 +90,12 @@ public class AdminController {
         // Borra usuario y todos los portfolios que le pertenecen
         User user = userService.findUserByUsername(username);
         if (user!=null) {
+            for (Portfolio portfolio : user.getPortfolioSet()) {
+                for (Social social : portfolio.getSocialSet()) {
+                    portfolioService.disconnectSocial(social);
+                    //socialTypeService.disconnectSocial(social);
+                }
+            }
             userService.deleteUser(user);
             System.out.println("Usuario " + user.getUsername() + " eliminado!");
         } else System.out.println("El username no existe...");
@@ -102,7 +105,7 @@ public class AdminController {
     /* Portfolio */
     
     @PostMapping ("addportfolio/{username}")
-    public Portfolio createPortfolio (@PathVariable String username,
+    public PortfolioOut createPortfolio (@PathVariable String username,
                                       @RequestBody PortfolioData data) {
         // Agrega portfolio recibiendo username, y asignando: 
         // id=null, name (data), visible=false, user buscando por username
@@ -113,10 +116,10 @@ public class AdminController {
             portfolio.setName(data.getName());
             portfolio.setVisible(false);
             portfolio.setUser(user);
-            return portfolioService.createPortfolio(portfolio);
+            return new PortfolioOut(portfolioService.createPortfolio(portfolio));
         }
         System.out.println("El username no existe...");
-        return portfolio;
+        return null;
     }
     
     @GetMapping ("listportfolios/{username}")
@@ -134,20 +137,21 @@ public class AdminController {
                 portfolio.setId(userPortfolio.getId());
                 portfolio.setName(userPortfolio.getName());
             }
+            return portfolios;
         } else System.out.println("El username no existe...");
-        return portfolios;
+        return null;
     }
     
     @PatchMapping ("updateportfolioname")
-    public Portfolio updatePortfolioName (@RequestBody PortfolioData data) {
+    public PortfolioOut updatePortfolioName (@RequestBody PortfolioData data) {
         // Actualiza name del portfolio que corresponde al id recibido
         Portfolio portfolio = portfolioService.findPortfolioById(data.getId());
         if (portfolio!=null) {
             if (!data.getName().isEmpty()) portfolio.setName(data.getName());
-            return portfolioService.updatePortfolio(portfolio);
+            return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
         System.out.println("El portfolio no existe...");
-        return portfolio;
+        return null;
     }
     
     @DeleteMapping ("deleteportfolio/{portfolio_name}")
@@ -157,6 +161,10 @@ public class AdminController {
         // eliminando los items que referencian al portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         if (portfolio!=null) {
+            for (Social social : portfolio.getSocialSet()) {
+                portfolio = portfolioService.disconnectSocial(social);
+                socialTypeService.disconnectSocial(social);
+            }
             portfolioService.deletePortfolio(portfolio);
             System.out.println("Portfolio " + portfolio.getName() + " eliminado!");
         } else System.out.println("El portfolio no existe...");
@@ -203,8 +211,9 @@ public class AdminController {
             socialTypeData.setId(socialType.getId());
             socialTypeData.setName(socialType.getName());
             socialTypeData.setIconUrl(socialType.getIconUrl());
+            return socialTypeData;
         } else System.out.println("El Social type no existe...");
-        return socialTypeData;
+        return null;
     }
     
     @DeleteMapping ("deletesocialtype/{socialtype_id}")
@@ -213,6 +222,10 @@ public class AdminController {
         // y todos los elementos Social que lo referencien
         SocialType socialType = socialTypeService.findSocialTypeById(socialtype_id);
         if (socialType!=null) {
+            for (Social social : socialType.getSocialSet()) {
+                portfolioService.disconnectSocial(social);
+                socialType = socialTypeService.disconnectSocial(social);
+            }
             socialTypeService.deleteSocialType(socialType);
             System.out.println("SocialType " + socialType.getName() + " eliminado!");
         } else System.out.println("El Social type no existe...");

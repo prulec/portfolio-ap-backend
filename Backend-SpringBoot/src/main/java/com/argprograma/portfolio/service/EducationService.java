@@ -11,7 +11,7 @@ public class EducationService implements IEducationService {
     @Autowired
     private EducationRepository educationRepo;
     @Autowired
-    private PortfolioService portfolioService;
+    private IPortfolioService portfolioService;
 
     @Override
     public Education createEducation(Education education) {

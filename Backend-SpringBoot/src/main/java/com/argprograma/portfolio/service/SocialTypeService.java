@@ -12,8 +12,6 @@ public class SocialTypeService implements ISocialTypeService {
     
     @Autowired
     private SocialTypeRepository socialTypeRepo;
-    @Autowired
-    private SocialService socialService;
 
     @Override
     public SocialType createSocialType(SocialType socialType) {
@@ -42,9 +40,13 @@ public class SocialTypeService implements ISocialTypeService {
 
     @Override
     public void deleteSocialType(SocialType socialType) {
-        for (Social social : socialType.getSocialSet()) {
-            socialService.deleteSocial(social);
-        }
         socialTypeRepo.delete(socialType);
+    }
+
+    @Override
+    public SocialType disconnectSocial(Social social) {
+        SocialType socialType = social.getSocialType();
+        socialType.getSocialSet().remove(social);
+        return this.updateSocialType(socialType);
     }
 }

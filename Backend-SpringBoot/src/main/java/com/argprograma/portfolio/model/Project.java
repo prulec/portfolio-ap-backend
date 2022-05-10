@@ -28,7 +28,7 @@ public class Project {
     private String name;
     
     @Column (length=100)
-    private String ProjectTime;
+    private String projectTime;
     
     @Column (length=255)
     private String link;

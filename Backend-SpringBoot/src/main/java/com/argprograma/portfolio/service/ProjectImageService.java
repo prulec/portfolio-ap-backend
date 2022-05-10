@@ -11,7 +11,7 @@ public class ProjectImageService implements IProjectImageService {
     @Autowired
     private ProjectImageRepository projectImageRepo;
     @Autowired
-    private ProjectService projectService;
+    private IProjectService projectService;
 
     @Override
     public ProjectImage createProjectImage(ProjectImage projectImage) {

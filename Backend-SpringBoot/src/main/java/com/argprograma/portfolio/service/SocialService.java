@@ -11,9 +11,9 @@ public class SocialService implements ISocialService {
     @Autowired
     private SocialRepository socialRepo;
     @Autowired
-    private PortfolioService portfolioService;
+    private IPortfolioService portfolioService;
     @Autowired
-    private SocialTypeService socialTypeService;
+    private ISocialTypeService socialTypeService;
 
     @Override
     public Social createSocial(Social social) {

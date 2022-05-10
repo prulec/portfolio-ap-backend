@@ -3,12 +3,20 @@ package com.argprograma.portfolio.controller;
 import com.argprograma.portfolio.dto.EducationData;
 import com.argprograma.portfolio.dto.ExperienceData;
 import com.argprograma.portfolio.dto.EditUserData;
+import com.argprograma.portfolio.dto.EducationOut;
+import com.argprograma.portfolio.dto.ExperienceOut;
 import com.argprograma.portfolio.dto.HeaderAboutData;
 import com.argprograma.portfolio.dto.OrderData;
+import com.argprograma.portfolio.dto.PortfolioData;
+import com.argprograma.portfolio.dto.PortfolioOut;
 import com.argprograma.portfolio.dto.ProjectData;
 import com.argprograma.portfolio.dto.ProjectImageData;
+import com.argprograma.portfolio.dto.ProjectImageOut;
+import com.argprograma.portfolio.dto.ProjectOut;
 import com.argprograma.portfolio.dto.SkillData;
+import com.argprograma.portfolio.dto.SkillOut;
 import com.argprograma.portfolio.dto.SocialData;
+import com.argprograma.portfolio.dto.SocialOut;
 import com.argprograma.portfolio.model.Education;
 import com.argprograma.portfolio.model.Experience;
 import com.argprograma.portfolio.model.Portfolio;
@@ -62,27 +70,28 @@ public class EditController {
     /* Portfolio */
     
     @GetMapping ("{portfolio_name}/edit")
-    public Portfolio getPortfolio (@PathVariable String portfolio_name){
+    public PortfolioOut getPortfolio (@PathVariable String portfolio_name){
         // Traer el objeto completo Portfolio con el name del portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio==null) System.out.println("No existe Portfolio con ese name..."); 
-        return portfolio;
+        if (portfolio!=null) return new PortfolioOut(portfolio);
+        System.out.println("No existe Portfolio con ese name...");
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/visibility")
-    public Portfolio toggleVisibility (@PathVariable String portfolio_name){
+    public PortfolioOut toggleVisibility (@PathVariable String portfolio_name){
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         if (portfolio!=null) {
             portfolio.setVisible(!portfolio.isVisible());
-            return portfolioService.updatePortfolio(portfolio);
+            return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
         System.out.println("No existe Portfolio con ese name...");
-        return portfolio;
+        return null;
     }
     
     @PatchMapping ("{portfolio_name}/user/update")
-    public Portfolio updateUserData (@PathVariable String portfolio_name,
-                                  @RequestBody EditUserData data) {
+    public PortfolioOut updateUserData (@PathVariable String portfolio_name,
+                                        @RequestBody EditUserData data) {
         // Edición de datos de usuario en el modo Edit: fullname y email
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         if (portfolio!=null) {
@@ -91,12 +100,13 @@ public class EditController {
             if (!data.getLastName().isEmpty()) user.setLastName(data.getLastName());
             if (!data.getEmail().isEmpty()) user.setEmail(data.getEmail());
             userService.updateUser(user);
+            return new PortfolioOut(portfolio);
         } else System.out.println("No existe Portfolio con ese name...");
-        return portfolio;
+        return null;
     }
     
     @PutMapping ("{portfolio_name}/header-about/update")
-    public Portfolio updateHeaderAbout 
+    public PortfolioOut updateHeaderAbout 
         (@PathVariable String portfolio_name,
          @RequestBody HeaderAboutData data) {
         // Edición de un campo del Header o de la sección About
@@ -112,41 +122,41 @@ public class EditController {
                 case "p_statement" -> portfolio.setPStatement(data.getValue());
                 default -> {
                     System.out.println("El field ingresado es incorrecto...");
-                    return portfolio;
+                    return null;
                 }
             }
-            return portfolioService.updatePortfolio(portfolio);
+            return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
         System.out.println("No existe Portfolio con ese name...");
-        return portfolio;
+        return null;
     }
         
         
     /* Add Item */
     
     @PostMapping ("{portfolio_name}/social/add")
-    public Social addSocial (@PathVariable String portfolio_name,
+    public SocialOut addSocial (@PathVariable String portfolio_name,
                              @RequestBody SocialData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        Social social = new Social();
         if (portfolio!=null) {
+            Social social = new Social();
             social.setId(null);
             social.setItemOrder(portfolio.getSocialSet().size()+1);
             social.setUrl(data.getUrl());
             social.setSocialType(socialTypeService.findSocialTypeByName(data.getSocialTypeName()));
             social.setPortfolio(portfolio);
-            return socialService.createSocial(social);
+            return new SocialOut(socialService.createSocial(social));
         }
         System.out.println("El Portfolio con ese name no existe...");
-        return social;
+        return null;
     }
     
     @PostMapping ("{portfolio_name}/experience/add")
-    public Experience addExperience (@PathVariable String portfolio_name,
+    public ExperienceOut addExperience (@PathVariable String portfolio_name,
                                      @RequestBody ExperienceData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        Experience experience = new Experience();
         if (portfolio!=null) {
+            Experience experience = new Experience();
             experience.setId(null);
             experience.setItemOrder(portfolio.getExperienceSet().size()+1);
             experience.setLogoUrl(data.getLogoUrl());
@@ -155,18 +165,18 @@ public class EditController {
             experience.setPosition(data.getPosition());
             experience.setTasks(data.getTasks());
             experience.setPortfolio(portfolio);
-            return experienceService.createExperience(experience);
+            return new ExperienceOut(experienceService.createExperience(experience));
         }
         System.out.println("El Portfolio con ese name no existe...");
-        return experience;
+        return null;
     }
     
     @PostMapping ("{portfolio_name}/education/add")
-    public Education addEducation (@PathVariable String portfolio_name,
+    public EducationOut addEducation (@PathVariable String portfolio_name,
                                    @RequestBody EducationData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        Education education = new Education();
         if (portfolio!=null) {
+            Education education = new Education();
             education.setId(null);
             education.setItemOrder(portfolio.getEducationSet().size()+1);
             education.setLogoUrl(data.getLogoUrl());
@@ -174,36 +184,36 @@ public class EditController {
             education.setEducationTime(data.getEducationTime());
             education.setTitle(data.getTitle());
             education.setPortfolio(portfolio);
-            return educationService.createEducation(education);
+            return new EducationOut(educationService.createEducation(education));
         }
         System.out.println("El Portfolio con ese name no existe...");
-        return education;
+        return null;
     }
     
     @PostMapping ("{portfolio_name}/skill/add")
-    public Skill addSkill (@PathVariable String portfolio_name,
+    public SkillOut addSkill (@PathVariable String portfolio_name,
                            @RequestBody SkillData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        Skill skill = new Skill();
         if (portfolio!=null) {
+            Skill skill = new Skill();
             skill.setId(null);
             skill.setItemOrder(portfolio.getSkillSet().size()+1);
             skill.setName(data.getName());
             skill.setSkillLevel(data.getSkillLevel());
             skill.setLevelTag(data.getLevelTag());
             skill.setPortfolio(portfolio);
-            return skillService.createSkill(skill);
+            return new SkillOut(skillService.createSkill(skill));
         }
         System.out.println("El Portfolio con ese name no existe...");
-        return skill;
+        return null;
     }
     
     @PostMapping ("{portfolio_name}/project/add")
-    public Project addProject (@PathVariable String portfolio_name,
+    public ProjectOut addProject (@PathVariable String portfolio_name,
                                @RequestBody ProjectData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        Project project = new Project();
         if (portfolio!=null) {
+            Project project = new Project();
             project.setId(null);
             project.setItemOrder(portfolio.getProjectSet().size()+1);
             project.setName(data.getName());
@@ -211,34 +221,34 @@ public class EditController {
             project.setLink(data.getLink());
             project.setDescription(data.getDescription());
             project.setPortfolio(portfolio);
-            return projectService.createProject(project);
+            return new ProjectOut(projectService.createProject(project));
         }
         System.out.println("El Portfolio con ese name no existe...");
-        return project;
+        return null;
     }
     
     @PostMapping ("{project_id}/image/add")
-    public ProjectImage addProjectImage (@PathVariable Long project_id,
+    public ProjectImageOut addProjectImage (@PathVariable Long project_id,
                                          @RequestBody ProjectImageData data) {
         Project project = projectService.findProjectById(project_id);
-        ProjectImage projectImage = new ProjectImage();
         if (project!=null) {
+            ProjectImage projectImage = new ProjectImage();
             projectImage.setId(null);
             projectImage.setItemOrder(project.getProjectImageSet().size()+1);
             projectImage.setTitle(data.getTitle());
             projectImage.setImageUrl(data.getImageUrl());
             projectImage.setProject(project);
-            return projectImageService.createProjectImage(projectImage);
+            return new ProjectImageOut(projectImageService.createProjectImage(projectImage));
         }
         System.out.println("El Proyecto no existe...");
-        return projectImage;
+        return null;
     }
     
     
     /* Update Item */
     
     @PatchMapping ("social/update")
-    public Social updateSocial (@RequestBody SocialData data) {
+    public SocialOut updateSocial (@RequestBody SocialData data) {
         Social social = socialService.findSocialById(data.getId());
         if (social!=null) {
             if (!data.getUrl().isEmpty()) social.setUrl(data.getUrl());
@@ -248,13 +258,13 @@ public class EditController {
                     social.setSocialType(socialType);                    
                 } else System.out.println("El Social type no existe...");
             }
-            return socialService.updateSocial(social);
+            return new SocialOut(socialService.updateSocial(social));
         } else System.out.println("El Social no existe...");
-        return social;
+        return null;
     }
     
     @PatchMapping ("experience/update")
-    public Experience updateExperience (@RequestBody ExperienceData data) {
+    public ExperienceOut updateExperience (@RequestBody ExperienceData data) {
         Experience experience = experienceService.findExperienceById(data.getId());
         if (experience!=null) {
             if (!data.getLogoUrl().isEmpty()) experience.setLogoUrl(data.getLogoUrl());
@@ -262,58 +272,58 @@ public class EditController {
             if (!data.getExperienceTime().isEmpty()) experience.setExperienceTime(data.getExperienceTime());
             if (!data.getPosition().isEmpty()) experience.setPosition(data.getPosition());
             if (!data.getTasks().isEmpty()) experience.setTasks(data.getTasks());
-            return experienceService.updateExperience(experience);
+            return new ExperienceOut(experienceService.updateExperience(experience));
         } else System.out.println("La Experience no existe...");
-        return experience;
+        return null;
     }
     
     @PatchMapping ("education/update")
-    public Education updateEducation (@RequestBody EducationData data) {
+    public EducationOut updateEducation (@RequestBody EducationData data) {
         Education education = educationService.findEducationById(data.getId());
         if (education!=null) {
             if (!data.getLogoUrl().isEmpty()) education.setLogoUrl(data.getLogoUrl());
             if (!data.getInstitution().isEmpty()) education.setInstitution(data.getInstitution());
             if (!data.getEducationTime().isEmpty()) education.setEducationTime(data.getEducationTime());
             if (!data.getTitle().isEmpty()) education.setTitle(data.getTitle());
-            return educationService.updateEducation(education);
+            return new EducationOut(educationService.updateEducation(education));
         } else System.out.println("La Education no existe...");
-        return education;
+        return null;
     }
     
     @PatchMapping ("skill/update")
-    public Skill updateSkill (@RequestBody SkillData data) {
+    public SkillOut updateSkill (@RequestBody SkillData data) {
         Skill skill = skillService.findSkillById(data.getId());
         if (skill!=null) {
             if (!data.getName().isEmpty()) skill.setName(data.getName());
             if (data.getSkillLevel()!=null) skill.setSkillLevel(data.getSkillLevel());
             if (!data.getLevelTag().isEmpty()) skill.setLevelTag(data.getLevelTag());
-            return skillService.updateSkill(skill);
+            return new SkillOut(skillService.updateSkill(skill));
         } else System.out.println("La Skill no existe...");
-        return skill;
+        return null;
     }
     
     @PatchMapping ("project/update")
-    public Project updateProject (@RequestBody ProjectData data) {
+    public ProjectOut updateProject (@RequestBody ProjectData data) {
         Project project = projectService.findProjectById(data.getId());
         if (project!=null) {
             if (!data.getName().isEmpty()) project.setName(data.getName());
             if (!data.getProjectTime().isEmpty()) project.setProjectTime(data.getProjectTime());
             if (!data.getLink().isEmpty()) project.setLink(data.getLink());
             if (!data.getDescription().isEmpty()) project.setDescription(data.getDescription());
-            return projectService.updateProject(project);
+            return new ProjectOut(projectService.updateProject(project));
         } else System.out.println("El Project no existe...");
-        return project;
+        return null;
     }
     
     @PatchMapping ("image/update")
-    public ProjectImage updateProjectImage (@RequestBody ProjectImageData data) {
+    public ProjectImageOut updateProjectImage (@RequestBody ProjectImageData data) {
         ProjectImage projectImage = projectImageService.findProjectImageById(data.getId());
         if (projectImage!=null) {
             if (!data.getTitle().isEmpty()) projectImage.setTitle(data.getTitle());
             if (!data.getImageUrl().isEmpty()) projectImage.setImageUrl(data.getImageUrl());
-            return projectImageService.updateProjectImage(projectImage);
+            return new ProjectImageOut(projectImageService.updateProjectImage(projectImage));
         } else System.out.println("La Project image no existe...");
-        return projectImage;
+        return null;
     }
     
     

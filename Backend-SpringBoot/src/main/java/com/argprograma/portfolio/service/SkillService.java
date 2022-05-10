@@ -11,7 +11,7 @@ public class SkillService implements ISkillService {
     @Autowired
     private SkillRepository skillRepo;
     @Autowired
-    private PortfolioService portfolioService;
+    private IPortfolioService portfolioService;
 
     @Override
     public Skill createSkill(Skill skill) {

@@ -11,7 +11,7 @@ public class ExperienceService implements IExperienceService {
     @Autowired
     private ExperienceRepository experienceRepo;
     @Autowired
-    private PortfolioService portfolioService;
+    private IPortfolioService portfolioService;
 
     @Override
     public Experience createExperience(Experience experience) {
