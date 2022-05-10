@@ -7,5 +7,4 @@ public interface ISocialService {
     public Social findSocialById (Long id);
     public Social updateSocial(Social social);
     public Social changeOrderSocial (Social social, int newOrder);
-    public void deleteSocial (Social social);
 }

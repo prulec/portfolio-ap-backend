@@ -7,7 +7,6 @@ import com.argprograma.portfolio.dto.EducationOut;
 import com.argprograma.portfolio.dto.ExperienceOut;
 import com.argprograma.portfolio.dto.HeaderAboutData;
 import com.argprograma.portfolio.dto.OrderData;
-import com.argprograma.portfolio.dto.PortfolioData;
 import com.argprograma.portfolio.dto.PortfolioOut;
 import com.argprograma.portfolio.dto.ProjectData;
 import com.argprograma.portfolio.dto.ProjectImageData;
@@ -338,42 +337,55 @@ public class EditController {
             case "social" -> {
                 Social social = socialService.findSocialById(id);
                 if (social!=null) {
-                    socialService.deleteSocial(social);
+                    int last = social.getPortfolio().getSocialSet().size();
+                    social = socialService.changeOrderSocial(social, last);
+                    social.getSocialType().getSocialSet().remove(social);
+                    portfolioService.disconnectSocial(social);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }
             case "experience" -> {
                 Experience experience = experienceService.findExperienceById(id);
                 if (experience!=null) {
-                    experienceService.deleteExperience(experience);
+                    int last = experience.getPortfolio().getExperienceSet().size();
+                    experience = experienceService.changeOrderExperience(experience, last);
+                    portfolioService.disconnectExperience(experience);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }
             case "education" -> {
                 Education education = educationService.findEducationById(id);
                 if (education!=null) {
-                    educationService.deleteEducation(education);
+                    int last = education.getPortfolio().getEducationSet().size();
+                    education = educationService.changeOrderEducation(education, last);
+                    portfolioService.disconnectEducation(education);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }
             case "skill" -> {
                 Skill skill = skillService.findSkillById(id);
                 if (skill!=null) {
-                    skillService.deleteSkill(skill);
+                    int last = skill.getPortfolio().getSkillSet().size();
+                    skill = skillService.changeOrderSkill(skill, last);
+                    portfolioService.disconnectSkill(skill);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }
             case "project" -> {
                 Project project = projectService.findProjectById(id);
                 if (project!=null) {
-                    projectService.deleteProject(project);
+                    int last = project.getPortfolio().getProjectSet().size();
+                    project = projectService.changeOrderProject(project, last);
+                    portfolioService.disconnectProject(project);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }
             case "projectimage" -> {
                 ProjectImage projectImage = projectImageService.findProjectImageById(id);
                 if (projectImage!=null) {
-                    projectImageService.deleteProjectImage(projectImage);
+                    int last = projectImage.getProject().getProjectImageSet().size();
+                    projectImage = projectImageService.changeOrderProjectImage(projectImage, last);
+                    projectService.disconnectProjectImage(projectImage);
                     System.out.println(section + ": " + id + " eliminado!");
                 } else System.out.println(section + " no existe...");
             }

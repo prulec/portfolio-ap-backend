@@ -53,13 +53,5 @@ public class SocialService implements ISocialService {
         portfolioService.updatePortfolio(social.getPortfolio());
         return social;
     }
-
-    @Override
-    public void deleteSocial(Social social) {
-        social.getPortfolio().getSocialSet().remove(social);
-        social.getSocialType().getSocialSet().remove(social);
-        portfolioService.updatePortfolio(social.getPortfolio());
-        socialTypeService.updateSocialType(social.getSocialType());
-    }
     
 }

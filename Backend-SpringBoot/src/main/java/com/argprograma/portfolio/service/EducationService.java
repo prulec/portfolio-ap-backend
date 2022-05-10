@@ -51,11 +51,5 @@ public class EducationService implements IEducationService {
         portfolioService.updatePortfolio(education.getPortfolio());
         return education;
     }
-
-    @Override
-    public void deleteEducation(Education education) {
-        education.getPortfolio().getEducationSet().remove(education);
-        portfolioService.updatePortfolio(education.getPortfolio());
-    }
     
 }

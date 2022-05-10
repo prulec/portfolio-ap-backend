@@ -7,5 +7,4 @@ public interface IProjectImageService {
     public ProjectImage findProjectImageById (Long id);
     public ProjectImage updateProjectImage(ProjectImage projectImage);
     public ProjectImage changeOrderProjectImage (ProjectImage projectImage, int newOrder);
-    public void deleteProjectImage (ProjectImage projectImage);
 }

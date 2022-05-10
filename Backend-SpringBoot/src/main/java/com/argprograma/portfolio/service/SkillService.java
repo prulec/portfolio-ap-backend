@@ -51,11 +51,5 @@ public class SkillService implements ISkillService {
         portfolioService.updatePortfolio(skill.getPortfolio());
         return skill;
     }
-
-    @Override
-    public void deleteSkill(Skill skill) {
-        skill.getPortfolio().getSkillSet().remove(skill);
-        portfolioService.updatePortfolio(skill.getPortfolio());
-    }
     
 }

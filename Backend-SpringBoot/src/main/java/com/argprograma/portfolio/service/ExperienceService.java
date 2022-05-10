@@ -51,11 +51,5 @@ public class ExperienceService implements IExperienceService {
         portfolioService.updatePortfolio(experience.getPortfolio());
         return experience;
     }
-
-    @Override
-    public void deleteExperience(Experience experience) {
-        experience.getPortfolio().getExperienceSet().remove(experience);
-        portfolioService.updatePortfolio(experience.getPortfolio());
-    }
     
 }

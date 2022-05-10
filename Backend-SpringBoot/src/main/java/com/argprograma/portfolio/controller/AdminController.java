@@ -92,8 +92,7 @@ public class AdminController {
         if (user!=null) {
             for (Portfolio portfolio : user.getPortfolioSet()) {
                 for (Social social : portfolio.getSocialSet()) {
-                    portfolioService.disconnectSocial(social);
-                    //socialTypeService.disconnectSocial(social);
+                    social.getSocialType().getSocialSet().remove(social);
                 }
             }
             userService.deleteUser(user);
@@ -162,8 +161,7 @@ public class AdminController {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
         if (portfolio!=null) {
             for (Social social : portfolio.getSocialSet()) {
-                portfolio = portfolioService.disconnectSocial(social);
-                socialTypeService.disconnectSocial(social);
+                social.getSocialType().getSocialSet().remove(social);
             }
             portfolioService.deletePortfolio(portfolio);
             System.out.println("Portfolio " + portfolio.getName() + " eliminado!");
@@ -223,8 +221,7 @@ public class AdminController {
         SocialType socialType = socialTypeService.findSocialTypeById(socialtype_id);
         if (socialType!=null) {
             for (Social social : socialType.getSocialSet()) {
-                portfolioService.disconnectSocial(social);
-                socialType = socialTypeService.disconnectSocial(social);
+                social.getPortfolio().getSocialSet().remove(social);
             }
             socialTypeService.deleteSocialType(socialType);
             System.out.println("SocialType " + socialType.getName() + " eliminado!");

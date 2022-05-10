@@ -7,5 +7,4 @@ public interface IEducationService {
     public Education findEducationById (Long id);
     public Education updateEducation(Education education);
     public Education changeOrderEducation (Education education, int newOrder);
-    public void deleteEducation (Education education);
 }

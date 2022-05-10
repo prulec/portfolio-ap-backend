@@ -11,5 +11,4 @@ public interface ISocialTypeService {
     public List<SocialType> getSocialTypes ();
     public SocialType updateSocialType (SocialType socialType);
     public void deleteSocialType (SocialType socialType);
-    public SocialType disconnectSocial (Social social);
 }

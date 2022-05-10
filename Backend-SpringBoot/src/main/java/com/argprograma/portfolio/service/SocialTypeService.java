@@ -1,6 +1,5 @@
 package com.argprograma.portfolio.service;
 
-import com.argprograma.portfolio.model.Social;
 import com.argprograma.portfolio.model.SocialType;
 import com.argprograma.portfolio.repository.SocialTypeRepository;
 import java.util.List;
@@ -42,11 +41,5 @@ public class SocialTypeService implements ISocialTypeService {
     public void deleteSocialType(SocialType socialType) {
         socialTypeRepo.delete(socialType);
     }
-
-    @Override
-    public SocialType disconnectSocial(Social social) {
-        SocialType socialType = social.getSocialType();
-        socialType.getSocialSet().remove(social);
-        return this.updateSocialType(socialType);
-    }
+    
 }

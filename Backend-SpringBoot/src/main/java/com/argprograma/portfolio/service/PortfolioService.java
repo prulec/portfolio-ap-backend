@@ -1,6 +1,10 @@
 package com.argprograma.portfolio.service;
 
+import com.argprograma.portfolio.model.Education;
+import com.argprograma.portfolio.model.Experience;
 import com.argprograma.portfolio.model.Portfolio;
+import com.argprograma.portfolio.model.Project;
+import com.argprograma.portfolio.model.Skill;
 import com.argprograma.portfolio.model.Social;
 import com.argprograma.portfolio.repository.PortfolioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +51,34 @@ public class PortfolioService implements IPortfolioService {
     public Portfolio disconnectSocial(Social social) {
         Portfolio portfolio = social.getPortfolio();
         portfolio.getSocialSet().remove(social);
+        return this.updatePortfolio(portfolio);
+    }
+
+    @Override
+    public Portfolio disconnectExperience(Experience experience) {
+        Portfolio portfolio = experience.getPortfolio();
+        portfolio.getExperienceSet().remove(experience);
+        return this.updatePortfolio(portfolio);
+    }
+
+    @Override
+    public Portfolio disconnectEducation(Education education) {
+        Portfolio portfolio = education.getPortfolio();
+        portfolio.getEducationSet().remove(education);
+        return this.updatePortfolio(portfolio);
+    }
+
+    @Override
+    public Portfolio disconnectSkill(Skill skill) {
+        Portfolio portfolio = skill.getPortfolio();
+        portfolio.getSkillSet().remove(skill);
+        return this.updatePortfolio(portfolio);
+    }
+
+    @Override
+    public Portfolio disconnectProject(Project project) {
+        Portfolio portfolio = project.getPortfolio();
+        portfolio.getProjectSet().remove(project);
         return this.updatePortfolio(portfolio);
     }
     

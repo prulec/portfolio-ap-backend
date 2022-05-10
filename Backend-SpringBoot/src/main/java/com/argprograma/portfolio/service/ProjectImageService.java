@@ -51,11 +51,5 @@ public class ProjectImageService implements IProjectImageService {
         projectService.updateProject(projectImage.getProject());
         return projectImage;
     }
-
-    @Override
-    public void deleteProjectImage(ProjectImage projectImage) {
-        projectImage.getProject().getProjectImageSet().remove(projectImage);
-        projectService.updateProject(projectImage.getProject());
-    }
     
 }
