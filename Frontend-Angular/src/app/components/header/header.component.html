@@ -1,6 +1,6 @@
 <div id="header">
     <div id="banner-div">
-        <img id="banner-img" src="https://github.com/prulec/portfolio/raw/main/images/Archive/astronaut3.png" alt="Banner">
+        <img id="banner-img" [src]="bannerUrl" alt="Banner">
     </div>
     <div id="logos-div">
         <img id="arglogo-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/logo_argentina_programa.png" alt="ArgProg">
@@ -9,9 +9,9 @@
     </div>
     <div id="top-right-div">
         <div id="social-div">
-            <div class="social-icon"><img class="social-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Facebook%20(logo).png" alt="S1"></div>
-            <div class="social-icon"><img class="social-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/YouTube%20(logo).png" alt="S2"></div>
-            <div class="social-icon"><img class="social-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/GitHub%20(logo).png" alt="S3"></div>
+            <div class="social-icon"><img class="social-img" [src]="social3.socialTypeData.iconUrl" alt="S3"></div>
+            <div class="social-icon"><img class="social-img" [src]="social2.socialTypeData.iconUrl" alt="S2"></div>
+            <div class="social-icon"><img class="social-img" [src]="social1.socialTypeData.iconUrl" alt="S1"></div>
         </div>
         <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
         <p id="username"><span id="user-span">usuario_logueado</span></p>

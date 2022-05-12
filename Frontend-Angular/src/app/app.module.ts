@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DeleteItemComponent } from './components/delete-item/delete-item.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
