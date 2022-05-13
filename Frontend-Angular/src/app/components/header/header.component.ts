@@ -10,9 +10,8 @@ import { SOCIAL } from 'src/app/SOCIAL_CONST';
 export class HeaderComponent implements OnInit {
 
   @Input() bannerUrl:string = "";  // https://github.com/prulec/portfolio/raw/main/images/Archive/astronaut3.png
-  @Input() social1:Social = SOCIAL;
-  @Input() social2:Social = SOCIAL;
-  @Input() social3:Social = SOCIAL;
+  @Input() socialList: Social[] = [SOCIAL];
+  
   /*
   Links íconos redes:
   https://github.com/prulec/portfolio/raw/main/images/Assets/Facebook%20(logo).png

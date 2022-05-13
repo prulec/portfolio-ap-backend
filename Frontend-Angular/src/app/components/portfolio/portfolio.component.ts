@@ -18,9 +18,6 @@ export class PortfolioComponent implements OnInit {
   ngOnInit(): void {
     this.portfolioService.getPortfolio().subscribe(data => {
       this.portfolio = data;
-      while (this.portfolio.socialList.length<3) {
-        this.portfolio.socialList.push(SOCIAL);
-      }
     });
   }
 

@@ -46,6 +46,11 @@
     padding-top: 35px;
 }
 
+#social-login-div {
+    display: flex;
+    justify-content: end;
+}
+
 #social-div {
     display: inline-flex;
     position: relative;

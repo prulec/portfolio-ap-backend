@@ -8,12 +8,14 @@
         <img id="yoproghash-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/YoProgramo.png" alt="YoProgramo_hash">
     </div>
     <div id="top-right-div">
-        <div id="social-div">
-            <div class="social-icon"><img class="social-img" [src]="social3.socialTypeData.iconUrl" alt="S3"></div>
-            <div class="social-icon"><img class="social-img" [src]="social2.socialTypeData.iconUrl" alt="S2"></div>
-            <div class="social-icon"><img class="social-img" [src]="social1.socialTypeData.iconUrl" alt="S1"></div>
+        <div id="social-login-div">
+            <div id="social-div">
+                <div class="social-icon" *ngFor="let social of socialList.slice(0,3)">
+                    <img class="social-img" [src]="social.socialTypeData.iconUrl" alt="S3">
+                </div>
+            </div>
+            <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
         </div>
-        <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
         <p id="username"><span id="user-span">usuario_logueado</span></p>
         <div id="eye-div">
             <img id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-open.png" alt="Visibility-icon">
