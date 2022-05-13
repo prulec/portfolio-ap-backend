@@ -16,9 +16,10 @@
             </div>
             <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
         </div>
-        <p id="username"><span id="user-span">usuario_logueado</span></p>
-        <div id="eye-div">
-            <img id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-open.png" alt="Visibility-icon">
+        <p id="username"><span id="user-span">{{username}}</span></p>
+        <div id="eye-div" [ngSwitch]="visible">
+            <img *ngSwitchCase="true" id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-open.png" alt="Visibility-icon">
+            <img *ngSwitchCase="false" id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-close-one.png" alt="Visibility-icon">
         </div>
     </div>
     <div id="bottom-right-div">

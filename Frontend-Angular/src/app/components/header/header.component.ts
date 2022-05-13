@@ -9,6 +9,8 @@ import { SOCIAL } from 'src/app/SOCIAL_CONST';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() username:string = "";
+  @Input() visible:boolean = false;
   @Input() bannerUrl:string = "";  // https://github.com/prulec/portfolio/raw/main/images/Archive/astronaut3.png
   @Input() socialList: Social[] = [SOCIAL];
   

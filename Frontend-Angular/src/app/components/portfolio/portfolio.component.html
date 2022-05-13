@@ -1,9 +1,17 @@
 <div id="portfolio">
     <app-header
+        [username]="portfolio.user.username"
+        [visible]="portfolio.visible"
         [bannerUrl]="portfolio.bannerUrl"
         [socialList]="portfolio.socialList"
     ></app-header>
-    <app-about></app-about>
+    <app-about
+        [photoUrl]="portfolio.photoUrl"
+        [jobTitle]="portfolio.jobTitle"
+        [pstatement]="portfolio.pstatement"
+        [firstName]="portfolio.user.firstName"
+        [lastName]="portfolio.user.lastName"
+    ></app-about>
     <app-experience></app-experience>
     <app-education></app-education>
     <app-skills></app-skills>

@@ -7,7 +7,7 @@ export const PORTFOLIO:Portfolio = {
     "bannerUrl": "",
     "photoUrl": "",
     "jobTitle": "",
-    "pStatement": "",
+    "pstatement": "",
     "user": {
         "id": BigInt(0),
         "username": "",

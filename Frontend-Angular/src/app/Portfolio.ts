@@ -11,7 +11,7 @@ export interface Portfolio {
     bannerUrl: string;
     photoUrl: string;
     jobTitle: string;
-    pStatement: string;
+    pstatement: string;
     user: {
         id: bigint;
         username: string;
