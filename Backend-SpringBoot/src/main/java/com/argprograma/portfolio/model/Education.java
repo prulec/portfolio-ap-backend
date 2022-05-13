@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +32,7 @@ public class Education {
     @Column (length=100)
     private String title;
     
+    @JsonIgnoreProperties("educationSet")
     @ManyToOne (optional=false)
     private Portfolio portfolio;
     

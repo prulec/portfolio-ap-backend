@@ -70,6 +70,18 @@ public class EditController {
     
     /* Portfolio */
     
+    // Método que utiliza @JsonIgnoreProperty 
+    // y no necesita de DTOs "_Out" para próximas mejoras
+    /*
+    @GetMapping ("{portfolio_name}")
+    public Portfolio traerPortfolio (@PathVariable String portfolio_name) {
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        if (portfolio!=null) return portfolio;
+        System.out.println("No existe Portfolio con ese name...");
+        return null;
+    }
+    */
+    
     @GetMapping ("{portfolio_name}/edit")
     public PortfolioOut getPortfolio (@PathVariable String portfolio_name){
         // Traer el objeto completo Portfolio con el name del portfolio

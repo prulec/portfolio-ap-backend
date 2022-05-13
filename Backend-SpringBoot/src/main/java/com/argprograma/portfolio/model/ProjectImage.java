@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +26,7 @@ public class ProjectImage {
     @Column (length=255)
     private String imageUrl;
     
+    @JsonIgnoreProperties("projectImageSet")
     @ManyToOne (optional=false)
     private Project project;
     

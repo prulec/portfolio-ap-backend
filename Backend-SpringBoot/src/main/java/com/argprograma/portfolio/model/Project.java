@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -36,6 +37,7 @@ public class Project {
     @Column (length=500)
     private String description;
     
+    @JsonIgnoreProperties("portfolioSet")
     @ManyToOne (optional=false)
     private Portfolio portfolio;
     
