@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Experience } from 'src/app/Experience';
+import { EXPERIENCE } from 'src/app/EXPERIENCE_CONST';
 
 @Component({
   selector: 'app-experience-item',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./experience-item.component.css']
 })
 export class ExperienceItemComponent implements OnInit {
+
+  @Input() experience:Experience = EXPERIENCE;
 
   constructor() { }
 

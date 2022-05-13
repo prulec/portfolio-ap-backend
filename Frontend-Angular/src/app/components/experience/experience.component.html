@@ -6,7 +6,8 @@
     </div>
 </div>
 <div id="experience-div">
-    <app-experience-item></app-experience-item>
-    <app-experience-item></app-experience-item>
-    <app-experience-item></app-experience-item>
+    <app-experience-item 
+        *ngFor="let experience of experienceList"
+        [experience]="experience"
+    ></app-experience-item>
 </div>
