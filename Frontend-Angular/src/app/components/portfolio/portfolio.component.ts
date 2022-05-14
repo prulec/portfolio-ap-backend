@@ -11,6 +11,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class PortfolioComponent implements OnInit {
 
   portfolio:Portfolio = PORTFOLIO;
+  projectGalleryVisible: boolean = false;
 
   constructor(private portfolioService:PortfolioService) { }
 
