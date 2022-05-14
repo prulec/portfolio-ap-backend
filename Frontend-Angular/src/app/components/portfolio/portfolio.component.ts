@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Portfolio } from 'src/app/Portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { Project } from 'src/app/Project';
 
 @Component({
   selector: 'app-portfolio',
