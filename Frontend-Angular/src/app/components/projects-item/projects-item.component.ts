@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Project } from 'src/app/Project';
 
@@ -9,11 +9,20 @@ import { Project } from 'src/app/Project';
 })
 export class ProjectsItemComponent implements OnInit {
 
+  projectGalleryVisible: boolean = false;
   @Input() project:Project = PORTFOLIO.projectList[0];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  closeGallery() {
+    this.projectGalleryVisible = false;
+  }
+
+  openGallery() {
+    this.projectGalleryVisible = true;
   }
 
 }

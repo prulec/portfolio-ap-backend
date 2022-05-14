@@ -1,6 +1,13 @@
 <div id="project-container">
+    <app-project-gallery
+        *ngIf="projectGalleryVisible"
+        [project]="project"
+        (onCloseImagesWindow)="closeGallery()"
+        (document.click)="closeGallery()"
+    >
+    </app-project-gallery>
     <div id="projects-item">
-        <div id="thumbnail-div">
+        <div id="thumbnail-div" (click)="openGallery()">
             <div><p>{{project.projectImageList[0]}}</p></div>
         </div>
         <div id="datos-div">

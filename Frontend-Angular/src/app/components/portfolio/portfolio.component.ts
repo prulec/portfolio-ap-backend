@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Portfolio } from 'src/app/Portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { Project } from 'src/app/Project';
 
 @Component({
   selector: 'app-portfolio',
@@ -11,7 +12,6 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class PortfolioComponent implements OnInit {
 
   portfolio:Portfolio = PORTFOLIO;
-  projectGalleryVisible: boolean = false;
 
   constructor(private portfolioService:PortfolioService) { }
 
