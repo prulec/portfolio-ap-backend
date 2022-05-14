@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Social } from 'src/app/Social';
-import { SOCIAL } from 'src/app/SOCIAL_CONST';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   @Input() username:string = "";
   @Input() visible:boolean = false;
   @Input() bannerUrl:string = "";  // https://github.com/prulec/portfolio/raw/main/images/Archive/astronaut3.png
-  @Input() socialList: Social[] = [SOCIAL];
+  @Input() socialList: Social[] = PORTFOLIO.socialList;
   
   /*
   Links íconos redes:

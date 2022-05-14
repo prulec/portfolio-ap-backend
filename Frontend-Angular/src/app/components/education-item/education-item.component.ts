@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Education } from 'src/app/Education';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-education-item',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./education-item.component.css']
 })
 export class EducationItemComponent implements OnInit {
+
+  @Input() education:Education = PORTFOLIO.educationList[0];
 
   constructor() { }
 

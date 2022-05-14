@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/Experience';
-import { EXPERIENCE } from 'src/app/EXPERIENCE_CONST';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-experience-item',
@@ -9,7 +9,7 @@ import { EXPERIENCE } from 'src/app/EXPERIENCE_CONST';
 })
 export class ExperienceItemComponent implements OnInit {
 
-  @Input() experience:Experience = EXPERIENCE;
+  @Input() experience:Experience = PORTFOLIO.experienceList[0];
 
   constructor() { }
 

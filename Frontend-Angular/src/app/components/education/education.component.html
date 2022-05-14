@@ -6,8 +6,8 @@
     </div>
 </div>
 <div id="education-div">
-    <app-education-item></app-education-item>
-    <app-education-item></app-education-item>
-    <app-education-item></app-education-item>
-    <app-education-item></app-education-item>
+    <app-education-item
+        *ngFor="let education of educationList"
+        [education]="education"
+    ></app-education-item>
 </div>

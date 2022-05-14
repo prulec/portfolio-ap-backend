@@ -3,20 +3,21 @@
         [username]="portfolio.user.username"
         [visible]="portfolio.visible"
         [bannerUrl]="portfolio.bannerUrl"
-        [socialList]="portfolio.socialList"
-    ></app-header>
+        [socialList]="portfolio.socialList"></app-header>
     <app-about
         [photoUrl]="portfolio.photoUrl"
         [jobTitle]="portfolio.jobTitle"
         [pstatement]="portfolio.pstatement"
         [firstName]="portfolio.user.firstName"
-        [lastName]="portfolio.user.lastName"
-    ></app-about>
+        [lastName]="portfolio.user.lastName"></app-about>
     <app-experience
-        [experienceList]="portfolio.experienceList"
-    ></app-experience>
-    <app-education></app-education>
-    <app-skills></app-skills>
-    <app-projects></app-projects>
-    <app-contact></app-contact>
+        [experienceList]="portfolio.experienceList"></app-experience>
+    <app-education
+        [educationList]="portfolio.educationList"></app-education>
+    <app-skills
+        [skillList]="portfolio.skillList"></app-skills>
+    <app-projects
+        [projectList]="portfolio.projectList"></app-projects>
+    <app-contact
+        [email]="portfolio.user.email"></app-contact>
 </div>

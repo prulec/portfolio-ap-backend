@@ -1,21 +1,21 @@
 <div id="skill-container">
     <div id="skills-item" 
-    style="--level:67">
+    [style]="{'--level': skill.skillLevel}">
         <div id="progress-div">
             <div id="left-div">                
                 <div class="full-div"></div>
                 <div class="empty-div"></div>
             </div>        
             <div id="right-div">
-                <div class="empty-div"></div>                
+                <div class="empty-div"></div>
                 <div class="full-div"></div>
             </div>        
-            <div id="level-text-div"><p>Nivel</p></div>
+            <div id="level-text-div"><p>{{skill.skillLevel}}</p></div>
         </div>
         <div id="data-div">
             <div>
-                <h3>Habilidad</h3>
-                <p>Etiqueta</p>
+                <h3>{{skill.name}}</h3>
+                <p>{{skill.levelTag}}</p>
             </div>
         </div>
     </div>
