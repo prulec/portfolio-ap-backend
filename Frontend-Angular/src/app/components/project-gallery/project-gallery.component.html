@@ -1,21 +1,33 @@
 <div id="gallery">
     <div id="preview-div">
         <div id="image-div">
-            <h2>Imagen de proyecto</h2>
+            <h2>{{selectedImage.title}}</h2>
         </div>
         <div id="close-div" (click)="onClose()">
             <img src="https://github.com/prulec/portfolio/raw/main/images/Assets/Operate-handle-x.png" alt="Close btn">
         </div>
+        <div class="add-div">
+            <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
+        </div>
+        <div id="edit-div">
+            <div class="trash-div">
+                <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
+            </div>
+            <div class="pencil-div">
+                <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
+            </div>
+            <div class="arrows-div">
+                <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
+            </div>
+        </div>
     </div>
     <ul id="thumbnails-list">
-        <li><p>Thumbnail1<br><br><br><br></p></li>
-        <li><p>Thumbnail2<br><br><br><br></p></li>
-        <li><p>Thumbnail3<br><br><br><br></p></li>
-        <li><p>Thumbnail1<br><br><br><br></p></li>
-        <li><p>Thumbnail2<br><br><br><br></p></li>
-        <li><p>Thumbnail3<br><br><br><br></p></li>
-        <li><p>Thumbnail1<br><br><br><br></p></li>
-        <li><p>Thumbnail2<br><br><br><br></p></li>
-        <li><p>Thumbnail3<br><br><br><br></p></li>
+        <li 
+            *ngFor="let image of project.projectImageList"
+            (click)="onSelect(image)"
+            [ngClass]="{'selected': selectedImage===image}"
+        >
+            <p>{{image.imageUrl}}<br><br><br><br></p>
+        </li>
     </ul>
 </div>

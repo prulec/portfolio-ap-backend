@@ -8,7 +8,7 @@
 }
 
 #logo-div {
-    min-width: 80px;
+    width: 80px;
     height: 80px;
     margin: 5px;
     border: #a3a3a3 solid 2px;
@@ -26,6 +26,7 @@
 #logo-div > div > p {
     line-height: 20px;
     padding-bottom: 2px;
+    word-wrap: break-word;
 }
 
 #datos-div > p {

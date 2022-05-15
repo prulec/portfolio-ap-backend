@@ -2,12 +2,13 @@
     <app-project-gallery
         *ngIf="projectGalleryVisible"
         [project]="project"
+        [selectedImage]="project.projectImageList[0]"
         (onCloseImagesWindow)="closeGallery()"
     >
     </app-project-gallery>
     <div id="projects-item">
         <div id="thumbnail-div" (click)="openGallery()">
-            <div><p>{{project.projectImageList[0]}}</p></div>
+            <div><p>{{project.projectImageList[0].imageUrl}}</p></div>
         </div>
         <div id="datos-div">
             <p><b>Nombre: </b>{{project.name}}</p>
