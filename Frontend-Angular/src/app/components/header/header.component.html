@@ -16,8 +16,18 @@
     <div id="top-right-div">
         <div id="social-login-div">
             <div id="social-div">
+                <app-social 
+                    *ngIf="socialVisible"
+                    [portfolio]="portfolio"
+                    (onClose)="closeSocialListWindow()"
+                ></app-social>
                 <div class="social-icon" *ngFor="let social of portfolio.socialList.slice(0,3)">
-                    <img class="social-img" [src]="social.socialTypeData.iconUrl" alt="S3">
+                    <img 
+                        class="social-img" 
+                        [src]="social.socialTypeData.iconUrl" 
+                        alt="S3"
+                        (click)="openSocialListWindow()"
+                    >
                 </div>
             </div>
             <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>

@@ -30,7 +30,7 @@
     border-radius: 10px;
     background-color: white;
     opacity: 50%;
-    box-shadow: 0px 0px 4px white;
+    box-shadow: 0px 0px 4px black;
 }
 #close-div:hover {opacity: 80%;}
 
@@ -38,7 +38,7 @@
     height: 100%;
 }
 
-#preview-div > .add-div {
+#add-div {
     position: absolute;
     right: 10px;
     top: calc(50% - 18px);
@@ -49,7 +49,7 @@
     opacity: 50%;
     box-shadow: 0px 0px 4px black;
 }
-#preview-div > .add-div:hover {opacity: 80%;}
+#add-div:hover {opacity: 80%;}
 
 .add-img {
     max-width: 100%;

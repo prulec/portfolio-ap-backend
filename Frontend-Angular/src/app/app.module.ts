@@ -23,6 +23,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SocialComponent } from './components/social/social.component';
+import { SocialItemComponent } from './components/social-item/social-item.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     EditItemComponent,
     AddItemComponent,
-    DeleteItemComponent
+    DeleteItemComponent,
+    SocialComponent,
+    SocialItemComponent
   ],
   imports: [
     BrowserModule,

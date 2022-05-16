@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
 
   editVisible:boolean = false;
   editTitle:string = "";
+  socialVisible:boolean = false;
+
   @Input() portfolio:Portfolio = PORTFOLIO;
   
   /*
@@ -60,6 +62,14 @@ export class HeaderComponent implements OnInit {
 
   closeEditPopup () {
     this.editVisible = false;
+  }
+
+  openSocialListWindow () {
+    this.socialVisible = true;
+  }
+
+  closeSocialListWindow () {
+    this.socialVisible = false;
   }
 
 }
