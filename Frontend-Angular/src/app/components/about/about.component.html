@@ -2,19 +2,19 @@
     <div id="about" class="row">
         <div class="column col-12 col-sm-6 col-md-5 col-lg-4">
             <div id="photo-div">
-                <img id="photo-img" [src]="photoUrl" alt="">
+                <img id="photo-img" [src]="portfolio.photoUrl" alt="">
                 <div class="pencil-div">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
             </div>
             <div id="person-name-div">
-                <h1>{{firstName}} {{lastName}}</h1>
+                <h1>{{portfolio.user.firstName}} {{portfolio.user.lastName}}</h1>
                 <div class="pencil-div">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
             </div>
             <div id="job-title-div">
-                <h2>{{jobTitle}}</h2>
+                <h2>{{portfolio.jobTitle}}</h2>
                 <div class="pencil-div">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
@@ -22,7 +22,7 @@
         </div>
         <div  id="personal-statement-div" class="column col-12 col-sm-6 col-md-7 col-lg-8">
             <div id="text-block">
-                <p>{{pstatement}}</p>
+                <p>{{portfolio.pstatement}}</p>
             </div>
             <div class="pencil-div">
                 <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">

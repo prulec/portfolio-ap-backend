@@ -1,0 +1,15 @@
+form {
+    position: relative;
+    top:30px;
+    margin: auto;
+    max-width: 600px;
+}
+
+form > h2 {
+    color: #E8E8E8;
+}
+
+form > div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -17,11 +17,11 @@ export class ProjectsItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  closeGallery() {
+  closeGallery(): void {
     this.projectGalleryVisible = false;
   }
 
-  openGallery() {
+  openGallery(): void {
     this.projectGalleryVisible = true;
   }
 

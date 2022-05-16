@@ -1,1 +1,7 @@
-<p>edit-item works!</p>
+<form (ngSubmit)="onSubmit()">
+    <h2>{{title}}</h2>
+    <div *ngIf="title==='Banner url'">
+        <input type="url" class="form-control" id="bannerUrl" name="bannerUrl" [(ngModel)]="portfolio.bannerUrl">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,15 +1,8 @@
 <div id="portfolio">
     <app-header
-        [username]="portfolio.user.username"
-        [visible]="portfolio.visible"
-        [bannerUrl]="portfolio.bannerUrl"
-        [socialList]="portfolio.socialList"></app-header>
+        [portfolio]="portfolio"></app-header>
     <app-about
-        [photoUrl]="portfolio.photoUrl"
-        [jobTitle]="portfolio.jobTitle"
-        [pstatement]="portfolio.pstatement"
-        [firstName]="portfolio.user.firstName"
-        [lastName]="portfolio.user.lastName"></app-about>
+        [portfolio]="portfolio"></app-about>
     <app-experience
         [experienceList]="portfolio.experienceList"></app-experience>
     <app-education

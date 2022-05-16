@@ -22,6 +22,7 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

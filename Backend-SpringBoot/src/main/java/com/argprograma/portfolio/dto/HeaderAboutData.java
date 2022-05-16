@@ -7,6 +7,6 @@ import lombok.Setter;
 public class HeaderAboutData {
     
     private String field;
-    private String Value;
+    private String value;
     
 }
