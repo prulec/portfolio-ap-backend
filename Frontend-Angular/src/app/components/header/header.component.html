@@ -3,7 +3,7 @@
         *ngIf = "editVisible"
         [title] = "editTitle"
         [portfolio] = "portfolio"
-        (onSave)="closeEditPopup()"
+        (onClose)="closeEditPopup()"
     ></app-edit-item>
     <div id="banner-div">
         <img id="banner-img" [src]="portfolio.bannerUrl" alt="Banner">

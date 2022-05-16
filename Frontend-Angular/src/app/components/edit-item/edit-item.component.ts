@@ -18,7 +18,7 @@ export class EditItemComponent implements OnInit {
 
   @Input() title:string = "";
   @Input() portfolio:Portfolio = PORTFOLIO;
-  @Output() onSave:EventEmitter<any> = new EventEmitter();
+  @Output() onClose:EventEmitter<any> = new EventEmitter();
   data:HeaderAboutData = {field:"", value:""};
 
   constructor(private portfolioService:PortfolioService) { }
@@ -37,7 +37,11 @@ export class EditItemComponent implements OnInit {
       default:
         break;
     }
-    this.onSave.emit();
+    this.onClose.emit();
+  }
+
+  onDiscard() {
+    this.onClose.emit();
   }
 
 }
