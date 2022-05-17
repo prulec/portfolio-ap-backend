@@ -17,8 +17,7 @@ export class SocialItemComponent implements OnInit {
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
   @Input() social:Social = PORTFOLIO.socialList[0];
   @Output() onUpdate:EventEmitter<Social> = new EventEmitter();
-  socialTypeName:string = "";
-  socialUrl:string = "";
+  @Output() onDelete:EventEmitter<Social> = new EventEmitter();
   data:SocialData = {id:BigInt(0), url:"", socialTypeName:""};
 
   constructor(private portfolioService:PortfolioService) { }
@@ -30,16 +29,14 @@ export class SocialItemComponent implements OnInit {
   }
 
   openEditForm(){
-    this.socialTypeName = this.social.socialTypeData.name;
-    this.socialUrl = this.social.url;
+    this.data.socialTypeName = this.social.socialTypeData.name;
+    this.data.url = this.social.url;
+    this.data.id = this.social.id;
     this.editVisible = true;
   }
 
   onSubmit(){
     // VALIDAR
-    this.data.id = this.social.id || BigInt(0);
-    this.data.url = this.socialUrl;
-    this.data.socialTypeName = this.socialTypeName;
     this.portfolioService.updateSocialItem(this.data).subscribe(
       (s) => {
         this.social = s;
@@ -53,6 +50,11 @@ export class SocialItemComponent implements OnInit {
   onDiscard(){
     this.data = {id:BigInt(0), url:"", socialTypeName:""};
     this.editVisible = false;
+  }
+
+  delete() {
+    this.portfolioService.deleteSocialItem(this.social).subscribe();
+    this.onDelete.emit(this.social);
   }
 
 }

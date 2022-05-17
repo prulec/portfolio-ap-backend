@@ -1,5 +1,5 @@
 export interface Social {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     url: string;
     socialTypeData: {

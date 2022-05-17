@@ -1,5 +1,5 @@
 export interface Experience {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     logoUrl: string;
     enterprise: string;

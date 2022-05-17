@@ -54,6 +54,35 @@
     max-width: 100%;
 }
 
+
+/* EDIT FORM */
+
+#add-form {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#add-form > div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#buttons {
+    display: flex;
+    width: 100%;
+    right: -5px;
+}
+
+#buttons > button {
+    flex: 1 0 auto;
+}
+
+#buttons > button + button {
+    margin-left: 5px;
+}
+
+
 /* ÍCONOS EN HEADER */
 
 #openwindowbutton-div {

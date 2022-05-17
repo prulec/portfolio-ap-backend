@@ -1,5 +1,5 @@
 export interface ProjectImage {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     title: string;
     imageUrl: string;

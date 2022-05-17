@@ -42,4 +42,12 @@ export class PortfolioService {
     return this.http.patch<Social>("http://localhost:8080/social/update", socialData, httpOptions);
   }
 
+  addSocialItem(socialData:SocialData): Observable<Social> {
+    return this.http.post<Social>(this.portfolioUrl + "/social/add", socialData, httpOptions);
+  }
+
+  deleteSocialItem(social:Social): Observable<any> {
+    return this.http.delete<any>("http://localhost:8080/deleteitem/social/"+social.id)
+  }
+
 }

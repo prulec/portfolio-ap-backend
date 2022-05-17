@@ -1,5 +1,5 @@
 export interface Skill {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     name: string;
     skillLevel: string;

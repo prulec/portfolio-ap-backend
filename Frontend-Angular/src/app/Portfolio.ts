@@ -5,7 +5,7 @@ import { Skill } from "./Skill";
 import { Social } from "./Social";
 
 export interface Portfolio {
-    id?: bigint;
+    id: bigint;
     name: string;
     visible: boolean;
     bannerUrl: string;

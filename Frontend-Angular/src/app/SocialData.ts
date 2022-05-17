@@ -1,5 +1,5 @@
 export interface SocialData {
-    id: bigint;
+    id?: BigInt;
     url: string;
     socialTypeName: string;
 }

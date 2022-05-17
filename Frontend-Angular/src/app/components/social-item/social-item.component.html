@@ -8,7 +8,12 @@
     </div>    
     <div id="edit-div">
         <div class="trash-div">
-            <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
+            <img 
+                class="trash" 
+                src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" 
+                alt="Edit-icon"
+                (click)="delete()"
+            >
         </div>
         <div class="pencil-div" (click)="openEditForm()">
             <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
@@ -34,7 +39,7 @@
                 name="socialTypeName"
                 id="socialTypes"
                 class="form-select"
-                [(ngModel)]="socialTypeName"
+                [(ngModel)]="data.socialTypeName"
             >
                 <option 
                     *ngFor="let socialType of socialTypes"
@@ -55,7 +60,7 @@
                 class="form-control" 
                 id="socialUrl"
                 name="socialUrl"
-                [(ngModel)]="socialUrl"
+                [(ngModel)]="data.url"
             >
         </div>
         

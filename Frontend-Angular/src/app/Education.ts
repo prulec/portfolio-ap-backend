@@ -1,5 +1,5 @@
 export interface Education {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     logoUrl: string;
     institution: string;

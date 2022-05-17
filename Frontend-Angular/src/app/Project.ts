@@ -1,7 +1,7 @@
 import { ProjectImage } from "./ProjectImage";
 
 export interface Project {
-    id?: bigint;
+    id: bigint;
     itemOrder: number;
     name: string;
     projectTime: string;
