@@ -16,19 +16,9 @@
     <div id="top-right-div">
         <div id="social-login-div">
             <div id="social-div">
-                <app-social 
-                    *ngIf="socialVisible"
-                    [portfolio]="portfolio"
-                    (onClose)="closeSocialListWindow()"
+                <app-social
+                    [socialList]="portfolio.socialList"
                 ></app-social>
-                <div class="social-icon" *ngFor="let social of portfolio.socialList.slice(0,3)">
-                    <img 
-                        class="social-img" 
-                        [src]="social.socialTypeData.iconUrl" 
-                        alt="S3"
-                        (click)="openSocialListWindow()"
-                    >
-                </div>
             </div>
             <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
         </div>
@@ -38,7 +28,7 @@
             <img *ngSwitchCase="false" id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-close-one.png" alt="Visibility-icon">
         </div>
     </div>
-    <div id="bottom-right-div" (click)="openEditPopup(banner_url_string)">
+    <div id="bottom-right-div" (click)="openEditPopup()">
         <img id="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
     </div>
 </div>

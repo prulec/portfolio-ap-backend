@@ -4,7 +4,8 @@
     height: 400px;
 }
 
-app-edit-item, app-social {
+/* Edit BANNER Popup */
+app-edit-item {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -13,6 +14,8 @@ app-edit-item, app-social {
     height: 100vh;
     width: 100vw;
 }
+
+/* LOGOS */
 
 #logos-div {
     position: absolute;
@@ -35,6 +38,8 @@ app-edit-item, app-social {
     margin-left: 5px;
 }
 
+/* BANNER */
+
 #banner-div {
     position: relative;
     height: 400px;
@@ -48,6 +53,8 @@ app-edit-item, app-social {
     min-height: 100%;
     object-fit:cover;
 }
+
+/* ESQUINA SUPERIOR DERECHA */
 
 #top-right-div {
     position: absolute;
@@ -66,20 +73,6 @@ app-edit-item, app-social {
     position: relative;
     padding-right: 10px;
     vertical-align: bottom;
-}
-
-.social-icon {
-    display: inline-flex;
-    width: 38px;
-    height: 38px;
-    margin-left: 15px;
-}
-.social-icon:hover {opacity: 80%;}
-
-.social-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
 }
 
 #login-btn {
@@ -130,6 +123,8 @@ app-edit-item, app-social {
 }
 #eye-img:hover {opacity: 80%;}
 
+/* ESQUINA INFERIOR DERECHA */
+
 #bottom-right-div {
     position: absolute;
     right: 35px;
@@ -147,6 +142,8 @@ app-edit-item, app-social {
     max-width: 70%;
     margin: 15%;
 }
+
+
 
 @media (max-width: 556px) {    
     #logos-div {

@@ -1,16 +1,16 @@
 <div id="social-item">
     <div id="logo-div">
-        <div><p>{{social.socialTypeData.iconUrl}}</p></div>
+        <img [src]="social.socialTypeData.iconUrl" alt="icon">
     </div>
     <div id="datos-div">
         <p><b>Name: </b>{{social.socialTypeData.name}}</p>
         <p><b>Link: </b>{{social.url}}</p>
-    </div>
+    </div>    
     <div id="edit-div">
         <div class="trash-div">
             <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
         </div>
-        <div class="pencil-div">
+        <div class="pencil-div" (click)="openEditForm()">
             <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
         </div>
         <div class="arrows-div">
@@ -18,3 +18,50 @@
         </div>
     </div>
 </div>
+
+<form 
+    *ngIf="editVisible" 
+    id="edit-form" 
+    (ngSubmit)="onSubmit()"
+>
+    <div class="form-group row">
+        <label 
+            for="socialTypes"
+            class="col-form-label col-1"
+        >Red: </label>
+        <div class="col-11">
+            <select 
+                name="socialTypeName"
+                id="socialTypes"
+                class="form-select"
+                [(ngModel)]="socialTypeName"
+            >
+                <option 
+                    *ngFor="let socialType of socialTypes"
+                    [value]="socialType.name"
+                >{{socialType.name}}</option>
+            </select>
+        </div>
+        
+    </div>
+    <div class="form-group row">
+        <label 
+            for="socialTypes"
+            class="col-form-label col-1"
+        >Url: </label>
+        <div class="col-11">
+            <input 
+                type="url" 
+                class="form-control" 
+                id="socialUrl"
+                name="socialUrl"
+                [(ngModel)]="socialUrl"
+            >
+        </div>
+        
+    </div>
+    <div id="buttons">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>
+    </div>
+</form>
