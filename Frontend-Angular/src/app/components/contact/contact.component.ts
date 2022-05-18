@@ -19,8 +19,12 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openWindow(){
+  openForm(){
     this.contactFormVisible = true;
+  }
+
+  closeForm () {
+    this.contactFormVisible = false;
   }
 
   openEditPopup(){

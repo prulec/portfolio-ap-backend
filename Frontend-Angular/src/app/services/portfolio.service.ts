@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EditUserData } from '../EditUserData';
+import { EmailData } from '../EmailData';
 import { HeaderAboutData } from '../HeaderAboutData';
 import { OrderData } from '../OrderData';
 import { Portfolio } from '../Portfolio';
@@ -58,6 +59,10 @@ export class PortfolioService {
 
   changeOrderItem(orderData:OrderData): Observable<string>{
     return this.http.patch("http://localhost:8080/changeorder", orderData, {responseType: 'text'});
+  }
+
+  sendContact(emailData:EmailData):Observable<any>{
+    return this.http.post("http://localhost:8080/sendcontact",emailData,httpOptions);
   }
 
 }
