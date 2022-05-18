@@ -1,12 +1,13 @@
-<div id="social-item">
-    <div id="logo-div">
+<div id="social-item" cdkDrag>
+    <div class="drop-placeholder" *cdkDragPlaceholder></div>
+    <div id="logo-div" class="logo-div">
         <img [src]="social.socialTypeData.iconUrl" alt="icon">
     </div>
-    <div id="datos-div">
+    <div id="datos-div" class="datos-div">
         <p><b>Name: </b>{{social.socialTypeData.name}}</p>
         <p><b>Link: </b>{{social.url}}</p>
     </div>    
-    <div id="edit-div">
+    <div id="edit-div" class="edit-div">
         <div class="trash-div">
             <img 
                 class="trash" 
@@ -18,7 +19,7 @@
         <div class="pencil-div" (click)="openEditForm()">
             <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
         </div>
-        <div class="arrows-div">
+        <div class="arrows-div" cdkDragHandle>
             <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
         </div>
     </div>

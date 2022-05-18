@@ -1,5 +1,6 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
+import { OrderData } from 'src/app/OrderData';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Social } from 'src/app/Social';
@@ -9,7 +10,7 @@ import { SocialType } from 'src/app/SocialType';
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
-  styleUrls: ['./social.component.scss']
+  styleUrls: ['./social.component.css']
 })
 export class SocialComponent implements OnInit {
 
@@ -79,8 +80,13 @@ export class SocialComponent implements OnInit {
   }
 
   drop (event:CdkDragDrop<Social[]>){
-    console.log("previousIndex: " + event.previousIndex);
-    console.log("currentIndex: " + event.currentIndex);
+    let orderData: OrderData = {
+      id: this.socialList[event.previousIndex].id,
+      section: "social",
+      newItemOrder: event.currentIndex + 1
+    }
+    this.portfolioService.changeOrderItem(orderData).subscribe();
+    moveItemInArray(this.socialList,event.previousIndex,event.currentIndex);
   }
 
 }

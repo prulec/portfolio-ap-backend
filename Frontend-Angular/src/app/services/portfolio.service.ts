@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HeaderAboutData } from '../HeaderAboutData';
+import { OrderData } from '../OrderData';
 import { Portfolio } from '../Portfolio';
 import { Social } from '../Social';
 import { SocialData } from '../SocialData';
@@ -48,6 +49,10 @@ export class PortfolioService {
 
   deleteSocialItem(social:Social): Observable<any> {
     return this.http.delete<any>("http://localhost:8080/deleteitem/social/"+social.id)
+  }
+
+  changeOrderItem(orderData:OrderData): Observable<string>{
+    return this.http.patch("http://localhost:8080/changeorder", orderData, {responseType: 'text'});
   }
 
 }
