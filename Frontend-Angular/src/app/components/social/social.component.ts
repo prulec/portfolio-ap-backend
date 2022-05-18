@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
@@ -8,7 +9,7 @@ import { SocialType } from 'src/app/SocialType';
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
-  styleUrls: ['./social.component.css']
+  styleUrls: ['./social.component.scss']
 })
 export class SocialComponent implements OnInit {
 
@@ -75,6 +76,11 @@ export class SocialComponent implements OnInit {
 
   goTo (url:string) {
     window.open(url,"_blank");
+  }
+
+  drop (event:CdkDragDrop<Social[]>){
+    console.log("previousIndex: " + event.previousIndex);
+    console.log("currentIndex: " + event.currentIndex);
   }
 
 }

@@ -3,7 +3,7 @@
         <div id="close-div" (click)="closeWindow()">
             <img src="https://github.com/prulec/portfolio/raw/main/images/Assets/Operate-handle-x.png" alt="Close btn">
         </div>
-        <div id="image-div">
+        <div>
             <h2>Redes sociales</h2>
             <div id="add-div" (click)="openAddForm()">
                 <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
@@ -55,12 +55,16 @@
                 <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>
             </div>
         </form>
-        <app-social-item 
-            *ngFor="let social of socialList"
-            [social]="social"
-            (onUpdate)="updateItem($event)"
-            (onDelete)="deleteItem($event)"
-        ></app-social-item>
+        <div id="social-list" cdkDropList (cdkDropListDropped)="drop($event)">
+            <app-social-item 
+                *ngFor="let social of socialList"
+                [social]="social"
+                (onUpdate)="updateItem($event)"
+                (onDelete)="deleteItem($event)"
+                cdkDrag
+            ></app-social-item>
+        </div>
+        
     </div>
 </div>
 

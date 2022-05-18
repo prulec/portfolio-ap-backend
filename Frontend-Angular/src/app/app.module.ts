@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +24,6 @@ import { LoginComponent } from './components/login/login.component';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { SocialComponent } from './components/social/social.component';
 import { SocialItemComponent } from './components/social-item/social-item.component';
 
@@ -54,7 +55,8 @@ import { SocialItemComponent } from './components/social-item/social-item.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
