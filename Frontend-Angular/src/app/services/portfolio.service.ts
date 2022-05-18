@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EditUserData } from '../EditUserData';
 import { HeaderAboutData } from '../HeaderAboutData';
 import { OrderData } from '../OrderData';
 import { Portfolio } from '../Portfolio';
@@ -31,8 +32,12 @@ export class PortfolioService {
     return this.http.patch<Portfolio>(this.portfolioUrl + '/visibility', {}, httpOptions);
   }
 
-  updateHeaderAboutField (portfolio:Portfolio, data:HeaderAboutData) {
+  updateHeaderAboutField (portfolio:Portfolio, data:HeaderAboutData): Observable<Portfolio> {
     return this.http.put<Portfolio>(this.portfolioUrl + '/header-about/update', data, httpOptions);
+  }
+
+  updateUserData (portfolio:Portfolio, data:EditUserData): Observable<Portfolio> {
+    return this.http.patch<Portfolio>(this.portfolioUrl + '/user/update', data, httpOptions);
   }
 
   getSocialTypes(): Observable<SocialType[]> {

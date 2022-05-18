@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Portfolio } from 'src/app/Portfolio';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-contact',
@@ -7,11 +9,26 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  @Input() email:string = "";
+  @Input() portfolio:Portfolio = PORTFOLIO;
+  contactFormVisible:boolean = false;
+  editVisible: boolean = false;
+  editTitle: string = "Email";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openWindow(){
+    this.contactFormVisible = true;
+  }
+
+  openEditPopup(){
+    this.editVisible = true;
+  }
+
+  closeEditPopup () {
+    this.editVisible = false;
   }
 
 }

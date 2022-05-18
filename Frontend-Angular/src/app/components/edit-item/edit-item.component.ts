@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EditUserData } from 'src/app/EditUserData';
 import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
@@ -19,7 +20,8 @@ export class EditItemComponent implements OnInit {
   @Input() title:string = "";
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onClose:EventEmitter<any> = new EventEmitter();
-  data:HeaderAboutData = {field:"", value:""};
+  dataHA:HeaderAboutData = {field:"", value:""};
+  dataU:EditUserData = {};
 
   constructor(private portfolioService:PortfolioService) { }
 
@@ -30,10 +32,18 @@ export class EditItemComponent implements OnInit {
     //VALIDAR
     switch (this.title) {
       case "Banner url":
-        this.data.field = this.banner_url_string;
-        this.data.value = this.portfolio.bannerUrl;
-        this.portfolioService.updateHeaderAboutField(this.portfolio,this.data).subscribe();
-        break;    
+        this.dataHA.field = this.banner_url_string;
+        this.dataHA.value = this.portfolio.bannerUrl;
+        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
+        this.dataHA = {field:"", value:""};
+        break;
+      case "Email":
+        this.dataU.firstName = "";
+        this.dataU.lastName = "";
+        this.dataU.email = this.portfolio.user.email;
+        this.portfolioService.updateUserData(this.portfolio,this.dataU).subscribe();
+        this.dataU = {};
+        break;
       default:
         break;
     }

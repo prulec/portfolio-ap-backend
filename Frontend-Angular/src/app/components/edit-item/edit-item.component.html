@@ -1,7 +1,10 @@
 <form (ngSubmit)="onSubmit()">
-    <h2>{{title}}</h2>
+    <h2 id="title">{{title}}</h2>
     <div *ngIf="title==='Banner url'">
         <input type="url" class="form-control" id="bannerUrl" name="bannerUrl" [(ngModel)]="portfolio.bannerUrl">
+    </div>
+    <div *ngIf="title==='Email'">
+        <input type="email" class="form-control" id="userEmail" name="userEmail" [(ngModel)]="portfolio.user.email">
     </div>
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>

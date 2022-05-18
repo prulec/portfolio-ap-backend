@@ -5,12 +5,18 @@ form {
     max-width: 600px;
     background-color: #E8E8E8;
     padding: 30px;
+    padding-top: 60px;
     border-radius: 10px;
 }
 
 form > div {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#title {
+    position: absolute;
+    top: 30px;
 }
 
 #buttons {
