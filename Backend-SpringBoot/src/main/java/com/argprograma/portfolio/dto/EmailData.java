@@ -9,5 +9,6 @@ public class EmailData {
     private String replyTo;
     private String subject;
     private String body;
+    private String destination;
     
 }

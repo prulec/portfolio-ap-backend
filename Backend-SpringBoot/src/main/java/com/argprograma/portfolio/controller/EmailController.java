@@ -17,7 +17,8 @@ public class EmailController {
     public void sendMail(@RequestBody EmailData data) {
         emailService.sendEmail(data.getReplyTo(),
                                data.getSubject(), 
-                               data.getBody());
+                               data.getBody(),
+                               data.getDestination());
         
     }
     

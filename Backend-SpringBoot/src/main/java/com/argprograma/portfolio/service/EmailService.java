@@ -13,12 +13,13 @@ public class EmailService {
     
     public void sendEmail(String replyTo,
                           String subject,
-                          String body) {
+                          String body,
+                          String destination) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("prulec@gmail.com");
         message.setReplyTo(replyTo);
         message.setSubject(subject);
         message.setText(body);
+        message.setTo(destination);
         
         mailSender.send(message);
         
