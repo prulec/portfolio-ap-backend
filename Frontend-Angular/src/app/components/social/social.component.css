@@ -86,7 +86,7 @@
 /* ÍCONOS EN HEADER */
 
 #openwindowbutton-div {
-    display: inline-flex;
+    display: inline-block;
     width: 38px;
     height: 38px;
     border-radius: 19px;

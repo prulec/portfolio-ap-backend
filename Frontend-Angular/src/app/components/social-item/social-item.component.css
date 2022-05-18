@@ -26,6 +26,7 @@
 }
 
 #datos-div > p {
+    word-break: break-all;
     margin: 0px;
     padding: 0px;
 }
@@ -151,6 +152,7 @@
 }
 
 .cdk-drag-preview > .datos-div > p {
+    word-break: break-all;
     margin: 0px;
     padding: 0px;
 }
