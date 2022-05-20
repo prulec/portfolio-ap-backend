@@ -16,24 +16,25 @@
         *ngIf="title==='Personal statement'" class="form-control" id="pstatement"
         name="pstatement" rows="10" [(ngModel)]="portfolio.pstatement"
     ></textarea>
-    <input
-        *ngIf="title==='Fullname'"
-        type="text"
-        class="form-control"
-        id="firstname"
-        name="firstname"
-        placeholder="First name"
-        [(ngModel)]="portfolio.user.firstName"
-    >
-    <input
-        *ngIf="title==='Fullname'"
-        type="text"
-        class="form-control"
-        id="lastname"
-        name="lastname"
-        placeholder="Last name"
-        [(ngModel)]="portfolio.user.lastName"
-    >
+    <div *ngIf="title==='Fullname'">
+        <input            
+            type="text"
+            class="form-control"
+            id="firstname"
+            name="firstname"
+            placeholder="First name"
+            [(ngModel)]="portfolio.user.firstName"
+        >
+        <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            name="lastname"
+            placeholder="Last name"
+            [(ngModel)]="portfolio.user.lastName"
+        >
+    </div>
+    
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>
