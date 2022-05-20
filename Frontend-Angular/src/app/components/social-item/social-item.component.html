@@ -8,19 +8,26 @@
         <p><b>Link: </b>{{social.url}}</p>
     </div>    
     <div id="edit-div" class="edit-div">
-        <div class="trash-div">
+        <div class="trash-div" (click)="openDelete()">
             <img 
                 class="trash" 
                 src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" 
                 alt="Edit-icon"
-                (click)="delete()"
             >
         </div>
         <div class="pencil-div" (click)="openEditForm()">
-            <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
+            <img
+                class="pencil"
+                src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png"
+                alt="Edit-icon"
+            >
         </div>
         <div class="arrows-div" cdkDragHandle>
-            <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
+            <img
+                class="arrows"
+                src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png"
+                alt="Edit-icon"
+            >
         </div>
     </div>
 </div>
@@ -28,7 +35,7 @@
 <form 
     *ngIf="editVisible" 
     id="edit-form" 
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit(edition)"
 >
     <div class="form-group row">
         <label 
@@ -66,8 +73,20 @@
         </div>
         
     </div>
-    <div id="buttons">
+    <div class="buttons">
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>
+    </div>
+</form>
+
+<form 
+    *ngIf="deleteVisible" 
+    id="delete-form" 
+    (ngSubmit)="onSubmit(deletion)"
+>
+    <h3>Confirm deletion?</h3>
+    <div class="buttons">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
     </div>
 </form>

@@ -14,11 +14,14 @@ import { SocialType } from 'src/app/SocialType';
 export class SocialItemComponent implements OnInit {
 
   editVisible:boolean = false;
+  deleteVisible:boolean = false;
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
   @Input() social:Social = PORTFOLIO.socialList[0];
   @Output() onUpdate:EventEmitter<Social> = new EventEmitter();
   @Output() onDelete:EventEmitter<Social> = new EventEmitter();
   data:SocialData = {id:BigInt(0), url:"", socialTypeName:""};
+  edition:string = "edit";
+  deletion:string = "delete";
 
   constructor(private portfolioService:PortfolioService) { }
 
@@ -35,16 +38,22 @@ export class SocialItemComponent implements OnInit {
     this.editVisible = true;
   }
 
-  onSubmit(){
-    // VALIDAR
-    this.portfolioService.updateSocialItem(this.data).subscribe(
-      (s) => {
-        this.social = s;
-        this.onUpdate.emit(this.social);
-      }
-    );
-    this.data = {id:BigInt(0), url:"", socialTypeName:""};
-    this.editVisible = false;
+  onSubmit(operation:string){
+    if (operation===this.edition) {
+      // VALIDAR
+      this.portfolioService.updateSocialItem(this.data).subscribe(
+        (s) => {
+          this.social = s;
+          this.onUpdate.emit(this.social);
+        }
+      );
+      this.data = {id:BigInt(0), url:"", socialTypeName:""};
+      this.editVisible = false;
+    }
+    if (operation===this.deletion) {
+      this.portfolioService.deleteSocialItem(this.social).subscribe();
+      this.onDelete.emit(this.social);
+    }
   }
 
   onDiscard(){
@@ -52,9 +61,12 @@ export class SocialItemComponent implements OnInit {
     this.editVisible = false;
   }
 
-  delete() {
-    this.portfolioService.deleteSocialItem(this.social).subscribe();
-    this.onDelete.emit(this.social);
+  openDelete() {
+    this.deleteVisible = true;
+  }
+
+  cancelDelete(){
+    this.deleteVisible = false;
   }
 
 }
