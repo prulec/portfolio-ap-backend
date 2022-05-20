@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EditUserData } from 'src/app/EditUserData';
+import { ExperienceData } from 'src/app/ExperienceData';
 import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
@@ -19,6 +20,7 @@ export class EditItemComponent implements OnInit {
 
   @Input() title:string = "";
   @Input() portfolio:Portfolio = PORTFOLIO;
+  @Input() item:any;
   @Output() onClose:EventEmitter<any> = new EventEmitter();
   dataHA:HeaderAboutData = {field:"", value:""};
   dataU:EditUserData = {};
@@ -68,6 +70,17 @@ export class EditItemComponent implements OnInit {
         this.dataU.email = this.portfolio.user.email;
         this.portfolioService.updateUserData(this.portfolio,this.dataU).subscribe();
         this.dataU = {};
+        break;
+      case "Experience":
+        let data:ExperienceData = {
+          id: this.item.id,
+          logoUrl: this.item.logoUrl,
+          enterprise: this.item.enterprise,
+          experienceTime: this.item.experienceTime,
+          position: this.item.position,
+          tasks: this.item.tasks
+        };
+        this.portfolioService.updateItem(data,"experience").subscribe();
         break;
       default:
         break;

@@ -73,4 +73,8 @@ export class PortfolioService {
     return this.http.delete("http://localhost:8080/deleteitem/" + section + "/" + item.id);
   }
 
+  updateItem(data:any, section:string): Observable<any> {
+    return this.http.patch<any>("http://localhost:8080/" + section + "/update", data, httpOptions);
+  }
+
 }

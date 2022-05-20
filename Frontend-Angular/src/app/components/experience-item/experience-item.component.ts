@@ -14,6 +14,7 @@ export class ExperienceItemComponent implements OnInit {
   deleteVisible:boolean = false;
   editVisible:boolean = false;
   section:string = "experience";
+  title:string = "Experience";
 
   constructor() { }
 

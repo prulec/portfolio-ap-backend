@@ -63,6 +63,16 @@
     margin: 15%;
 }
 
+app-edit-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
 #edit-div > .arrows-div {
     right: 3px;
     bottom: 3px;
