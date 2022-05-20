@@ -1,10 +1,4 @@
 <div id="header">
-    <app-edit-item
-        *ngIf = "editVisible"
-        [title] = "editTitle"
-        [portfolio] = "portfolio"
-        (onClose)="closeEditPopup()"
-    ></app-edit-item>
     <div id="banner-div">
         <img id="banner-img" [src]="portfolio.bannerUrl" alt="Banner">
     </div>
@@ -31,4 +25,10 @@
     <div id="bottom-right-div" (click)="openEditPopup()">
         <img id="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
     </div>
+    <app-edit-item
+        *ngIf = "editVisible"
+        [title] = "editTitle"
+        [portfolio] = "portfolio"
+        (onClose)="closeEditPopup()"
+    ></app-edit-item>
 </div>
