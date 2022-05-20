@@ -69,6 +69,7 @@
     box-shadow: 0px 0px 4px black;
     background-color: white;
     opacity: 70%;
+    cursor: move;
 }
 #edit-div > .arrows-div:hover {opacity: 90%;}
 
