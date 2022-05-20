@@ -1,1 +1,55 @@
-<p>add-item works!</p>
+<form (ngSubmit)="onSubmit(section)">
+    <h2 id="title">{{title}}</h2>
+    <div *ngIf="title==='Experience'">
+        <div>
+            <input 
+                type="url"
+                class="form-control" 
+                name="logoUrl"
+                placeholder="Logo url"
+                [(ngModel)]="experienceData.logoUrl"
+            >
+        </div>
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="enterprise"
+                placeholder="Enterprise"
+                [(ngModel)]="experienceData.enterprise"
+            >
+        </div>
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="experienceTime"
+                placeholder="Time"
+                [(ngModel)]="experienceData.experienceTime"
+            >
+        </div>
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="position"
+                placeholder="Position"
+                [(ngModel)]="experienceData.position"
+            >
+        </div>
+        <div>
+            <textarea
+                class="form-control"
+                name="pstatement"
+                rows="3"
+                placeholder="Tasks"
+                [(ngModel)]="experienceData.tasks"
+            ></textarea>
+        </div>        
+    </div>
+    
+    <div id="buttons">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>
+    </div>
+</form>

@@ -9,10 +9,26 @@ import { Experience } from 'src/app/Experience';
 export class ExperienceComponent implements OnInit {
 
   @Input() experienceList: Experience[] = [];
+  addVisible:boolean = false;
+  addTitle:string = "Experience";
+  addSection:string = "experience";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openAddPopup (): void {
+    this.addVisible = true;
+  }
+
+  closeAddPopup () {
+    this.addVisible = false;
+  }
+
+  refresh(list:Experience[]){
+    this.experienceList = list;
+    console.log("experience added!");
   }
 
 }

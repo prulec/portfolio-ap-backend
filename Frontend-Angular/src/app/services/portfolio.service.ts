@@ -65,4 +65,8 @@ export class PortfolioService {
     return this.http.post("http://localhost:8080/sendcontact",emailData,httpOptions);
   }
 
+  addItem(item:any, section:string): Observable<any> {
+    return this.http.post<any>(this.portfolioUrl + "/" + section + "/add", item, httpOptions);
+  }
+
 }

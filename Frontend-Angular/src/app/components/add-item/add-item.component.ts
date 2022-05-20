@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ExperienceData } from 'src/app/ExperienceData';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-add-item',
@@ -7,9 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() title:string = "";
+  @Input() section:string = "";
+  @Input() list:any = [];
+  @Output() onClose:EventEmitter<any> = new EventEmitter();
+  @Output() onAdd:EventEmitter<any> = new EventEmitter();
+  experienceData:ExperienceData = {
+    logoUrl: "",
+    enterprise: "",
+    experienceTime: "",
+    position: "",
+    tasks: ""
+  };
+
+
+  constructor(private portfolioService:PortfolioService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(section:string){
+    //VALIDAR
+    switch (section) {
+      case "experience":
+        this.portfolioService.addItem(this.experienceData,section)
+            .subscribe(i => {
+              this.list.push(i);
+              this.onAdd.emit(this.list);
+            });
+        break;
+      default:
+        break;
+    }
+    this.onClose.emit();
+  }
+
+  onDiscard(){
+    this.onClose.emit();
   }
 
 }
