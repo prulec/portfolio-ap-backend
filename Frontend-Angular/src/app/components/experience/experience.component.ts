@@ -31,4 +31,8 @@ export class ExperienceComponent implements OnInit {
     console.log("experience added!");
   }
 
+  removeItem(item:any){
+    this.experienceList = this.experienceList.filter(i => i.id!=item.id);
+  }
+
 }

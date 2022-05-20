@@ -17,5 +17,6 @@
     <app-experience-item 
         *ngFor="let experience of experienceList"
         [experience]="experience"
+        (onDelete)="removeItem($event)"
     ></app-experience-item>
 </div>

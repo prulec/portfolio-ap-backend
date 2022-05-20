@@ -69,4 +69,8 @@ export class PortfolioService {
     return this.http.post<any>(this.portfolioUrl + "/" + section + "/add", item, httpOptions);
   }
 
+  deleteItem(item:any, section:string): Observable<any> {
+    return this.http.delete("http://localhost:8080/deleteitem/" + section + "/" + item.id);
+  }
+
 }

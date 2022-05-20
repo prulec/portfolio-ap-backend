@@ -9,9 +9,16 @@
         <p><b>Tareas: </b>{{experience.tasks}}</p>
     </div>
     <div id="edit-div">
-        <div class="trash-div">
+        <div class="trash-div" (click)="openDelete()">
             <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
         </div>
+        <app-delete-item
+            *ngIf="deleteVisible"
+            [section]="section"
+            [item]="experience"
+            (onDelete)="deleteItem(experience)"
+            (onCancel)="closeDelete()"
+        ></app-delete-item>
         <div class="pencil-div">
             <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
         </div>
