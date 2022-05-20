@@ -37,6 +37,31 @@ export class EditItemComponent implements OnInit {
         this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
         this.dataHA = {field:"", value:""};
         break;
+      case "Photo url":
+        this.dataHA.field = this.photo_url_string;
+        this.dataHA.value = this.portfolio.photoUrl;
+        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
+        this.dataHA = {field:"", value:""};
+        break;
+      case "Job title":
+        this.dataHA.field = this.job_title_string;
+        this.dataHA.value = this.portfolio.jobTitle;
+        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
+        this.dataHA = {field:"", value:""};
+        break;
+      case "Personal statement":
+        this.dataHA.field = this.p_statement_string;
+        this.dataHA.value = this.portfolio.pstatement;
+        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
+        this.dataHA = {field:"", value:""};
+        break;
+      case "Fullname":
+        this.dataU.firstName = this.portfolio.user.firstName;
+        this.dataU.lastName = this.portfolio.user.lastName;
+        this.dataU.email = "";
+        this.portfolioService.updateUserData(this.portfolio,this.dataU).subscribe();
+        this.dataU = {};
+        break;
       case "Email":
         this.dataU.firstName = "";
         this.dataU.lastName = "";

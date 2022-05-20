@@ -6,6 +6,34 @@
     <div *ngIf="title==='Email'">
         <input type="email" class="form-control" id="userEmail" name="userEmail" [(ngModel)]="portfolio.user.email">
     </div>
+    <div *ngIf="title==='Photo url'">
+        <input type="url" class="form-control" id="photoUrl" name="photoUrl" [(ngModel)]="portfolio.photoUrl">
+    </div>
+    <div *ngIf="title==='Job title'">
+        <input type="url" class="form-control" id="jobTitle" name="jobTitle" [(ngModel)]="portfolio.jobTitle">
+    </div>
+    <textarea
+        *ngIf="title==='Personal statement'" class="form-control" id="pstatement"
+        name="pstatement" rows="10" [(ngModel)]="portfolio.pstatement"
+    ></textarea>
+    <input
+        *ngIf="title==='Fullname'"
+        type="text"
+        class="form-control"
+        id="firstname"
+        name="firstname"
+        placeholder="First name"
+        [(ngModel)]="portfolio.user.firstName"
+    >
+    <input
+        *ngIf="title==='Fullname'"
+        type="text"
+        class="form-control"
+        id="lastname"
+        name="lastname"
+        placeholder="Last name"
+        [(ngModel)]="portfolio.user.lastName"
+    >
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" (click)="onDiscard()">Discard</button>

@@ -10,6 +10,14 @@ import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 export class AboutComponent implements OnInit {
 
   @Input() portfolio:Portfolio = PORTFOLIO;
+  editPhotoUrlVisible:boolean = false;
+  editJobTitleVisible:boolean = false;
+  editPStatementVisible:boolean = false;
+  editFullnameVisible:boolean = false;
+  editPhotoUrlTitle:string = "Photo url";
+  editJobTitleTitle:string = "Job title";
+  editPStatementTitle:string = "Personal statement";
+  editFullnameTitle:string = "Fullname";
 
   /*
   portfolio.photoUrl = https://github.com/prulec/portfolio/raw/main/images/Archive/profle_image_dolltoon%201.png
@@ -22,6 +30,36 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openEditPopup (target:string): void {
+    if (target===this.editPhotoUrlTitle) {
+      this.editPhotoUrlVisible = true;
+    }
+    if (target==this.editJobTitleTitle) {
+      this.editJobTitleVisible = true;
+    }
+    if (target===this.editPStatementTitle) {
+      this.editPStatementVisible = true;
+    }
+    if (target===this.editFullnameTitle) {
+      this.editFullnameVisible = true;
+    }
+  }
+
+  closeEditPopup (target:string) {
+    if (target===this.editPhotoUrlTitle) {
+      this.editPhotoUrlVisible = false;
+    }
+    if (target==this.editJobTitleTitle) {
+      this.editJobTitleVisible = false;
+    }
+    if (target===this.editPStatementTitle) {
+      this.editPStatementVisible = false;
+    }
+    if (target===this.editFullnameTitle) {
+      this.editFullnameVisible = false;
+    }
   }
 
 }
