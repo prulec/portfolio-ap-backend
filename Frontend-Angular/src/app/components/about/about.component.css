@@ -123,6 +123,8 @@ app-edit-item {
     max-height: 100%;
     bottom: 0px;
     margin: 0px;
+    white-space: pre-wrap;
+    word-break: break-word;
     overflow-y: auto;
 }
 
