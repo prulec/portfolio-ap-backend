@@ -6,6 +6,7 @@ import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { ProjectData } from 'src/app/ProjectData';
+import { ProjectImageData } from 'src/app/ProjectImageData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { SkillData } from 'src/app/SkillData';
 
@@ -113,6 +114,14 @@ export class EditItemComponent implements OnInit {
           description: this.item.description
         };
         this.portfolioService.updateItem(projectData,"project").subscribe();
+        break;
+      case "Project Image":
+        let projectImageData:ProjectImageData = {
+          id: this.item.id,
+          title: this.item.title,
+          imageUrl: this.item.imageUrl
+        };
+        this.portfolioService.updateItem(projectImageData,"image").subscribe();
         break;
       default:
         break;

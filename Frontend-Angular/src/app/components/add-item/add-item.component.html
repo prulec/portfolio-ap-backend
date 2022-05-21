@@ -156,6 +156,27 @@
             ></textarea>
         </div>
     </div>
+
+    <div *ngIf="title==='Project image'">
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="title"
+                placeholder="Title"
+                [(ngModel)]="projectImageData.title"
+            >
+        </div>
+        <div>
+            <input 
+                type="url"
+                class="form-control" 
+                name="imageUrl"
+                placeholder="Url of image"
+                [(ngModel)]="projectImageData.imageUrl"
+            >
+        </div>
+    </div>
     
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>

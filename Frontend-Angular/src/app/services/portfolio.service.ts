@@ -6,6 +6,9 @@ import { EmailData } from '../EmailData';
 import { HeaderAboutData } from '../HeaderAboutData';
 import { OrderData } from '../OrderData';
 import { Portfolio } from '../Portfolio';
+import { Project } from '../Project';
+import { ProjectImage } from '../ProjectImage';
+import { ProjectImageData } from '../ProjectImageData';
 import { Social } from '../Social';
 import { SocialData } from '../SocialData';
 import { SocialType } from '../SocialType';
@@ -75,6 +78,10 @@ export class PortfolioService {
 
   updateItem(data:any, section:string): Observable<any> {
     return this.http.patch<any>("http://localhost:8080/" + section + "/update", data, httpOptions);
+  }
+
+  addProjectImage(imageData:ProjectImageData, project:Project): Observable<ProjectImage> {
+    return this.http.post<ProjectImage>("http://localhost:8080/" + project.id + "/image/add", imageData, httpOptions);
   }
 
 }

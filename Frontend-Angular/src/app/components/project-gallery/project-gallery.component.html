@@ -6,28 +6,70 @@
         <div id="close-div" (click)="onClose()">
             <img src="https://github.com/prulec/portfolio/raw/main/images/Assets/Operate-handle-x.png" alt="Close btn">
         </div>
-        <div id="add-div">
+        <div id="add-div" (click)="openAddPopup()">
             <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
         </div>
-        <div id="edit-div">
-            <div class="trash-div">
+        <app-add-item
+            *ngIf = "addVisible"
+            [title] = "addTitle"
+            [section] = "addSection"
+            [list] = "project.projectImageList"
+            [project] = "project"
+            (onClose)="closeAddPopup()"
+            (onAdd)="refresh($event)"
+        ></app-add-item>
+        <div class="edit-div">
+            <div class="trash-div" (click)="openDelete()">
                 <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
             </div>
-            <div class="pencil-div">
+            <app-delete-item
+                *ngIf="deleteVisible"
+                [section]="section"
+                [item]="selectedImage"
+                (onDelete)="deleteItem(selectedImage)"
+                (onCancel)="closeDelete()"
+            ></app-delete-item>
+            <div class="pencil-div" (click)="openEdit()">
                 <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
             </div>
-            <div class="arrows-div">
+            <app-edit-item
+                *ngIf="editVisible"
+                [title]="title"
+                [item]="selectedImage"
+                (onClose)="closeEdit()"
+            ></app-edit-item>
+            <div 
+                class="arrows-div" 
+                (click)="toggleChangeOrder()"
+                [ngClass]="{ 'changeOrderActivated' : changeOrderActivated }"
+            >
                 <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
             </div>
         </div>
     </div>
-    <ul id="thumbnails-list">
+    <ul
+        class="thumbnails-list"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+    >
+        <div class="drop-placeholder" *cdkDragPlaceholder></div>
         <li 
             *ngFor="let image of project.projectImageList"
             (click)="onSelect(image)"
+            (onDelete)="removeItem($event)"
+            class="thumb-item"
             [ngClass]="{'selected': selectedImage===image}"
+            cdkDrag
         >
             <p>{{image.imageUrl}}<br><br><br><br></p>
+            <div cdkDragHandle>
+                <div
+                    *ngIf="selectedImage===image && changeOrderActivated"
+                    class="arrows-div"
+                >
+                    <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
+                </div>
+            </div>
         </li>
     </ul>
 </div>

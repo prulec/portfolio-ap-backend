@@ -55,10 +55,21 @@
     max-width: 100%;
 }
 
+/* ADD Popup */
+app-add-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
 
 /* EDIT ICONS */
 
-#edit-div {
+.edit-div {
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -68,7 +79,7 @@
     top: 5px;
 }
 
-#edit-div > .pencil-div {
+.edit-div > .pencil-div {
     width: 36px;
     height: 36px;
     border-radius: 18px;
@@ -76,14 +87,24 @@
     background-color: white;
     opacity: 70%;
 }
-#edit-div > .pencil-div:hover {opacity: 90%;}
+.edit-div > .pencil-div:hover {opacity: 90%;}
 
 .pencil {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .arrows-div {
+app-edit-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
+.edit-div > .arrows-div {
     right: 3px;
     bottom: 3px;
     width: 36px;
@@ -93,14 +114,18 @@
     background-color: white;
     opacity: 70%;
 }
-#edit-div > .arrows-div:hover {opacity: 90%;}
+.edit-div > .arrows-div:hover {opacity: 90%;}
 
 .arrows {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .trash-div {
+.edit-div > .changeOrderActivated {
+    background-color: rgb(52, 225, 33);
+}
+
+.edit-div > .trash-div {
     left: 3px;
     bottom: 3px;
     width: 36px;
@@ -110,16 +135,26 @@
     background-color: rgb(249, 65, 65);
     opacity: 70%;
 }
-#edit-div > .trash-div:hover {opacity: 90%;}
+.edit-div > .trash-div:hover {opacity: 90%;}
 
 .trash {
     max-width: 70%;
     margin: 15%;
 }
 
+app-delete-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
 /* THUMBNAILS */
 
-#thumbnails-list {
+.thumbnails-list {
     flex: 0 0 140px;
     display:flex;
     flex-direction: column;
@@ -130,16 +165,50 @@
     overflow-y: auto;
 }
 
-#thumbnails-list > li {
+.thumbnails-list > .thumb-item {
     justify-content: space-evenly;
     margin-bottom: 2px;
     background-color: bisque;
 }
 
-#thumbnails-list > li > p {
+.thumbnails-list > .thumb-item > p {
     word-wrap:break-word;
+}
+
+.thumbnails-list > .thumb-item > div {
+    position: relative;
+    background-color: aqua;
+}
+
+.thumbnails-list > .thumb-item > div > .arrows-div {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 4px black;
+    background-color: white;
+    opacity: 70%;
+    cursor: move;
+}
+.thumbnails-list > .thumb-item > div > .arrows-div:hover {opacity: 90%;}
+
+.thumbnails-list > .thumb-item > div > .arrows-div > .arrows {
+    max-width: 70%;
+    margin: 15%;
 }
 
 .selected {
     border-right: 5px solid yellowgreen;
+}
+
+
+/* DRAG DROP */
+
+.drop-placeholder {
+    height: 110px;
+    border: #BFBFBF solid 2px;
+    border-radius: 10px;
+    background-color: #BFBFBF;
 }
