@@ -127,6 +127,36 @@
             >
         </div>
     </div>
+
+    <div *ngIf="title==='Skill'">
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Name of skill"
+                [(ngModel)]="item.name"
+            >
+        </div>
+        <div>
+            <input            
+                type="number"
+                class="form-control"
+                name="skillLevel"
+                placeholder="Skill level [0-100]"
+                [(ngModel)]="item.skillLevel"
+            >
+        </div>
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="levelTag"
+                placeholder="Level tag"
+                [(ngModel)]="item.levelTag"
+            >
+        </div>
+    </div>
     
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EducationData } from 'src/app/EducationData';
 import { ExperienceData } from 'src/app/ExperienceData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { SkillData } from 'src/app/SkillData';
 
 @Component({
   selector: 'app-add-item',
@@ -27,7 +28,12 @@ export class AddItemComponent implements OnInit {
     institution: "",
     educationTime: "",
     title: "",
-  }
+  };
+  skillData:SkillData = {
+    name: "",
+    skillLevel: 0,
+    levelTag: ""
+  };
 
 
   constructor(private portfolioService:PortfolioService) { }
@@ -47,6 +53,13 @@ export class AddItemComponent implements OnInit {
         break;
       case "education":
         this.portfolioService.addItem(this.educationData,section)
+            .subscribe(i => {
+              this.list.push(i);
+              this.onAdd.emit(this.list);
+            });
+        break;
+      case "skill":
+        this.portfolioService.addItem(this.skillData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);

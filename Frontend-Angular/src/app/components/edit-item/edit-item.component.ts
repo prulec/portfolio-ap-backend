@@ -6,6 +6,7 @@ import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { SkillData } from 'src/app/SkillData';
 
 @Component({
   selector: 'app-edit-item',
@@ -92,6 +93,15 @@ export class EditItemComponent implements OnInit {
           title: this.item.title,
         };
         this.portfolioService.updateItem(educationData,"education").subscribe();
+        break;
+      case "Skill":
+        let skillData:SkillData = {
+          id: this.item.id,
+          name: this.item.name,
+          skillLevel: this.item.skillLevel,
+          levelTag: this.item.levelTag
+        };
+        this.portfolioService.updateItem(skillData,"skill").subscribe();
         break;
       default:
         break;

@@ -1,8 +1,8 @@
-#skill-container {
+.skill-container {
     position: relative;
 }
 
-#skills-item {
+.skills-item {
     display: flex;
     flex-direction: row;
     border: #BFBFBF solid 2px;
@@ -21,7 +21,7 @@
 
 /* ANILLO DE PROGRESO */
 
-#progress-div {
+.progress-div {
     position: relative;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@
 
 /* Parte Izquierda */
 
-#left-div {
+.left-div {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -44,7 +44,7 @@
     background-color: var(--back-color);
 }
 
-#left-div > .full-div {
+.left-div > .full-div {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -54,7 +54,7 @@
     background-color: var(--progress-color);
 }
 
-#left-div > .empty-div {
+.left-div > .empty-div {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -67,7 +67,7 @@
 
 /* Parte Derecha */
 
-#right-div {
+.right-div {
     position: absolute;
     left: 50%;
     width: 50%;
@@ -76,7 +76,7 @@
     background-color: var(--progress-color);
 }
 
-#right-div > .empty-div {
+.right-div > .empty-div {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -86,7 +86,7 @@
     background-color: var(--back-color);
 }
 
-#right-div > .full-div {
+.right-div > .full-div {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -99,7 +99,7 @@
 
 /* TEXTO DEL ANILLO */
 
-#level-text-div {
+.level-text-div {
     display: flex;
     position: absolute;
     margin: var(--ring-width);
@@ -111,7 +111,7 @@
     background-color: var(--back-color);
 }
 
-#level-text-div > p {
+.level-text-div > p {
     margin: 10px;
     line-height: 20px;
     padding-bottom: 2px;
@@ -120,17 +120,17 @@
 
 /* TEXTO FUERA DEL ANILLO */
 
-#data-div {
+.data-div {
     display: flex;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-#data-div > div {
+.data-div > div {
     align-self: center;
 }
 
-#data-div > div > p {
+.data-div > div > p {
     margin: 0px;
 }
 
@@ -138,7 +138,7 @@
 /* MEDIA QUERY */
 
 @media (max-width: 768px) {
-    #progress-div {
+    .progress-div {
         width: 100px;
         height: 100px;
     }
@@ -147,7 +147,7 @@
 
 /* EDIT ICONS */
 
-#edit-div {
+.edit-div {
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -158,7 +158,7 @@
     bottom: 0px;
 }
 
-#edit-div > .pencil-div {
+.edit-div > .pencil-div {
     width: 36px;
     height: 36px;
     border-radius: 18px;
@@ -166,14 +166,24 @@
     background-color: white;
     opacity: 70%;
 }
-#edit-div > .pencil-div:hover {opacity: 90%;}
+.edit-div > .pencil-div:hover {opacity: 90%;}
 
 .pencil {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .arrows-div {
+app-edit-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
+.edit-div > .arrows-div {
     right: 3px;
     bottom: 3px;
     width: 36px;
@@ -182,15 +192,16 @@
     box-shadow: 0px 0px 4px black;
     background-color: white;
     opacity: 70%;
+    cursor: move;
 }
-#edit-div > .arrows-div:hover {opacity: 90%;}
+.edit-div > .arrows-div:hover {opacity: 90%;}
 
 .arrows {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .trash-div {
+.edit-div > .trash-div {
     left: 3px;
     bottom: 3px;
     width: 36px;
@@ -200,9 +211,29 @@
     background-color: rgb(249, 65, 65);
     opacity: 70%;
 }
-#edit-div > .trash-div:hover {opacity: 90%;}
+.edit-div > .trash-div:hover {opacity: 90%;}
 
 .trash {
     max-width: 70%;
     margin: 15%;
+}
+
+app-delete-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/* DRAG DROP */
+
+.drop-placeholder {
+    height: 130px;
+    border: #BFBFBF solid 2px;
+    border-radius: 10px;
+    background-color: #BFBFBF;
 }
