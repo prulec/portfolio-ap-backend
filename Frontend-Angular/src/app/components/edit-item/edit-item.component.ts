@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EditUserData } from 'src/app/EditUserData';
+import { EducationData } from 'src/app/EducationData';
 import { ExperienceData } from 'src/app/ExperienceData';
 import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
@@ -72,7 +73,7 @@ export class EditItemComponent implements OnInit {
         this.dataU = {};
         break;
       case "Experience":
-        let data:ExperienceData = {
+        let experienceData:ExperienceData = {
           id: this.item.id,
           logoUrl: this.item.logoUrl,
           enterprise: this.item.enterprise,
@@ -80,7 +81,17 @@ export class EditItemComponent implements OnInit {
           position: this.item.position,
           tasks: this.item.tasks
         };
-        this.portfolioService.updateItem(data,"experience").subscribe();
+        this.portfolioService.updateItem(experienceData,"experience").subscribe();
+        break;
+      case "Education":
+        let educationData:EducationData = {
+          id: this.item.id,
+          logoUrl: this.item.logoUrl,
+          institution: this.item.institution,
+          educationTime: this.item.educationTime,
+          title: this.item.title,
+        };
+        this.portfolioService.updateItem(educationData,"education").subscribe();
         break;
       default:
         break;

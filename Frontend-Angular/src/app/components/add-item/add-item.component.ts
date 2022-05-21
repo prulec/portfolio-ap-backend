@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { EducationData } from 'src/app/EducationData';
 import { ExperienceData } from 'src/app/ExperienceData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
@@ -21,6 +22,12 @@ export class AddItemComponent implements OnInit {
     position: "",
     tasks: ""
   };
+  educationData:EducationData = {
+    logoUrl: "",
+    institution: "",
+    educationTime: "",
+    title: "",
+  }
 
 
   constructor(private portfolioService:PortfolioService) { }
@@ -33,6 +40,13 @@ export class AddItemComponent implements OnInit {
     switch (section) {
       case "experience":
         this.portfolioService.addItem(this.experienceData,section)
+            .subscribe(i => {
+              this.list.push(i);
+              this.onAdd.emit(this.list);
+            });
+        break;
+      case "education":
+        this.portfolioService.addItem(this.educationData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);

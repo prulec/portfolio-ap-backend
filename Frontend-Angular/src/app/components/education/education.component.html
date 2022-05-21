@@ -1,13 +1,22 @@
 <div id="title">
     <div></div>
     <h2>EDUCACIÓN</h2>
-    <div class="add-div">
+    <div class="add-div" (click)="openAddPopup()">
         <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
     </div>
+    <app-add-item
+        *ngIf = "addVisible"
+        [title] = "addTitle"
+        [section] = "addSection"
+        [list] = "educationList"
+        (onClose)="closeAddPopup()"
+        (onAdd)="refresh($event)"
+    ></app-add-item>
 </div>
-<div id="education-div">
+<div id="education-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-education-item
         *ngFor="let education of educationList"
         [education]="education"
+        (onDelete)="removeItem($event)"
     ></app-education-item>
 </div>
