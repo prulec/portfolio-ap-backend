@@ -13,7 +13,7 @@
         (onAdd)="refresh($event)"
     ></app-add-item>
 </div>
-<div id="experience-div">
+<div id="experience-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-experience-item 
         *ngFor="let experience of experienceList"
         [experience]="experience"

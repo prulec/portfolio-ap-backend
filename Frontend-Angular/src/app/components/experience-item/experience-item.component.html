@@ -1,14 +1,15 @@
-<div id="experience-item">
-    <div id="logo-div">
+<div class="experience-item" cdkDrag>
+    <div class="drop-placeholder" *cdkDragPlaceholder></div>
+    <div class="logo-div">
         <div><p>{{experience.logoUrl}}</p></div>
     </div>
-    <div id="datos-div">
+    <div class="datos-div">
         <p><b>Empresa: </b>{{experience.enterprise}}</p>
         <p><b>Período: </b>{{experience.experienceTime}}</p>
         <p><b>Puesto: </b>{{experience.position}}</p>
         <p><b>Tareas: </b>{{experience.tasks}}</p>
     </div>
-    <div id="edit-div">
+    <div class="edit-div">
         <div class="trash-div" (click)="openDelete()">
             <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
         </div>
@@ -28,7 +29,7 @@
             [item]="experience"
             (onClose)="closeEdit()"
         ></app-edit-item>
-        <div class="arrows-div">
+        <div class="arrows-div" cdkDragHandle>
             <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
         </div>
     </div>

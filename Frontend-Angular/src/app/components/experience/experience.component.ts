@@ -1,5 +1,8 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/Experience';
+import { OrderData } from 'src/app/OrderData';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
   selector: 'app-experience',
@@ -13,7 +16,7 @@ export class ExperienceComponent implements OnInit {
   addTitle:string = "Experience";
   addSection:string = "experience";
 
-  constructor() { }
+  constructor(private portfolioService:PortfolioService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +36,16 @@ export class ExperienceComponent implements OnInit {
 
   removeItem(item:any){
     this.experienceList = this.experienceList.filter(i => i.id!=item.id);
+  }
+
+  drop (event:CdkDragDrop<Experience[]>){
+    let orderData: OrderData = {
+      id: this.experienceList[event.previousIndex].id,
+      section: "experience",
+      newItemOrder: event.currentIndex + 1
+    }
+    this.portfolioService.changeOrderItem(orderData).subscribe();
+    moveItemInArray(this.experienceList,event.previousIndex,event.currentIndex);
   }
 
 }
