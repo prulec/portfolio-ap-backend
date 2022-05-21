@@ -1,4 +1,4 @@
-#project-container {
+.project-container {
     position: relative;
 }
 
@@ -12,7 +12,7 @@ app-project-gallery {
     width: 100vw;
 }
 
-#projects-item {
+.projects-item {
     position: relative;
     border: #BFBFBF solid 2px;
     border-radius: 10px;
@@ -21,7 +21,7 @@ app-project-gallery {
     background-color: #F3F3F3;
 }
 
-#thumbnail-div {
+.thumbnail-div {
     min-width: 160px;
     height: 160px;
     margin: 5px;
@@ -29,29 +29,31 @@ app-project-gallery {
     border-radius: 10px;
     background-color: #ffd56b5f;
 }
-#thumbnail-div:hover{box-shadow: 0px 0px 4px black;}
+.thumbnail-div:hover{box-shadow: 0px 0px 4px black;}
 
-#thumbnail-div > div {
+.thumbnail-div > div {
     height: 100%;
     margin: 0px;
     text-align: center;
     padding-top: calc(50% - 13px);
 }
 
-#thumbnail > div > p {
+.thumbnail > div > p {
     line-height: 20px;
     padding-bottom: 2px;
 }
 
-#datos-div > p {
+.datos-div > p {
     margin: 0px;
     padding: 0px;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 
 /* EDIT ICONS */
 
-#edit-div {
+.edit-div {
     position: absolute;
     display: flex;
     flex-direction: row;
@@ -62,7 +64,7 @@ app-project-gallery {
     bottom: 0px;
 }
 
-#edit-div > .pencil-div {
+.edit-div > .pencil-div {
     width: 36px;
     height: 36px;
     border-radius: 18px;
@@ -70,14 +72,24 @@ app-project-gallery {
     background-color: white;
     opacity: 70%;
 }
-#edit-div > .pencil-div:hover {opacity: 90%;}
+.edit-div > .pencil-div:hover {opacity: 90%;}
 
 .pencil {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .arrows-div {
+app-edit-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
+.edit-div > .arrows-div {
     right: 3px;
     bottom: 3px;
     width: 36px;
@@ -86,15 +98,16 @@ app-project-gallery {
     box-shadow: 0px 0px 4px black;
     background-color: white;
     opacity: 70%;
+    cursor: move;
 }
-#edit-div > .arrows-div:hover {opacity: 90%;}
+.edit-div > .arrows-div:hover {opacity: 90%;}
 
 .arrows {
     max-width: 70%;
     margin: 15%;
 }
 
-#edit-div > .trash-div {
+.edit-div > .trash-div {
     left: 3px;
     bottom: 3px;
     width: 36px;
@@ -104,9 +117,29 @@ app-project-gallery {
     background-color: rgb(249, 65, 65);
     opacity: 70%;
 }
-#edit-div > .trash-div:hover {opacity: 90%;}
+.edit-div > .trash-div:hover {opacity: 90%;}
 
 .trash {
     max-width: 70%;
     margin: 15%;
+}
+
+app-delete-item {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/* DRAG DROP */
+
+.drop-placeholder {
+    height: 190px;
+    border: #BFBFBF solid 2px;
+    border-radius: 10px;
+    background-color: #BFBFBF;
 }

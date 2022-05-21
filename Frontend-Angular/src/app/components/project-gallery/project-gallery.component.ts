@@ -11,7 +11,7 @@ import { ProjectImage } from 'src/app/ProjectImage';
 export class ProjectGalleryComponent implements OnInit {
 
   @Input() project:Project = PORTFOLIO.projectList[0];
-  @Input() selectedImage:ProjectImage = this.project.projectImageList[0];
+  @Input() selectedImage:ProjectImage = PORTFOLIO.projectList[0].projectImageList[0];
   @Output() onCloseImagesWindow: EventEmitter<any> = new EventEmitter();
 
   constructor() { }

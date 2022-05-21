@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Project } from 'src/app/Project';
 
@@ -11,10 +12,42 @@ export class ProjectsItemComponent implements OnInit {
 
   projectGalleryVisible: boolean = false;
   @Input() project:Project = PORTFOLIO.projectList[0];
+  @Output() onDelete:EventEmitter<any> = new EventEmitter();
+  @Output() onClick:EventEmitter<any> = new EventEmitter();
+  deleteVisible:boolean = false;
+  editVisible:boolean = false;
+  section:string = "project";
+  title:string = "Project";
+  emptyPortfolio:Portfolio = PORTFOLIO;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openEdit(){
+    this.editVisible = true;
+  }
+
+  closeEdit(){
+    this.editVisible = false;
+  }
+
+  openDelete(){
+    this.deleteVisible = true;
+  }
+
+  closeDelete(){
+    this.deleteVisible = false;
+  }
+
+  deleteItem(project:Project){
+    this.onDelete.emit(project);
+    this.closeDelete();
+  }
+
+  sendClick(){
+    this.onClick.emit();
   }
 
   closeGallery(): void {

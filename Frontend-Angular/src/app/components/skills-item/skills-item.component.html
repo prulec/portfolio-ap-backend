@@ -42,7 +42,11 @@
             [item]="skill"
             (onClose)="closeEdit()"
         ></app-edit-item>
-        <div class="arrows-div" cdkDragHandle>
+        <div 
+            class="arrows-div"
+            (click)="sendClick()"
+            cdkDragHandle
+        >
             <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
         </div>
     </div>

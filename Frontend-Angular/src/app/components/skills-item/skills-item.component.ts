@@ -11,6 +11,7 @@ export class SkillsItemComponent implements OnInit {
 
   @Input() skill:Skill = PORTFOLIO.skillList[0];
   @Output() onDelete:EventEmitter<any> = new EventEmitter();
+  @Output() onClick:EventEmitter<any> = new EventEmitter();
   deleteVisible:boolean = false;
   editVisible:boolean = false;
   section:string = "skill";
@@ -40,6 +41,10 @@ export class SkillsItemComponent implements OnInit {
   deleteItem(skill:Skill){
     this.onDelete.emit(skill);
     this.closeDelete();
+  }
+
+  sendClick(){
+    this.onClick.emit();
   }
 
 }

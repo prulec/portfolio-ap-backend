@@ -39,12 +39,8 @@ export class SkillsComponent implements OnInit {
     this.skillList = this.skillList.filter(i => i.id!=item.id);
   }
 
-  activateOneColumn(){
-    this.oneColumn = true;
-  }
-
-  deactivateOneColumn(){
-    this.oneColumn = false;
+  toggleOneColumn(){
+    this.oneColumn = !this.oneColumn;
   }
 
   drop (event:CdkDragDrop<Skill[]>){

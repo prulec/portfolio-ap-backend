@@ -157,6 +157,45 @@
             >
         </div>
     </div>
+
+    <div *ngIf="title==='Project'">
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Name of project"
+                [(ngModel)]="item.name"
+            >
+        </div>
+        <div>
+            <input            
+                type="text"
+                class="form-control"
+                name="projectTime"
+                placeholder="Time"
+                [(ngModel)]="item.projectTime"
+            >
+        </div>
+        <div>
+            <input 
+                type="url"
+                class="form-control" 
+                name="link"
+                placeholder="Link to project"
+                [(ngModel)]="item.link"
+            >
+        </div>
+        <div>
+            <textarea
+                class="form-control"
+                name="description"
+                rows="3"
+                placeholder="Description"
+                [(ngModel)]="item.description"
+            ></textarea>
+        </div>
+    </div>
     
     <div id="buttons">
         <button type="submit" class="btn btn-primary">Save</button>

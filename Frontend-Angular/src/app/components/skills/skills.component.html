@@ -25,8 +25,7 @@
             [ngClass]="{'col-sm-6 col-lg-4' : !oneColumn}"
             [skill]="skill"
             (onDelete)="removeItem($event)"
-            (mousedown)="activateOneColumn()"
-            (mouseup)="deactivateOneColumn()"
+            (onClick)="toggleOneColumn()"
         ></app-skills-item>
     </div>
 </div>

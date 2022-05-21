@@ -1,16 +1,31 @@
 <div id="title">
     <div></div>
     <h2>PROYECTOS</h2>
-    <div class="add-div">
+    <div class="add-div" (click)="openAddPopup()">
         <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
     </div>
+    <app-add-item
+        *ngIf = "addVisible"
+        [title] = "addTitle"
+        [section] = "addSection"
+        [list] = "projectList"
+        (onClose)="closeAddPopup()"
+        (onAdd)="refresh($event)"
+    ></app-add-item>
 </div>
-<div id="projects-div" class="container-fluid">
+<div 
+    id="projects-div"
+    class="container-fluid"
+    cdkDropList 
+    (cdkDropListDropped)="drop($event)"
+>
     <div class="row g-1">
-        <app-projects-item 
-            class="col-lg-6"
+        <app-projects-item
             *ngFor="let project of projectList"
+            [ngClass]="{'col-lg-6' : !oneColumn}"
             [project]="project"
+            (onDelete)="removeItem($event)"
+            (onClick)="toggleOneColumn()"
         ></app-projects-item>
     </div>
 </div>

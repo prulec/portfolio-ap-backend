@@ -5,6 +5,7 @@ import { ExperienceData } from 'src/app/ExperienceData';
 import { HeaderAboutData } from 'src/app/HeaderAboutData';
 import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
+import { ProjectData } from 'src/app/ProjectData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { SkillData } from 'src/app/SkillData';
 
@@ -102,6 +103,16 @@ export class EditItemComponent implements OnInit {
           levelTag: this.item.levelTag
         };
         this.portfolioService.updateItem(skillData,"skill").subscribe();
+        break;
+      case "Project":
+        let projectData:ProjectData = {
+          id: this.item.id,
+          name: this.item.name,
+          projectTime: this.item.projectTime,
+          link: this.item.link,
+          description: this.item.description
+        };
+        this.portfolioService.updateItem(projectData,"project").subscribe();
         break;
       default:
         break;
