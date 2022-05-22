@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { OrderData } from 'src/app/OrderData';
+import { Portfolio } from 'src/app/Portfolio';
 import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Social } from 'src/app/Social';
@@ -15,6 +16,7 @@ import { SocialType } from 'src/app/SocialType';
 export class SocialComponent implements OnInit {
 
   @Input() socialList:Social[] = PORTFOLIO.socialList;
+  @Input() portfolio:Portfolio = PORTFOLIO;
   socialWindowVisible:boolean = false;
   addVisible:boolean = false;
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
@@ -60,7 +62,7 @@ export class SocialComponent implements OnInit {
     // VALIDAR
     console.log(this.socialList.length);
     console.log(this.data);
-    this.portfolioService.addSocialItem(this.data).subscribe(
+    this.portfolioService.addSocialItem(this.portfolio, this.data).subscribe(
       (s) => {
         this.socialList.push(s);
       }

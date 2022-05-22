@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   togglePortfolioVisibility() {
-    this.portfolioService.toggleVisibility().subscribe(
+    this.portfolioService.toggleVisibility(this.portfolio).subscribe(
       (p) => { this.portfolio.visible = p.visible;}
     );
   }

@@ -2,6 +2,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { Experience } from 'src/app/Experience';
 import { OrderData } from 'src/app/OrderData';
+import { Portfolio } from 'src/app/Portfolio';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -12,6 +14,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ExperienceComponent implements OnInit {
 
   @Input() experienceList: Experience[] = [];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   addVisible:boolean = false;
   addTitle:string = "Experience";
   addSection:string = "experience";

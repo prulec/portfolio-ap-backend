@@ -25,63 +25,64 @@ const httpOptions = {
 export class PortfolioService {
 
   portfolioUrl:string = "http://localhost:8080/portfolio2";
+  baseUrl:string = "http://localhost:8080/"
 
   constructor(private http:HttpClient) { }
 
-  getPortfolio(): Observable<Portfolio> {
-    return this.http.get<Portfolio>(this.portfolioUrl + '/edit');
+  getPortfolio(portfolioName:string): Observable<Portfolio> {
+    return this.http.get<Portfolio>(this.baseUrl + portfolioName + '/edit');
   }
 
-  toggleVisibility(): Observable<Portfolio>{
-    return this.http.patch<Portfolio>(this.portfolioUrl + '/visibility', {}, httpOptions);
+  toggleVisibility(portfolio:Portfolio): Observable<Portfolio>{
+    return this.http.patch<Portfolio>(this.baseUrl + portfolio.name + '/visibility', {}, httpOptions);
   }
 
   updateHeaderAboutField (portfolio:Portfolio, data:HeaderAboutData): Observable<Portfolio> {
-    return this.http.put<Portfolio>(this.portfolioUrl + '/header-about/update', data, httpOptions);
+    return this.http.put<Portfolio>(this.baseUrl + portfolio.name + '/header-about/update', data, httpOptions);
   }
 
   updateUserData (portfolio:Portfolio, data:EditUserData): Observable<Portfolio> {
-    return this.http.patch<Portfolio>(this.portfolioUrl + '/user/update', data, httpOptions);
+    return this.http.patch<Portfolio>(this.baseUrl + portfolio.name + '/user/update', data, httpOptions);
   }
 
   getSocialTypes(): Observable<SocialType[]> {
-    return this.http.get<SocialType[]>("http://localhost:8080/socialtypes");
+    return this.http.get<SocialType[]>(this.baseUrl + "socialtypes");
   }
 
   updateSocialItem(socialData:SocialData): Observable<Social> {
-    return this.http.patch<Social>("http://localhost:8080/social/update", socialData, httpOptions);
+    return this.http.patch<Social>(this.baseUrl + "social/update", socialData, httpOptions);
   }
 
-  addSocialItem(socialData:SocialData): Observable<Social> {
-    return this.http.post<Social>(this.portfolioUrl + "/social/add", socialData, httpOptions);
+  addSocialItem(portfolio:Portfolio, socialData:SocialData): Observable<Social> {
+    return this.http.post<Social>(this.baseUrl + portfolio.name + "/social/add", socialData, httpOptions);
   }
 
   deleteSocialItem(social:Social): Observable<any> {
-    return this.http.delete<any>("http://localhost:8080/deleteitem/social/"+social.id)
+    return this.http.delete<any>(this.baseUrl + "deleteitem/social/" + social.id)
   }
 
   changeOrderItem(orderData:OrderData): Observable<string>{
-    return this.http.patch("http://localhost:8080/changeorder", orderData, {responseType: 'text'});
+    return this.http.patch(this.baseUrl + "changeorder", orderData, {responseType: 'text'});
   }
 
   sendContact(emailData:EmailData):Observable<any>{
-    return this.http.post("http://localhost:8080/sendcontact",emailData,httpOptions);
+    return this.http.post(this.baseUrl + "sendcontact", emailData, httpOptions);
   }
 
-  addItem(item:any, section:string): Observable<any> {
-    return this.http.post<any>(this.portfolioUrl + "/" + section + "/add", item, httpOptions);
+  addItem(portfolio:Portfolio, item:any, section:string): Observable<any> {
+    return this.http.post<any>(this.baseUrl + portfolio.name + "/" + section + "/add", item, httpOptions);
   }
 
   deleteItem(item:any, section:string): Observable<any> {
-    return this.http.delete("http://localhost:8080/deleteitem/" + section + "/" + item.id);
+    return this.http.delete(this.baseUrl + "deleteitem/" + section + "/" + item.id);
   }
 
   updateItem(data:any, section:string): Observable<any> {
-    return this.http.patch<any>("http://localhost:8080/" + section + "/update", data, httpOptions);
+    return this.http.patch<any>(this.baseUrl + section + "/update", data, httpOptions);
   }
 
-  addProjectImage(imageData:ProjectImageData, project:Project): Observable<ProjectImage> {
-    return this.http.post<ProjectImage>("http://localhost:8080/" + project.id + "/image/add", imageData, httpOptions);
+  addProjectImage(project:Project, imageData:ProjectImageData): Observable<ProjectImage> {
+    return this.http.post<ProjectImage>(this.baseUrl + project.id + "/image/add", imageData, httpOptions);
   }
 
 }

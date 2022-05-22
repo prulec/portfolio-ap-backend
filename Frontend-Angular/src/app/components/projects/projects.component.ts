@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OrderData } from 'src/app/OrderData';
+import { Portfolio } from 'src/app/Portfolio';
+import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
 import { Project } from 'src/app/Project';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
@@ -12,6 +14,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ProjectsComponent implements OnInit {
 
   @Input() projectList:Project[] = [];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   addVisible:boolean = false;
   addTitle:string = "Project";
   addSection:string = "project";
