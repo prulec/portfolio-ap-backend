@@ -24,8 +24,8 @@ const httpOptions = {
 })
 export class PortfolioService {
 
-  portfolioUrl:string = "http://localhost:8080/portfolio2";
-  baseUrl:string = "http://localhost:8080/"
+  //portfolioUrl:string = "http://localhost:8080/portfolio2";
+  baseUrl:string = "http://192.168.1.52:8080/"
 
   constructor(private http:HttpClient) { }
 
