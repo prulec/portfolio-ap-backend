@@ -20,7 +20,7 @@ public class UserOut {
     public UserOut (User user) {
         id = user.getId();
         username = user.getUsername();
-        password = user.getPassword();
+        //password = user.getPassword();
         firstName = user.getFirstName();
         lastName = user.getLastName();
         email = user.getEmail();

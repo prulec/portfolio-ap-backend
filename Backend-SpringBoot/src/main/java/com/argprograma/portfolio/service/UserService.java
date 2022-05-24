@@ -41,5 +41,10 @@ public class UserService implements IUserService {
     public void deleteUser (User user) {
         userRepo.delete(user);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepo.existsByUsername(username);
+    }
     
 }

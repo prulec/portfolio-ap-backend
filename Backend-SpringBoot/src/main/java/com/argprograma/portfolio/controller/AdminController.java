@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.controller;
 
+import com.argprograma.portfolio.dto.Message;
 import com.argprograma.portfolio.dto.PortfolioData;
 import com.argprograma.portfolio.dto.PortfolioOut;
 import com.argprograma.portfolio.dto.SocialTypeData;
@@ -15,6 +16,9 @@ import com.argprograma.portfolio.service.IUserService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,20 +39,30 @@ public class AdminController {
     private IPortfolioService portfolioService;
     @Autowired
     private ISocialTypeService socialTypeService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     
     /* User */
     
     @PostMapping ("adduser")
-    public User createUser (@RequestBody UserData data) {
+    public ResponseEntity<?> createUser (@RequestBody UserData data) {
         // Agrega usuario, pasando 'null' en 'id'
+        if (userService.existsByUsername(data.getUsername()))
+            return new ResponseEntity(new Message("The username exists..."), HttpStatus.BAD_REQUEST);
+        if (data.getPassword().isEmpty())
+            return new ResponseEntity(new Message("Password cannot be empty..."), HttpStatus.BAD_REQUEST);
+        if (data.getFirstName().isEmpty() || data.getLastName().isEmpty() || data.getEmail().isEmpty())
+            return new ResponseEntity(new Message("Some fields are empty..."), HttpStatus.BAD_REQUEST);
         User user = new User();
         user.setId(null);
         user.setUsername(data.getUsername());
-        user.setPassword(data.getPassword());
+        user.setPassword(passwordEncoder.encode(data.getPassword()));
         user.setFirstName(data.getFirstName());
         user.setLastName(data.getLastName());
-        user.setEmail(data.getEmail());        
-        return userService.createUser(user);
+        user.setEmail(data.getEmail());
+        user = userService.createUser(user);
+        user.setPassword(null);
+        return new ResponseEntity(user, HttpStatus.CREATED);
     }
     
     @GetMapping ("listusers")
@@ -78,7 +92,7 @@ public class AdminController {
         User user = userService.findUserById(data.getId());
         if (user!=null) {
             if (!data.getUsername().isEmpty()) user.setUsername(data.getUsername());
-            if (!data.getPassword().isEmpty()) user.setPassword(data.getPassword());
+            if (!data.getPassword().isEmpty()) user.setPassword(passwordEncoder.encode(data.getPassword()));
             if (!data.getFirstName().isEmpty()) user.setFirstName(data.getFirstName());
             if (!data.getLastName().isEmpty()) user.setLastName(data.getLastName());
             if (!data.getEmail().isEmpty()) user.setEmail(data.getEmail());

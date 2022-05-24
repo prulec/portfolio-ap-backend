@@ -10,4 +10,5 @@ public interface IUserService {
     public User findUserById (Long id);
     public User updateUser (User user);
     public void deleteUser (User user);
+    public boolean existsByUsername (String username);
 }
