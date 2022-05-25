@@ -137,7 +137,7 @@ public class AdminController {
         Portfolio portfolio = new Portfolio();
         if (user!=null) {
             portfolio.setId(null);
-            portfolio.setName(data.getName());
+            portfolio.setName(data.getName().toLowerCase().replace(" ", "_"));
             portfolio.setVisible(false);
             portfolio.setUser(user);
             return new PortfolioOut(portfolioService.createPortfolio(portfolio));
@@ -174,7 +174,8 @@ public class AdminController {
         // Actualiza name del portfolio que corresponde al id recibido
         Portfolio portfolio = portfolioService.findPortfolioById(data.getId());
         if (portfolio!=null && portfolio.getUser().getUsername().equals(data.getUsername())) {
-            if (!data.getName().isEmpty()) portfolio.setName(data.getName());
+            if (!data.getName().isEmpty()) 
+                portfolio.setName(data.getName().toLowerCase().replace(" ", "_"));
             return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
         System.out.println("El portfolio no existe...");

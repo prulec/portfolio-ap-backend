@@ -41,7 +41,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**/edit").permitAll()
+                .antMatchers("/portfolio/view/**").permitAll()
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/user/add").permitAll()
                 .antMatchers("/sendcontact").permitAll()

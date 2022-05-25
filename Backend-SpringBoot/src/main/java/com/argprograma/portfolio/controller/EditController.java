@@ -35,6 +35,7 @@ import com.argprograma.portfolio.service.SocialService;
 import com.argprograma.portfolio.service.SocialTypeService;
 import com.argprograma.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,6 +71,15 @@ public class EditController {
     
     /* Portfolio */
     
+    @GetMapping ("portfolio/view/{portfolio_name}")
+    public PortfolioOut viewPortfolio (@PathVariable String portfolio_name){
+        // Traer el objeto completo Portfolio con el name del portfolio
+        Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
+        if (portfolio!=null) return new PortfolioOut(portfolio);
+        System.out.println("No existe Portfolio con ese name...");
+        return null;
+    }
+    
     // Método que utiliza @JsonIgnoreProperty 
     // y no necesita de DTOs "_Out" para próximas mejoras
     /*
@@ -82,19 +92,26 @@ public class EditController {
     }
     */
     
-    @GetMapping ("{portfolio_name}/edit")
-    public PortfolioOut getPortfolio (@PathVariable String portfolio_name){
+    @GetMapping ("portfolio/edit/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public PortfolioOut getPortfolio (@PathVariable String username,
+                                      @PathVariable String portfolio_name){
         // Traer el objeto completo Portfolio con el name del portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) return new PortfolioOut(portfolio);
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) 
+            return new PortfolioOut(portfolio);
         System.out.println("No existe Portfolio con ese name...");
         return null;
     }
     
-    @PatchMapping ("{portfolio_name}/visibility")
-    public PortfolioOut toggleVisibility (@PathVariable String portfolio_name){
+    @PatchMapping ("portfolio/visibility/{username}/{portfolio_name}/")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public PortfolioOut toggleVisibility (@PathVariable String username,
+                                          @PathVariable String portfolio_name) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             portfolio.setVisible(!portfolio.isVisible());
             return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
@@ -102,6 +119,8 @@ public class EditController {
         return null;
     }
     
+    // Ya existe un método con la misma función en AdminController: updateUser()
+    /*
     @PatchMapping ("{portfolio_name}/user/update")
     public PortfolioOut updateUserData (@PathVariable String portfolio_name,
                                         @RequestBody EditUserData data) {
@@ -117,17 +136,20 @@ public class EditController {
         } else System.out.println("No existe Portfolio con ese name...");
         return null;
     }
+    */
     
-    @PutMapping ("{portfolio_name}/header-about/update")
-    public PortfolioOut updateHeaderAbout 
-        (@PathVariable String portfolio_name,
-         @RequestBody HeaderAboutData data) {
+    @PutMapping ("portfolio/header-about/update/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public PortfolioOut updateHeaderAbout (@PathVariable String username,
+                                           @PathVariable String portfolio_name,
+                                           @RequestBody HeaderAboutData data) {
         // Edición de un campo del Header o de la sección About
         // excepto Visibilidad del portfolio, Nombre completo de usuario
         // y Redes sociales, serían: Url del banner, Url de la foto, 
         // Título profesional, Breve descripción personal
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             switch (data.getField()) {
                 case "banner_url" -> portfolio.setBannerUrl(data.getValue());
                 case "photo_url" -> portfolio.setPhotoUrl(data.getValue());
@@ -147,11 +169,14 @@ public class EditController {
         
     /* Add Item */
     
-    @PostMapping ("{portfolio_name}/social/add")
-    public SocialOut addSocial (@PathVariable String portfolio_name,
-                             @RequestBody SocialData data) {
+    @PostMapping ("portfolio/social/add/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public SocialOut addSocial (@PathVariable String username,
+                                @PathVariable String portfolio_name,
+                                @RequestBody SocialData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             Social social = new Social();
             social.setId(null);
             social.setItemOrder(portfolio.getSocialSet().size()+1);
@@ -164,11 +189,14 @@ public class EditController {
         return null;
     }
     
-    @PostMapping ("{portfolio_name}/experience/add")
-    public ExperienceOut addExperience (@PathVariable String portfolio_name,
-                                     @RequestBody ExperienceData data) {
+    @PostMapping ("portfolio/experience/add/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public ExperienceOut addExperience (@PathVariable String username,
+                                        @PathVariable String portfolio_name,
+                                        @RequestBody ExperienceData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             Experience experience = new Experience();
             experience.setId(null);
             experience.setItemOrder(portfolio.getExperienceSet().size()+1);
@@ -184,11 +212,14 @@ public class EditController {
         return null;
     }
     
-    @PostMapping ("{portfolio_name}/education/add")
-    public EducationOut addEducation (@PathVariable String portfolio_name,
-                                   @RequestBody EducationData data) {
+    @PostMapping ("portfolio/education/add/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public EducationOut addEducation (@PathVariable String username,
+                                      @PathVariable String portfolio_name,
+                                      @RequestBody EducationData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             Education education = new Education();
             education.setId(null);
             education.setItemOrder(portfolio.getEducationSet().size()+1);
@@ -203,11 +234,14 @@ public class EditController {
         return null;
     }
     
-    @PostMapping ("{portfolio_name}/skill/add")
-    public SkillOut addSkill (@PathVariable String portfolio_name,
-                           @RequestBody SkillData data) {
+    @PostMapping ("portfolio/skill/add/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public SkillOut addSkill (@PathVariable String username,
+                              @PathVariable String portfolio_name,
+                              @RequestBody SkillData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             Skill skill = new Skill();
             skill.setId(null);
             skill.setItemOrder(portfolio.getSkillSet().size()+1);
@@ -221,11 +255,14 @@ public class EditController {
         return null;
     }
     
-    @PostMapping ("{portfolio_name}/project/add")
-    public ProjectOut addProject (@PathVariable String portfolio_name,
-                               @RequestBody ProjectData data) {
+    @PostMapping ("portfolio/project/add/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public ProjectOut addProject (@PathVariable String username,
+                                  @PathVariable String portfolio_name,
+                                  @RequestBody ProjectData data) {
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             Project project = new Project();
             project.setId(null);
             project.setItemOrder(portfolio.getProjectSet().size()+1);
@@ -240,11 +277,17 @@ public class EditController {
         return null;
     }
     
-    @PostMapping ("{project_id}/image/add")
-    public ProjectImageOut addProjectImage (@PathVariable Long project_id,
-                                         @RequestBody ProjectImageData data) {
+    @PostMapping ("portfolio/project/image/add/{username}/{portfolio_name}/{project_id}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public ProjectImageOut addProjectImage (@PathVariable String username,
+                                            @PathVariable String portfolio_name,
+                                            @PathVariable Long project_id,
+                                            @RequestBody ProjectImageData data) {
         Project project = projectService.findProjectById(project_id);
-        if (project!=null) {
+        if (project!=null &&
+                project.getPortfolio().getUser().getUsername().equals(username) &&
+                project.getPortfolio().getName().equals(portfolio_name)) {
             ProjectImage projectImage = new ProjectImage();
             projectImage.setId(null);
             projectImage.setItemOrder(project.getProjectImageSet().size()+1);
@@ -260,7 +303,7 @@ public class EditController {
     
     /* Update Item */
     
-    @PatchMapping ("social/update")
+    @PatchMapping ("portfolio/social/update")
     public SocialOut updateSocial (@RequestBody SocialData data) {
         Social social = socialService.findSocialById(data.getId());
         if (social!=null) {
