@@ -30,7 +30,7 @@ public class AuthController {
     @Autowired
     JwtProvider jwtProvider;
     
-    @PostMapping ("/login")
+    @PostMapping ("/user/login")
     public ResponseEntity<JwtDto> login (@RequestBody LoginUser data) {
         if (!userService.existsByUsername(data.getUsername()))
             return new ResponseEntity("The username doesn't exists...", HttpStatus.BAD_REQUEST);

@@ -18,6 +18,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +45,7 @@ public class AdminController {
     
     /* User */
     
-    @PostMapping ("adduser")
+    @PostMapping ("user/add")
     public ResponseEntity<?> createUser (@RequestBody UserData data) {
         // Agrega usuario, pasando 'null' en 'id'
         if (userService.existsByUsername(data.getUsername()))
@@ -65,7 +66,8 @@ public class AdminController {
         return new ResponseEntity(user, HttpStatus.CREATED);
     }
     
-    @GetMapping ("listusers")
+    @GetMapping ("user/list")
+    @PreAuthorize("authentication.principal.username == 'prulec'")
     public List<String> getUsers () {
         // Lista con los username existentes
         List<String> usernames = new ArrayList<> ();
@@ -76,7 +78,9 @@ public class AdminController {
         return usernames;
     }
     
-    @GetMapping ("user/{username}")
+    @GetMapping ("user/get/{username}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
     public UserOut getUser (@PathVariable String username) {
         // Muestra datos de usuario con la lista de portfolios
         User user = userService.findUserByUsername(username);
@@ -86,7 +90,9 @@ public class AdminController {
         return null;
     }
     
-    @PatchMapping ("updateuser")
+    @PatchMapping ("user/update")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
     public UserOut updateUser (@RequestBody UserData data) {
         // Actualiza datos de usuario que corresponda con id recibida
         User user = userService.findUserById(data.getId());
@@ -101,7 +107,9 @@ public class AdminController {
         return null;
     }
     
-    @DeleteMapping ("deleteuser/{username}")
+    @DeleteMapping ("user/delete/{username}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
     public void deleteUser (@PathVariable String username) {
         // Borra usuario y todos los portfolios que le pertenecen
         User user = userService.findUserByUsername(username);
@@ -119,12 +127,13 @@ public class AdminController {
     
     /* Portfolio */
     
-    @PostMapping ("addportfolio/{username}")
-    public PortfolioOut createPortfolio (@PathVariable String username,
-                                      @RequestBody PortfolioData data) {
+    @PostMapping ("portfolio/add")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #data.username")
+    public PortfolioOut createPortfolio (@RequestBody PortfolioData data) {
         // Agrega portfolio recibiendo username, y asignando: 
         // id=null, name (data), visible=false, user buscando por username
-        User user = userService.findUserByUsername(username);
+        User user = userService.findUserByUsername(data.getUsername());
         Portfolio portfolio = new Portfolio();
         if (user!=null) {
             portfolio.setId(null);
@@ -137,9 +146,10 @@ public class AdminController {
         return null;
     }
     
-    @GetMapping ("listportfolios/{username}")
-    public List<PortfolioData> getUserPortfolios
-        (@PathVariable String username) {
+    @GetMapping ("portfolio/list/{username}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public List<PortfolioData> getUserPortfolios (@PathVariable String username) {
         // Devuelve lista de portfolios del usuario (sólo id y name)
         User user = userService.findUserByUsername(username);
         List<PortfolioData> portfolios = new ArrayList<> ();
@@ -157,11 +167,13 @@ public class AdminController {
         return null;
     }
     
-    @PatchMapping ("updateportfolioname")
+    @PatchMapping ("portfolio/updatename")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #data.username")
     public PortfolioOut updatePortfolioName (@RequestBody PortfolioData data) {
         // Actualiza name del portfolio que corresponde al id recibido
         Portfolio portfolio = portfolioService.findPortfolioById(data.getId());
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(data.getUsername())) {
             if (!data.getName().isEmpty()) portfolio.setName(data.getName());
             return new PortfolioOut(portfolioService.updatePortfolio(portfolio));
         }
@@ -169,13 +181,16 @@ public class AdminController {
         return null;
     }
     
-    @DeleteMapping ("deleteportfolio/{portfolio_name}")
-    public void deletePortfolio (@PathVariable String portfolio_name) {
+    @DeleteMapping ("portfolio/delete/{username}/{portfolio_name}")
+    @PreAuthorize("authentication.principal.username == 'prulec'"
+            + " or authentication.principal.username == #username")
+    public void deletePortfolio (@PathVariable String username,
+                                 @PathVariable String portfolio_name) {
         // Elimina portfolio que corresponde al portfolio_name recibido
         // actualizando lista del usuario correspondiente y
         // eliminando los items que referencian al portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) {
+        if (portfolio!=null && portfolio.getUser().getUsername().equals(username)) {
             for (Social social : portfolio.getSocialSet()) {
                 social.getSocialType().getSocialSet().remove(social);
             }
@@ -185,9 +200,10 @@ public class AdminController {
     }
     
     
-    /* Portfolio --> SocialType */
+    /* SocialType */
     
-    @PostMapping ("addsocialtype")
+    @PostMapping ("socialtype/add")
+    @PreAuthorize("authentication.principal.username == 'prulec'")
     public SocialType createSocialType (@RequestBody SocialTypeData data) {
         // Agrega un tipo de red social, asignando null a id
         SocialType socialType  = new SocialType();
@@ -197,7 +213,7 @@ public class AdminController {
         return socialTypeService.createSocialType(socialType);
     }
     
-    @GetMapping ("socialtypes")
+    @GetMapping ("socialtype/list")
     public List<SocialTypeData> getSocialTypes () {
         // Devuelve todos los tipos de redes sociales registradas
         List<SocialType> socialTypes = new ArrayList<>(socialTypeService.getSocialTypes());
@@ -213,7 +229,8 @@ public class AdminController {
         return socialTypesData;
     }
     
-    @PutMapping ("updatesocialtype")
+    @PutMapping ("socialtype/update")
+    @PreAuthorize("authentication.principal.username == 'prulec'")
     public SocialTypeData updateSocialType (@RequestBody SocialTypeData data) {
         // Actualiza SocialType que corresponde al id recibido
         SocialType socialType = socialTypeService.findSocialTypeById(data.getId());
@@ -230,7 +247,8 @@ public class AdminController {
         return null;
     }
     
-    @DeleteMapping ("deletesocialtype/{socialtype_id}")
+    @DeleteMapping ("socialtype/delete/{socialtype_id}")
+    @PreAuthorize("authentication.principal.username == 'prulec'")
     public void deleteSocialType (@PathVariable Long socialtype_id) {
         // Elimina SocialType correspondiente al id de la ruta
         // y todos los elementos Social que lo referencien
