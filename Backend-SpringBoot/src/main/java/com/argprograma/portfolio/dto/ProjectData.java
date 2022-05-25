@@ -12,6 +12,8 @@ public class ProjectData {
     private String projectTime;
     private String link;
     private String description;
+    private String username;
+    private String portfolioName;
     
     public ProjectData () {}
     
@@ -21,6 +23,7 @@ public class ProjectData {
         projectTime = project.getProjectTime();
         link = project.getLink();
         description = project.getDescription();
+        username = project.getPortfolio().getUser().getUsername();
     }
     
 }

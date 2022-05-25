@@ -9,5 +9,6 @@ public class OrderData {
     private Long id;
     private String section;
     private int newItemOrder;
+    private String username;
     
 }

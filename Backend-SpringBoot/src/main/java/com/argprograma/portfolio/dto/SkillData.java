@@ -10,5 +10,7 @@ public class SkillData {
     private String name;
     private Integer skillLevel;
     private String levelTag;
+    private String username;
+    private String portfolioName;
     
 }

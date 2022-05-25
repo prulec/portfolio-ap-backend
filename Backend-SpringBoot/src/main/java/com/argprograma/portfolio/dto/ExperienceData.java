@@ -12,5 +12,7 @@ public class ExperienceData {
     private String experienceTime;
     private String position;
     private String tasks;
+    private String username;
+    private String portfolioName;
     
 }

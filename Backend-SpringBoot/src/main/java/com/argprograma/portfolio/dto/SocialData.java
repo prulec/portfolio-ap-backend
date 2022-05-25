@@ -9,5 +9,7 @@ public class SocialData {
     private Long id;
     private String url;
     private String socialTypeName;
+    private String username;
+    private String portfolioName;
     
 }

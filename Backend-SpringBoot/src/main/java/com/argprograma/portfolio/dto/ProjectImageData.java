@@ -9,6 +9,8 @@ public class ProjectImageData {
     private Long id;
     private String title;
     private String imageUrl;
+    private String username;
+    private Long projectId;
     
 }
 
