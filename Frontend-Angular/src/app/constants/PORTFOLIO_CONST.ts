@@ -1,4 +1,4 @@
-import { Portfolio } from "./Portfolio";
+import { Portfolio } from "../model/Portfolio";
 
 export const PORTFOLIO:Portfolio = {
     "id": BigInt(0),

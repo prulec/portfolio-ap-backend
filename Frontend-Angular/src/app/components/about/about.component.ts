@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Portfolio } from 'src/app/Portfolio';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-about',

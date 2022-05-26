@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
-import { Portfolio } from 'src/app/Portfolio';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Router } from '@angular/router';
 

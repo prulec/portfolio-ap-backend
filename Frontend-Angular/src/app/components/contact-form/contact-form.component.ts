@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit, Input } from '@angular/core';
-import { EmailData } from 'src/app/EmailData';
+import { EmailData } from 'src/app/model/EmailData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({

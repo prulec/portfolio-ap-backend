@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Experience } from 'src/app/Experience';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
+import { Experience } from 'src/app/model/Experience';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-experience-item',

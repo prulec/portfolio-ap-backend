@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Portfolio } from 'src/app/Portfolio';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
-import { Project } from 'src/app/Project';
+import { Portfolio } from 'src/app/model/Portfolio';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Project } from 'src/app/model/Project';
 
 @Component({
   selector: 'app-projects-item',

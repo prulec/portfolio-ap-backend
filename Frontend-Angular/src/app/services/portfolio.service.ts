@@ -1,17 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EditUserData } from '../EditUserData';
-import { EmailData } from '../EmailData';
-import { HeaderAboutData } from '../HeaderAboutData';
-import { OrderData } from '../OrderData';
-import { Portfolio } from '../Portfolio';
-import { Project } from '../Project';
-import { ProjectImage } from '../ProjectImage';
-import { ProjectImageData } from '../ProjectImageData';
-import { Social } from '../Social';
-import { SocialData } from '../SocialData';
-import { SocialType } from '../SocialType';
+import { EditUserData } from '../model/EditUserData';
+import { EmailData } from '../model/EmailData';
+import { HeaderAboutData } from '../model/HeaderAboutData';
+import { OrderData } from '../model/OrderData';
+import { Portfolio } from '../model/Portfolio';
+import { Project } from '../model/Project';
+import { ProjectImage } from '../model/ProjectImage';
+import { ProjectImageData } from '../model/ProjectImageData';
+import { Social } from '../model/Social';
+import { SocialData } from '../model/SocialData';
+import { SocialType } from '../model/SocialType';
 
 const httpOptions = {
   headers: new HttpHeaders({

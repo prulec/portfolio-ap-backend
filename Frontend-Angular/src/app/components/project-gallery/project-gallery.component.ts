@@ -1,9 +1,9 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { OrderData } from 'src/app/OrderData';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
-import { Project } from 'src/app/Project';
-import { ProjectImage } from 'src/app/ProjectImage';
+import { OrderData } from 'src/app/model/OrderData';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Project } from 'src/app/model/Project';
+import { ProjectImage } from 'src/app/model/ProjectImage';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Portfolio } from 'src/app/Portfolio';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { Social } from 'src/app/Social';
-import { SocialData } from 'src/app/SocialData';
-import { SocialType } from 'src/app/SocialType';
+import { Social } from 'src/app/model/Social';
+import { SocialData } from 'src/app/model/SocialData';
+import { SocialType } from 'src/app/model/SocialType';
 
 @Component({
   selector: 'app-social-item',

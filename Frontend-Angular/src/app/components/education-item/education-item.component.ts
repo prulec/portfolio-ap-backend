@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Education } from 'src/app/Education';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
+import { Education } from 'src/app/model/Education';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 
 @Component({
   selector: 'app-education-item',

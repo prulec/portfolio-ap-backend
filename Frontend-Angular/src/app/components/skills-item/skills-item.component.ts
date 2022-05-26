@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
-import { Skill } from 'src/app/Skill';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Skill } from 'src/app/model/Skill';
 
 @Component({
   selector: 'app-skills-item',

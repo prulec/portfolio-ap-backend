@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EducationData } from 'src/app/EducationData';
-import { ExperienceData } from 'src/app/ExperienceData';
-import { Portfolio } from 'src/app/Portfolio';
-import { PORTFOLIO } from 'src/app/PORTFOLIO_CONST';
-import { Project } from 'src/app/Project';
-import { ProjectData } from 'src/app/ProjectData';
-import { ProjectImageData } from 'src/app/ProjectImageData';
+import { EducationData } from 'src/app/model/EducationData';
+import { ExperienceData } from 'src/app/model/ExperienceData';
+import { Portfolio } from 'src/app/model/Portfolio';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Project } from 'src/app/model/Project';
+import { ProjectData } from 'src/app/model/ProjectData';
+import { ProjectImageData } from 'src/app/model/ProjectImageData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { SkillData } from 'src/app/SkillData';
+import { SkillData } from 'src/app/model/SkillData';
 
 @Component({
   selector: 'app-add-item',
