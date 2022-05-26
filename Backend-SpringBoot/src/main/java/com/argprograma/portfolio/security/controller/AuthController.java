@@ -1,5 +1,6 @@
 package com.argprograma.portfolio.security.controller;
 
+import com.argprograma.portfolio.dto.Message;
 import com.argprograma.portfolio.security.dto.JwtDto;
 import com.argprograma.portfolio.security.dto.LoginUser;
 import com.argprograma.portfolio.security.jwt.JwtProvider;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +33,9 @@ public class AuthController {
     JwtProvider jwtProvider;
     
     @PostMapping ("/user/login")
-    public ResponseEntity<JwtDto> login (@RequestBody LoginUser data) {
+    public ResponseEntity<JwtDto> login (@RequestBody LoginUser data, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return new ResponseEntity(new Message("Incorrect credentials..."), HttpStatus.BAD_REQUEST);
         if (!userService.existsByUsername(data.getUsername()))
             return new ResponseEntity("The username doesn't exists...", HttpStatus.BAD_REQUEST);
         Authentication authentication = 
