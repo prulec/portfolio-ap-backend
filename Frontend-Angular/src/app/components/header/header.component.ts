@@ -4,6 +4,7 @@ import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';
+import { VisibilityData } from 'src/app/model/VisibilityData';
 
 @Component({
   selector: 'app-header',
@@ -34,7 +35,11 @@ export class HeaderComponent implements OnInit {
   }
 
   togglePortfolioVisibility() {
-    this.portfolioService.toggleVisibility(this.portfolio).subscribe(
+    let visibilityData: VisibilityData = {
+      username: this.portfolio.user.username,
+      portfolioName: this.portfolio.name
+    }
+    this.portfolioService.toggleVisibility(visibilityData).subscribe(
       (p) => { this.portfolio.visible = p.visible;}
     );
   }

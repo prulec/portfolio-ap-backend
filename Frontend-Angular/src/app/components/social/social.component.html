@@ -59,6 +59,7 @@
             <app-social-item 
                 *ngFor="let social of socialList"
                 [social]="social"
+                [portfolio]="portfolio"
                 (onUpdate)="updateItem($event)"
                 (onDelete)="deleteItem($event)"
             ></app-social-item>

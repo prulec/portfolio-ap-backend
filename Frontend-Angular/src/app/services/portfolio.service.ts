@@ -12,6 +12,8 @@ import { ProjectImageData } from '../model/ProjectImageData';
 import { Social } from '../model/Social';
 import { SocialData } from '../model/SocialData';
 import { SocialType } from '../model/SocialType';
+import { UserData } from '../model/UserData';
+import { VisibilityData } from '../model/VisibilityData';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,7 +27,7 @@ const httpOptions = {
 export class PortfolioService {
 
   //portfolioUrl:string = "http://localhost:8080/portfolio2";
-  baseUrl:string = "http://192.168.1.52:8080/"
+  baseUrl:string = "http://192.168.1.79:8080/"
 
   constructor(private http:HttpClient) { }
 
@@ -37,25 +39,27 @@ export class PortfolioService {
     return this.http.get<Portfolio>(this.baseUrl + "portfolio/edit/" + username + "/" + portfolioName);
   }
 
-  toggleVisibility(portfolio:Portfolio): Observable<Portfolio>{
-    return this.http.patch<Portfolio>(this.baseUrl + portfolio.name + '/visibility', {}, httpOptions);
+  toggleVisibility(data:VisibilityData): Observable<Portfolio>{
+    return this.http.patch<Portfolio>(this.baseUrl + 'portfolio/visibility', data, httpOptions);
   }
 
-  updateHeaderAboutField (portfolio:Portfolio, data:HeaderAboutData): Observable<Portfolio> {
-    return this.http.put<Portfolio>(this.baseUrl + portfolio.name + '/header-about/update', data, httpOptions);
+  updateHeaderAboutField (data:HeaderAboutData): Observable<Portfolio> {
+    return this.http.put<Portfolio>(this.baseUrl + 'portfolio/header-about/update', data, httpOptions);
   }
 
-  updateUserData (portfolio:Portfolio, data:EditUserData): Observable<Portfolio> {
-    return this.http.patch<Portfolio>(this.baseUrl + portfolio.name + '/user/update', data, httpOptions);
+  updateUserData (data:UserData): Observable<Portfolio> {
+    return this.http.patch<Portfolio>(this.baseUrl + '/user/update', data, httpOptions);
   }
 
   getSocialTypes(): Observable<SocialType[]> {
-    return this.http.get<SocialType[]>(this.baseUrl + "socialtypes");
+    return this.http.get<SocialType[]>(this.baseUrl + "socialtypes/list");
   }
 
   updateSocialItem(socialData:SocialData): Observable<Social> {
-    return this.http.patch<Social>(this.baseUrl + "social/update", socialData, httpOptions);
+    return this.http.patch<Social>(this.baseUrl + "portfolio/social/update", socialData, httpOptions);
   }
+
+  //CORREGIR DESDE ACÁ
 
   addSocialItem(portfolio:Portfolio, socialData:SocialData): Observable<Social> {
     return this.http.post<Social>(this.baseUrl + portfolio.name + "/social/add", socialData, httpOptions);

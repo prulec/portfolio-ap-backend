@@ -17,9 +17,10 @@ export class SocialItemComponent implements OnInit {
   deleteVisible:boolean = false;
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
   @Input() social:Social = PORTFOLIO.socialList[0];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onUpdate:EventEmitter<Social> = new EventEmitter();
   @Output() onDelete:EventEmitter<Social> = new EventEmitter();
-  data:SocialData = {id:BigInt(0), url:"", socialTypeName:""};
+  data:SocialData = {id:BigInt(0), url:"", socialTypeName:"", username:"", portfolioName:""};
   edition:string = "edit";
   deletion:string = "delete";
 
@@ -32,6 +33,8 @@ export class SocialItemComponent implements OnInit {
   }
 
   openEditForm(){
+    this.data.portfolioName = this.portfolio.name;
+    this.data.username = this.portfolio.user.username;
     this.data.socialTypeName = this.social.socialTypeData.name;
     this.data.url = this.social.url;
     this.data.id = this.social.id;
@@ -47,7 +50,7 @@ export class SocialItemComponent implements OnInit {
           this.onUpdate.emit(this.social);
         }
       );
-      this.data = {id:BigInt(0), url:"", socialTypeName:""};
+      this.data = {id:BigInt(0), url:"", socialTypeName:"", username:"", portfolioName:""};
       this.editVisible = false;
     }
     if (operation===this.deletion) {
@@ -57,7 +60,7 @@ export class SocialItemComponent implements OnInit {
   }
 
   onDiscard(){
-    this.data = {id:BigInt(0), url:"", socialTypeName:""};
+    this.data = {id:BigInt(0), url:"", socialTypeName:"", username:"", portfolioName:""};
     this.editVisible = false;
   }
 

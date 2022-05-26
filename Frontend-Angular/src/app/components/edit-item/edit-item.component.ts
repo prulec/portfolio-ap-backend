@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { EditUserData } from 'src/app/model/EditUserData';
 import { EducationData } from 'src/app/model/EducationData';
 import { ExperienceData } from 'src/app/model/ExperienceData';
 import { HeaderAboutData } from 'src/app/model/HeaderAboutData';
@@ -9,6 +8,7 @@ import { ProjectData } from 'src/app/model/ProjectData';
 import { ProjectImageData } from 'src/app/model/ProjectImageData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { SkillData } from 'src/app/model/SkillData';
+import { UserData } from 'src/app/model/UserData';
 
 @Component({
   selector: 'app-edit-item',
@@ -26,8 +26,8 @@ export class EditItemComponent implements OnInit {
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Input() item:any;
   @Output() onClose:EventEmitter<any> = new EventEmitter();
-  dataHA:HeaderAboutData = {field:"", value:""};
-  dataU:EditUserData = {};
+  dataHA:HeaderAboutData = {field:"", value:"", username:"", portfolioName:""};
+  dataU:UserData = {id:BigInt(0),username:"",password:"",firstName:"",lastName:"",email:""};
 
   constructor(private portfolioService:PortfolioService) { }
 
@@ -40,40 +40,47 @@ export class EditItemComponent implements OnInit {
       case "Banner url":
         this.dataHA.field = this.banner_url_string;
         this.dataHA.value = this.portfolio.bannerUrl;
-        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
-        this.dataHA = {field:"", value:""};
+        this.dataHA.username = this.portfolio.user.username;
+        this.dataHA.portfolioName = this.portfolio.name;
+        this.portfolioService.updateHeaderAboutField(this.dataHA).subscribe();
+        this.dataHA = {field:"", value:"", username:"", portfolioName:""};
         break;
       case "Photo url":
         this.dataHA.field = this.photo_url_string;
         this.dataHA.value = this.portfolio.photoUrl;
-        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
-        this.dataHA = {field:"", value:""};
+        this.dataHA.username = this.portfolio.user.username;
+        this.dataHA.portfolioName = this.portfolio.name;
+        this.portfolioService.updateHeaderAboutField(this.dataHA).subscribe();
+        this.dataHA = {field:"", value:"", username:"", portfolioName:""};
         break;
       case "Job title":
         this.dataHA.field = this.job_title_string;
         this.dataHA.value = this.portfolio.jobTitle;
-        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
-        this.dataHA = {field:"", value:""};
+        this.dataHA.username = this.portfolio.user.username;
+        this.dataHA.portfolioName = this.portfolio.name;
+        this.portfolioService.updateHeaderAboutField(this.dataHA).subscribe();
+        this.dataHA = {field:"", value:"", username:"", portfolioName:""};
         break;
       case "Personal statement":
         this.dataHA.field = this.p_statement_string;
         this.dataHA.value = this.portfolio.pstatement;
-        this.portfolioService.updateHeaderAboutField(this.portfolio,this.dataHA).subscribe();
-        this.dataHA = {field:"", value:""};
+        this.dataHA.username = this.portfolio.user.username;
+        this.dataHA.portfolioName = this.portfolio.name;
+        this.portfolioService.updateHeaderAboutField(this.dataHA).subscribe();
+        this.dataHA = {field:"", value:"", username:"", portfolioName:""};
         break;
       case "Fullname":
+        this.dataU.id = this.portfolio.user.id;
         this.dataU.firstName = this.portfolio.user.firstName;
         this.dataU.lastName = this.portfolio.user.lastName;
-        this.dataU.email = "";
-        this.portfolioService.updateUserData(this.portfolio,this.dataU).subscribe();
-        this.dataU = {};
+        this.portfolioService.updateUserData(this.dataU).subscribe();
+        this.dataU = {id:BigInt(0),username:"",password:"",firstName:"",lastName:"",email:""};
         break;
       case "Email":
-        this.dataU.firstName = "";
-        this.dataU.lastName = "";
+        this.dataU.id = this.portfolio.user.id;
         this.dataU.email = this.portfolio.user.email;
-        this.portfolioService.updateUserData(this.portfolio,this.dataU).subscribe();
-        this.dataU = {};
+        this.portfolioService.updateUserData(this.dataU).subscribe();
+        this.dataU = {id:BigInt(0),username:"",password:"",firstName:"",lastName:"",email:""};
         break;
       case "Experience":
         let experienceData:ExperienceData = {

@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  authURL = "http://192.168.1.52:8080/user/"
+  authURL = "http://192.168.1.79:8080/user/"
 
   constructor(private http:HttpClient) { }
 
