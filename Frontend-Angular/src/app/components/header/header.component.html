@@ -7,6 +7,12 @@
         <img id="yoproglogo-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/logo_yo_programo.png" alt="YoProgramo_logo">
         <img id="yoproghash-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/YoProgramo.png" alt="YoProgramo_hash">
     </div>
+    <app-login 
+        *ngIf="loginVisible"
+        [portfolio]="portfolio"
+        (onClose)="closeLoginPopup()"
+        (onLogged)="enableLogged()"
+    ></app-login>
     <div id="top-right-div">
         <div id="social-login-div">
             <div id="social-div">
@@ -15,7 +21,14 @@
                     [portfolio]="portfolio"
                 ></app-social>
             </div>
-            <button id="login-btn" type="button" class="btn btn-primary">Log Out</button>
+            <button 
+                *ngIf="!logged" type="button" class="log-btn btn btn-primary"
+                (click)="openLoginPopup()"
+            >Log In</button>
+            <button 
+                *ngIf="logged" type="button" class="log-btn btn btn-primary"
+                (click)="logout()"
+            >Log Out</button>
         </div>
         <p id="username"><span id="user-span">{{portfolio.user.username}}</span></p>
         <div id="eye-div" [ngSwitch]="portfolio.visible" (click)="togglePortfolioVisibility()">

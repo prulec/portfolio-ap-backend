@@ -54,6 +54,17 @@ app-edit-item {
     object-fit:cover;
 }
 
+/* Login Popup */
+app-login {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+}
+
 /* ESQUINA SUPERIOR DERECHA */
 
 #top-right-div {
@@ -75,7 +86,7 @@ app-edit-item {
     vertical-align: bottom;
 }
 
-#login-btn {
+.log-btn {
     display: inline-flex;
     color: #2e2e2e;
     background-color: #00CDFF;
@@ -88,7 +99,7 @@ app-edit-item {
     font-size: large;
     border-radius: 10px;
 }
-#login-btn:hover {opacity: 80%;}
+.log-btn:hover {opacity: 80%;}
 
 #username {
     color: #d7d7d7;

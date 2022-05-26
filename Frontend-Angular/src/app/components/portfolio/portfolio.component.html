@@ -1,6 +1,9 @@
 <div id="portfolio">
     <app-header
-        [portfolio]="portfolio"></app-header>
+        [portfolio]="portfolio"
+        (onLogged)="enableLogged()"
+        (onLoggedOut)="disableLogged()"
+    ></app-header>
     <app-about
         [portfolio]="portfolio"></app-about>
     <app-experience

@@ -26,6 +26,7 @@ import { AddItemComponent } from './components/add-item/add-item.component';
 import { DeleteItemComponent } from './components/delete-item/delete-item.component';
 import { SocialComponent } from './components/social/social.component';
 import { SocialItemComponent } from './components/social-item/social-item.component';
+import { interceptorProvider } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { SocialItemComponent } from './components/social-item/social-item.compon
     FormsModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

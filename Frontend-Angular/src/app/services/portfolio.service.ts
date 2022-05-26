@@ -29,8 +29,12 @@ export class PortfolioService {
 
   constructor(private http:HttpClient) { }
 
-  getPortfolio(portfolioName:string): Observable<Portfolio> {
-    return this.http.get<Portfolio>(this.baseUrl + portfolioName + '/edit');
+  viewPortfolio(portfolioName:string): Observable<Portfolio> {
+    return this.http.get<Portfolio>(this.baseUrl + "portfolio/view/" + portfolioName);
+  }
+
+  getPortfolio(username:string, portfolioName:string): Observable<Portfolio> {
+    return this.http.get<Portfolio>(this.baseUrl + "portfolio/edit/" + username + "/" + portfolioName);
   }
 
   toggleVisibility(portfolio:Portfolio): Observable<Portfolio>{
