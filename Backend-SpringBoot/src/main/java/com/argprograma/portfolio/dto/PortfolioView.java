@@ -18,6 +18,7 @@ import lombok.Setter;
 @Setter
 public class PortfolioView {
 
+    private Long id;
     private String name;
     private boolean visible;
     private String bannerUrl;
@@ -69,11 +70,16 @@ public class PortfolioView {
 
     @Getter @Setter
     private class UserView {
+        private Long id;
+        private String username;
+        private String password;
         private String firstName;
         private String lastName;
         private String email;
+        private List<PortfolioOut> portfolioList = new ArrayList<>();
 
         private UserView(User user) {
+            username = user.getUsername();
             firstName = user.getFirstName();
             lastName = user.getLastName();
             email = user.getEmail();
@@ -82,6 +88,7 @@ public class PortfolioView {
 
     @Getter @Setter
     private class SocialTypeView {
+        private Long id;
         private String name;
         private String iconUrl;
 
@@ -93,24 +100,28 @@ public class PortfolioView {
 
     @Getter @Setter
     private class SocialView {
+        private Long id;
         private int itemOrder;
         private String url;
-        private SocialTypeView socialType;
+        private SocialTypeView socialTypeData;
+        private PortfolioData portfolioData;
 
         private SocialView (Social social) {
             itemOrder = social.getItemOrder();
             url = social.getUrl();
-            socialType = new SocialTypeView(social.getSocialType());
+            socialTypeData = new SocialTypeView(social.getSocialType());
         }
     }
 
     @Getter private class ExperienceView {
+        private Long id;
         private int itemOrder;
         private String logoUrl;
         private String enterprise;
         private String experienceTime;
         private String position;
         private String tasks;
+        private PortfolioData portfolioData;
 
         private ExperienceView (Experience experience) {
             itemOrder = experience.getItemOrder();
@@ -124,11 +135,13 @@ public class PortfolioView {
 
     @Getter @Setter
     private class EducationView {
+        private Long id;
         private int itemOrder;
         private String logoUrl;
         private String institution;
         private String educationTime;
         private String title;
+        private PortfolioData portfolioData;
 
         private EducationView (Education education) {
             itemOrder = education.getItemOrder();
@@ -141,10 +154,12 @@ public class PortfolioView {
 
     @Getter @Setter
     private class SkillView {
+        private Long id;
         private int itemOrder;
         private String name;
         private Integer skillLevel;
         private String levelTag;
+        private PortfolioData portfolioData;
 
         private SkillView (Skill skill) {
             itemOrder = skill.getItemOrder();
@@ -156,12 +171,14 @@ public class PortfolioView {
 
     @Getter @Setter
     private class ProjectView {
+        private Long id;
         private int itemOrder;
         private String name;
         private String projectTime;
         private String link;
         private String description;
         private List<ProjectImageView> projectImageList = new ArrayList<>();
+        private PortfolioData portfolioData;
 
         private ProjectView (Project project) {
             itemOrder = project.getItemOrder();
@@ -177,9 +194,11 @@ public class PortfolioView {
 
     @Getter @Setter
     private class ProjectImageView {
+        private Long id;
         private int itemOrder;
         private String title;
         private String imageUrl;
+        private ProjectData projectData;
 
         private ProjectImageView (ProjectImage projectImage) {
             itemOrder = projectImage.getItemOrder();
