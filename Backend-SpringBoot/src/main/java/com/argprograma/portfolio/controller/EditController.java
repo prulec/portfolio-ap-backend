@@ -72,8 +72,8 @@ public class EditController {
     public PortfolioView viewPortfolio (@PathVariable String portfolio_name){
         // Traer el objeto completo Portfolio con el name del portfolio
         Portfolio portfolio = portfolioService.findPortfolioByName(portfolio_name);
-        if (portfolio!=null) return new PortfolioView(portfolio);
-        System.out.println("No existe Portfolio con ese name...");
+        if (portfolio!=null && portfolio.isVisible()) return new PortfolioView(portfolio);
+        System.out.println("No data is available...");
         return null;
     }
     
@@ -170,7 +170,7 @@ public class EditController {
             + " or authentication.principal.username == #data.username")
     public SocialOut addSocial (@RequestBody SocialData data) {
         Portfolio portfolio = portfolioService
-                                .findPortfolioByName(data.getUsername());
+                                .findPortfolioByName(data.getPortfolioName());
         if (portfolio!=null && 
                 portfolio.getUser().getUsername().equals(data.getUsername())) {
             Social social = new Social();
