@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BACKEND_URL } from '../constants/Constants';
 import { EditUserData } from '../model/EditUserData';
 import { EmailData } from '../model/EmailData';
 import { HeaderAboutData } from '../model/HeaderAboutData';
@@ -28,7 +29,7 @@ const httpOptions = {
 export class PortfolioService {
 
   //portfolioUrl:string = "http://localhost:8080/portfolio2";
-  baseUrl: string = "http://192.168.1.52:8080/"
+  baseUrl: string = BACKEND_URL;
 
   constructor(private http: HttpClient) { }
 

@@ -52,13 +52,15 @@ export class LoginComponent implements OnInit {
         this.logged = true;
         this.loginFail = false;
         this.tokenService.setToken(data.token);
-        this.tokenService.getUsername();
-        this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
-          u => this.loggedUser = u
-        );
         if(this.isChild){
           this.onLogged.emit();
-        } else this.router.navigate(['/']);
+        } else {
+          this.router.navigate(['/']);
+          this.tokenService.getUsername();
+          this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
+            u => this.loggedUser = u
+          );
+        }
       },
       error: e => {
         this.logged = false;

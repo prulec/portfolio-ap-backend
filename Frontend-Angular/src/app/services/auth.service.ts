@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { BACKEND_URL } from '../constants/Constants';
 import { JwtDto } from '../model/JwtDto';
 import { LoginUser } from '../model/LoginUser';
 
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class AuthService {
 
-  authURL = "http://192.168.1.52:8080/user/"
+  authURL = BACKEND_URL + "user/"
 
   constructor(private http:HttpClient) { }
 

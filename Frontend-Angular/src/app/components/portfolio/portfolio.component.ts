@@ -31,7 +31,10 @@ export class PortfolioComponent implements OnInit {
         if (data!=null) {
           this.portfolio = data;
           this.router.navigate([this.portfolioName + '/edit']);
-        } else console.log(this.portfolioName + ": NO DATA!");
+        } else {
+          console.log(this.portfolioName + ": NO DATA!");
+          this.router.navigate(['/']);
+        }
       });
     } else {
       this.portfolioService.viewPortfolio(this.portfolioName).subscribe(data => {
@@ -45,6 +48,7 @@ export class PortfolioComponent implements OnInit {
 
   enableLogged(){
     this.logged = true;
+    window.location.reload();
   }
 
   disableLogged(){
