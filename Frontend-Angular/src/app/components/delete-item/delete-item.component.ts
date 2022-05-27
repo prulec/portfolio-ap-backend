@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 
 @Component({
@@ -10,6 +12,7 @@ export class DeleteItemComponent implements OnInit {
 
   @Input() item:any;
   @Input() section:string = "";
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onCancel = new EventEmitter<any>();
   @Output() onDelete = new EventEmitter<any>();
 
@@ -19,7 +22,7 @@ export class DeleteItemComponent implements OnInit {
   }
 
   deleteItem(item:any, section:string) {
-    this.portfolioService.deleteItem(item,section).subscribe();
+    this.portfolioService.deleteItem(item.id, section, this.portfolio.user.username).subscribe();
     this.onDelete.emit(item);
   }
 

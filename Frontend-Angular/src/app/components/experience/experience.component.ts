@@ -45,7 +45,8 @@ export class ExperienceComponent implements OnInit {
     let orderData: OrderData = {
       id: this.experienceList[event.previousIndex].id,
       section: "experience",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.experienceList,event.previousIndex,event.currentIndex);

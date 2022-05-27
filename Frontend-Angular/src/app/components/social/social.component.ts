@@ -20,7 +20,7 @@ export class SocialComponent implements OnInit {
   socialWindowVisible:boolean = false;
   addVisible:boolean = false;
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
-  data:SocialData = {url:"", socialTypeName:""};
+  data:SocialData = {url:"", socialTypeName:"", username:"", portfolioName:""};
 
   /*
   Links íconos redes:
@@ -31,7 +31,9 @@ export class SocialComponent implements OnInit {
 
   constructor(private portfolioService:PortfolioService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  getSocialTypes(){
     this.portfolioService.getSocialTypes().subscribe(
       (data) => {this.socialTypes = data;}
     );
@@ -54,26 +56,27 @@ export class SocialComponent implements OnInit {
     this.socialList = this.socialList.filter(s => s.id!=social.id);
   }
 
-  openAddForm(){
+  openAddForm() {
+    this.getSocialTypes();
     this.addVisible = true;
   }
 
   onSubmit(){
     // VALIDAR
-    console.log(this.socialList.length);
-    console.log(this.data);
-    this.portfolioService.addSocialItem(this.portfolio, this.data).subscribe(
+    this.data.username = this.portfolio.user.username;
+    this.data.portfolioName = this.portfolio.name;
+    this.portfolioService.addItem(this.data, "social").subscribe(
       (s) => {
         this.socialList.push(s);
       }
     );
     console.log(this.socialList.length);
-    this.data = {url:"", socialTypeName:""};
+    this.data = {url:"", socialTypeName:"", username:"", portfolioName:""};
     this.addVisible = false;
   }
 
   onDiscard(){
-    this.data = {url:"", socialTypeName:""};
+    this.data = {url:"", socialTypeName:"", username:"", portfolioName:""};
     this.addVisible = false;
   }
 
@@ -85,7 +88,8 @@ export class SocialComponent implements OnInit {
     let orderData: OrderData = {
       id: this.socialList[event.previousIndex].id,
       section: "social",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.socialList,event.previousIndex,event.currentIndex);

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Experience } from 'src/app/model/Experience';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
 
 @Component({
   selector: 'app-experience-item',
@@ -10,6 +11,7 @@ import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 export class ExperienceItemComponent implements OnInit {
 
   @Input() experience:Experience = PORTFOLIO.experienceList[0];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();
   deleteVisible:boolean = false;
   editVisible:boolean = false;

@@ -1,5 +1,6 @@
 export interface OrderData {
     id: bigint;
     section: string;
-    newItemOrder: number
+    newItemOrder: number;
+    username: string
 }

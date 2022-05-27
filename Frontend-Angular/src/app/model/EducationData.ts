@@ -4,4 +4,6 @@ export interface EducationData {
     institution: string;
     educationTime: string;
     title: string;
+    username: string;
+    portfolioName: string
 }

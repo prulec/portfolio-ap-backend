@@ -28,28 +28,38 @@ export class AddItemComponent implements OnInit {
     enterprise: "",
     experienceTime: "",
     position: "",
-    tasks: ""
+    tasks: "",
+    username: "",
+    portfolioName: ""
   };
   educationData:EducationData = {
     logoUrl: "",
     institution: "",
     educationTime: "",
     title: "",
+    username: "",
+    portfolioName: ""
   };
   skillData:SkillData = {
     name: "",
     skillLevel: 0,
-    levelTag: ""
+    levelTag: "",
+    username: "",
+    portfolioName: ""
   };
   projectData:ProjectData = {
     name: "",
     projectTime: "",
     link: "",
-    description: ""
+    description: "",
+    username: "",
+    portfolioName: ""
   };
   projectImageData: ProjectImageData = {
     title: "",
-    imageUrl: ""
+    imageUrl: "",
+    username: "",
+    projectId: BigInt(0)
   }
 
 
@@ -62,35 +72,45 @@ export class AddItemComponent implements OnInit {
     //VALIDAR
     switch (section) {
       case "experience":
-        this.portfolioService.addItem(this.portfolio,this.experienceData,section)
+        this.experienceData.username = this.portfolio.user.username;
+        this.experienceData.portfolioName = this.portfolio.name;
+        this.portfolioService.addItem(this.experienceData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);
             });
         break;
       case "education":
-        this.portfolioService.addItem(this.portfolio,this.educationData,section)
+        this.educationData.username = this.portfolio.user.username;
+        this.educationData.portfolioName = this.portfolio.name;
+        this.portfolioService.addItem(this.educationData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);
             });
         break;
       case "skill":
-        this.portfolioService.addItem(this.portfolio,this.skillData,section)
+        this.skillData.username = this.portfolio.user.username;
+        this.skillData.portfolioName = this.portfolio.name;
+        this.portfolioService.addItem(this.skillData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);
             });
         break;
       case "project":
-        this.portfolioService.addItem(this.portfolio,this.projectData,section)
+        this.projectData.username = this.portfolio.user.username;
+        this.projectData.portfolioName = this.portfolio.name;
+        this.portfolioService.addItem(this.projectData,section)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);
             });
         break;
       case "image":
-        this.portfolioService.addProjectImage(this.project,this.projectImageData)
+        this.projectImageData.username = this.portfolio.user.username;
+        this.projectImageData.projectId = this.project.id;
+        this.portfolioService.addProjectImage(this.projectImageData)
             .subscribe(i => {
               this.list.push(i);
               this.onAdd.emit(this.list);

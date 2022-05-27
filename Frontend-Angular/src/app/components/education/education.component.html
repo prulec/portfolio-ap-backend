@@ -17,6 +17,7 @@
 <div id="education-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-education-item
         *ngFor="let education of educationList"
+        [portfolio]="portfolio"
         [education]="education"
         (onDelete)="removeItem($event)"
     ></app-education-item>

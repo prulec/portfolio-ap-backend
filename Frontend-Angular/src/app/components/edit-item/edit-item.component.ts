@@ -9,6 +9,7 @@ import { ProjectImageData } from 'src/app/model/ProjectImageData';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { SkillData } from 'src/app/model/SkillData';
 import { UserData } from 'src/app/model/UserData';
+import { Project } from 'src/app/model/Project';
 
 @Component({
   selector: 'app-edit-item',
@@ -24,6 +25,7 @@ export class EditItemComponent implements OnInit {
 
   @Input() title:string = "";
   @Input() portfolio:Portfolio = PORTFOLIO;
+  @Input() project:Project = PORTFOLIO.projectList[0];
   @Input() item:any;
   @Output() onClose:EventEmitter<any> = new EventEmitter();
   dataHA:HeaderAboutData = {field:"", value:"", username:"", portfolioName:""};
@@ -89,7 +91,9 @@ export class EditItemComponent implements OnInit {
           enterprise: this.item.enterprise,
           experienceTime: this.item.experienceTime,
           position: this.item.position,
-          tasks: this.item.tasks
+          tasks: this.item.tasks,
+          username: this.portfolio.user.username,
+          portfolioName: this.portfolio.name
         };
         this.portfolioService.updateItem(experienceData,"experience").subscribe();
         break;
@@ -100,6 +104,8 @@ export class EditItemComponent implements OnInit {
           institution: this.item.institution,
           educationTime: this.item.educationTime,
           title: this.item.title,
+          username: this.portfolio.user.username,
+          portfolioName: this.portfolio.name
         };
         this.portfolioService.updateItem(educationData,"education").subscribe();
         break;
@@ -108,7 +114,9 @@ export class EditItemComponent implements OnInit {
           id: this.item.id,
           name: this.item.name,
           skillLevel: this.item.skillLevel,
-          levelTag: this.item.levelTag
+          levelTag: this.item.levelTag,
+          username: this.portfolio.user.username,
+          portfolioName: this.portfolio.name
         };
         this.portfolioService.updateItem(skillData,"skill").subscribe();
         break;
@@ -118,7 +126,9 @@ export class EditItemComponent implements OnInit {
           name: this.item.name,
           projectTime: this.item.projectTime,
           link: this.item.link,
-          description: this.item.description
+          description: this.item.description,
+          username: this.portfolio.user.username,
+          portfolioName: this.portfolio.name
         };
         this.portfolioService.updateItem(projectData,"project").subscribe();
         break;
@@ -126,7 +136,9 @@ export class EditItemComponent implements OnInit {
         let projectImageData:ProjectImageData = {
           id: this.item.id,
           title: this.item.title,
-          imageUrl: this.item.imageUrl
+          imageUrl: this.item.imageUrl,
+          username: this.portfolio.user.username,
+          projectId: this.project.id
         };
         this.portfolioService.updateItem(projectImageData,"image").subscribe();
         break;

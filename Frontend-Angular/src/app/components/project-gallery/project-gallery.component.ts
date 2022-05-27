@@ -5,6 +5,7 @@ import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { Project } from 'src/app/model/Project';
 import { ProjectImage } from 'src/app/model/ProjectImage';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { Portfolio } from 'src/app/model/Portfolio';
 
 @Component({
   selector: 'app-project-gallery',
@@ -14,6 +15,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 export class ProjectGalleryComponent implements OnInit {
 
   @Input() project:Project = PORTFOLIO.projectList[0];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Input() selectedImage:ProjectImage = PORTFOLIO.projectList[0].projectImageList[0];
   @Output() onDelete:EventEmitter<any> = new EventEmitter();
   @Output() onCloseImagesWindow: EventEmitter<any> = new EventEmitter();
@@ -60,7 +62,8 @@ export class ProjectGalleryComponent implements OnInit {
     let orderData: OrderData = {
       id: this.project.projectImageList[event.previousIndex].id,
       section: "projectimage",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.project.projectImageList,event.previousIndex,event.currentIndex);

@@ -45,7 +45,8 @@ export class EducationComponent implements OnInit {
     let orderData: OrderData = {
       id: this.educationList[event.previousIndex].id,
       section: "education",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.educationList,event.previousIndex,event.currentIndex);

@@ -5,4 +5,6 @@ export interface ExperienceData {
     experienceTime: string;
     position: string;
     tasks: string;
+    username: string;
+    portfolioName: string
 }

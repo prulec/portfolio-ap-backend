@@ -12,6 +12,7 @@ export class ProjectsItemComponent implements OnInit {
 
   projectGalleryVisible: boolean = false;
   @Input() project:Project = PORTFOLIO.projectList[0];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();
   @Output() onClick:EventEmitter<any> = new EventEmitter();
   deleteVisible:boolean = false;

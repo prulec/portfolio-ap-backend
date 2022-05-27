@@ -25,6 +25,7 @@
             *ngFor="let project of projectList"
             [ngClass]="{'col-lg-6' : !oneColumn}"
             [project]="project"
+            [portfolio]="portfolio"
             (onDelete)="removeItem($event)"
             (onClick)="toggleOneColumn()"
         ></app-projects-item>

@@ -4,4 +4,6 @@ export interface ProjectData {
     projectTime: string;
     link: string;
     description: string;
+    username: string;
+    portfolioName: string
 }

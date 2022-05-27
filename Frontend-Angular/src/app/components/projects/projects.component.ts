@@ -50,7 +50,8 @@ export class ProjectsComponent implements OnInit {
     let orderData: OrderData = {
       id: this.projectList[event.previousIndex].id,
       section: "project",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.projectList,event.previousIndex,event.currentIndex);

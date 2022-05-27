@@ -2,6 +2,7 @@
     <app-project-gallery
         *ngIf="projectGalleryVisible"
         [project]="project"
+        [portfolio]="portfolio"
         [selectedImage]="project.projectImageList.length ? 
                             project.projectImageList[0]
                             : emptyPortfolio.projectList[0].projectImageList[0]"
@@ -29,6 +30,7 @@
         </div>
         <app-delete-item
             *ngIf="deleteVisible"
+            [portfolio]="portfolio"
             [section]="section"
             [item]="project"
             (onDelete)="deleteItem(project)"
@@ -39,6 +41,7 @@
         </div>
         <app-edit-item
             *ngIf="editVisible"
+            [portfolio]="portfolio"
             [title]="title"
             [item]="project"
             (onClose)="closeEdit()"

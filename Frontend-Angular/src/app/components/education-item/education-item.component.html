@@ -14,6 +14,7 @@
         </div>
         <app-delete-item
             *ngIf="deleteVisible"
+            [portfolio]="portfolio"
             [section]="section"
             [item]="education"
             (onDelete)="deleteItem(education)"
@@ -24,6 +25,7 @@
         </div>
         <app-edit-item
             *ngIf="editVisible"
+            [portfolio]="portfolio"
             [title]="title"
             [item]="education"
             (onClose)="closeEdit()"

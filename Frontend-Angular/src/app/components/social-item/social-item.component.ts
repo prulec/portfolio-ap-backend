@@ -26,13 +26,16 @@ export class SocialItemComponent implements OnInit {
 
   constructor(private portfolioService:PortfolioService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  
+  getSocialTypes(){
     this.portfolioService.getSocialTypes().subscribe(
       (data) => {this.socialTypes = data;}
     );
   }
 
   openEditForm(){
+    this.getSocialTypes();
     this.data.portfolioName = this.portfolio.name;
     this.data.username = this.portfolio.user.username;
     this.data.socialTypeName = this.social.socialTypeData.name;
@@ -44,7 +47,7 @@ export class SocialItemComponent implements OnInit {
   onSubmit(operation:string){
     if (operation===this.edition) {
       // VALIDAR
-      this.portfolioService.updateSocialItem(this.data).subscribe(
+      this.portfolioService.updateItem(this.data, "social").subscribe(
         (s) => {
           this.social = s;
           this.onUpdate.emit(this.social);
@@ -54,7 +57,7 @@ export class SocialItemComponent implements OnInit {
       this.editVisible = false;
     }
     if (operation===this.deletion) {
-      this.portfolioService.deleteSocialItem(this.social).subscribe();
+      this.portfolioService.deleteItem(this.social.id, "social", this.portfolio.user.username).subscribe();
       this.onDelete.emit(this.social);
     }
   }

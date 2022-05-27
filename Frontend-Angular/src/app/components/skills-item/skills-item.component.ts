@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { Portfolio } from 'src/app/model/Portfolio';
 import { Skill } from 'src/app/model/Skill';
 
 @Component({
@@ -10,6 +11,7 @@ import { Skill } from 'src/app/model/Skill';
 export class SkillsItemComponent implements OnInit {
 
   @Input() skill:Skill = PORTFOLIO.skillList[0];
+  @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();
   @Output() onClick:EventEmitter<any> = new EventEmitter();
   deleteVisible:boolean = false;

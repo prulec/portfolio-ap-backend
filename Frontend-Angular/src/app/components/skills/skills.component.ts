@@ -50,7 +50,8 @@ export class SkillsComponent implements OnInit {
     let orderData: OrderData = {
       id: this.skillList[event.previousIndex].id,
       section: "skill",
-      newItemOrder: event.currentIndex + 1
+      newItemOrder: event.currentIndex + 1,
+      username: this.portfolio.user.username
     }
     this.portfolioService.changeOrderItem(orderData).subscribe();
     moveItemInArray(this.skillList,event.previousIndex,event.currentIndex);

@@ -17,6 +17,7 @@
 <div id="experience-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-experience-item 
         *ngFor="let experience of experienceList"
+        [portfolio]="portfolio"
         [experience]="experience"
         (onDelete)="removeItem($event)"
     ></app-experience-item>
