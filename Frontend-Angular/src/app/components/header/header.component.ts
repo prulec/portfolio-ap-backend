@@ -70,6 +70,7 @@ export class HeaderComponent implements OnInit {
 
   enableLogged() {
     this.logged = true;
+    this.closeLoginPopup();
     this.onLogged.emit();
   }
 

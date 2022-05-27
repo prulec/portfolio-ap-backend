@@ -12,6 +12,7 @@ import { ProjectImageData } from '../model/ProjectImageData';
 import { Social } from '../model/Social';
 import { SocialData } from '../model/SocialData';
 import { SocialType } from '../model/SocialType';
+import { User } from '../model/User';
 import { UserData } from '../model/UserData';
 import { VisibilityData } from '../model/VisibilityData';
 
@@ -27,7 +28,7 @@ const httpOptions = {
 export class PortfolioService {
 
   //portfolioUrl:string = "http://localhost:8080/portfolio2";
-  baseUrl: string = "http://192.168.1.79:8080/"
+  baseUrl: string = "http://192.168.1.52:8080/"
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +50,10 @@ export class PortfolioService {
 
   updateUserData(data: UserData): Observable<Portfolio> {
     return this.http.patch<Portfolio>(this.baseUrl + '/user/update', data, httpOptions);
+  }
+
+  getUser(username:string): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/get/' + username);
   }
 
   getSocialTypes(): Observable<SocialType[]> {

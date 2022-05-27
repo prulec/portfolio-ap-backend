@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { LoginUser } from 'src/app/model/LoginUser';
 import { Portfolio } from 'src/app/model/Portfolio';
+import { User } from 'src/app/model/User';
+import { UserData } from 'src/app/model/UserData';
 import { AuthService } from 'src/app/services/auth.service';
+import { PortfolioService } from 'src/app/services/portfolio.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -14,6 +17,7 @@ import { TokenService } from 'src/app/services/token.service';
 export class LoginComponent implements OnInit {
 
   @Input() portfolio:Portfolio = PORTFOLIO;
+  @Input() isChild:boolean = false;
   @Output() onClose:EventEmitter<any> = new EventEmitter();
   @Output() onLogged:EventEmitter<any> = new EventEmitter();
   logged: boolean = false;
@@ -22,41 +26,59 @@ export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
   errorMessage: string = "";
+  loggedUser:User = {id:BigInt(0),username:"",password:"",firstName:"",lastName:"",email:"",portfolioList:[]};
 
   constructor(private tokenService: TokenService,
               private authService:AuthService,
+              private portfolioService:PortfolioService,
               private router:Router) { }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()){
       this.logged = true;
       this.loginFail = false;
+      this.tokenService.getUsername();
+      this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
+        u => this.loggedUser = u
+      );
     }
   }
 
   onLogin() {
     this.loginUser.username = this.username;
     this.loginUser.password = this.password;
-    this.authService.login(this.loginUser).subscribe(
-      data => {
+    this.authService.login(this.loginUser).subscribe({
+      next: (data) => {
         this.logged = true;
         this.loginFail = false;
         this.tokenService.setToken(data.token);
-        this.onLogged.emit();
-        this.onClose.emit();
-        this.router.navigate(['/' + this.portfolio.name + '/edit']);
+        this.tokenService.getUsername();
+        this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
+          u => this.loggedUser = u
+        );
+        if(this.isChild){
+          this.onLogged.emit();
+        } else this.router.navigate(['/']);
       },
-      err => {
+      error: e => {
         this.logged = false;
         this.loginFail = true;
-        this.errorMessage = err.error.message;
+        this.errorMessage = e.error.message;
         console.log(this.errorMessage);
       }
-    );
+    });
   }
 
   onCancel() {
     this.onClose.emit();
+  }
+
+  logout(){
+    this.tokenService.logout();
+    this.logged = false;
+    this.username = "";
+    this.password = "";
+    this.router.navigate(['/']);
   }
 
 }
