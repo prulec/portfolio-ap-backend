@@ -6,7 +6,7 @@
         <div id="close-div" (click)="onClose()">
             <img src="https://github.com/prulec/portfolio/raw/main/images/Assets/Operate-handle-x.png" alt="Close btn">
         </div>
-        <div id="add-div" (click)="openAddPopup()">
+        <div *ngIf="logged" id="add-div" (click)="openAddPopup()">
             <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
         </div>
         <app-add-item
@@ -18,7 +18,7 @@
             (onClose)="closeAddPopup()"
             (onAdd)="refresh($event)"
         ></app-add-item>
-        <div class="edit-div">
+        <div *ngIf="logged" class="edit-div">
             <div class="trash-div" (click)="openDelete()">
                 <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
             </div>
@@ -50,7 +50,9 @@
             </div>
         </div>
     </div>
+
     <div
+        *ngIf="logged"
         class="thumbnails-list"
         cdkDropList
         (cdkDropListDropped)="drop($event)"
@@ -75,4 +77,20 @@
             </div>
         </div>
     </div>
+
+    <div
+        *ngIf="!logged"
+        class="thumbnails-list"
+    >
+        <div 
+            *ngFor="let image of project.projectImageList"
+            (click)="onSelect(image)"
+            (onDelete)="removeItem($event)"
+            class="thumb-item"
+            [ngClass]="{'selected': selectedImage===image}"
+        >
+            <p>{{image.imageUrl}}</p>
+        </div>
+    </div>
+
 </div>

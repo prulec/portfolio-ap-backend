@@ -3,7 +3,7 @@
         <div class="column col-12 col-sm-6 col-md-5 col-lg-4">
             <div id="photo-div">
                 <img id="photo-img" [src]="portfolio.photoUrl" alt="">
-                <div class="pencil-div" (click)="openEditPopup(editPhotoUrlTitle)">
+                <div *ngIf="logged" class="pencil-div" (click)="openEditPopup(editPhotoUrlTitle)">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
                 <app-edit-item
@@ -15,7 +15,7 @@
             </div>
             <div id="person-name-div">
                 <h1>{{portfolio.user.firstName}} {{portfolio.user.lastName}}</h1>
-                <div class="pencil-div" (click)="openEditPopup(editFullnameTitle)">
+                <div *ngIf="logged" class="pencil-div" (click)="openEditPopup(editFullnameTitle)">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
                 <app-edit-item
@@ -27,7 +27,7 @@
             </div>
             <div id="job-title-div">
                 <h2>{{portfolio.jobTitle}}</h2>
-                <div class="pencil-div" (click)="openEditPopup(editJobTitleTitle)">
+                <div *ngIf="logged" class="pencil-div" (click)="openEditPopup(editJobTitleTitle)">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>
                 <app-edit-item
@@ -42,7 +42,7 @@
             <div id="text-block">
                 <p>{{portfolio.pstatement}}</p>
             </div>
-            <div class="pencil-div" (click)="openEditPopup(editPStatementTitle)">
+            <div *ngIf="logged" class="pencil-div" (click)="openEditPopup(editPStatementTitle)">
                 <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
             </div>
             <app-edit-item

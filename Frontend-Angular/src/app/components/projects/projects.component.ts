@@ -5,6 +5,7 @@ import { Portfolio } from 'src/app/model/Portfolio';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { Project } from 'src/app/model/Project';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-projects',
@@ -13,6 +14,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ProjectsComponent implements OnInit {
 
+  logged:boolean = false;
   @Input() projectList:Project[] = [];
   @Input() portfolio:Portfolio = PORTFOLIO;
   addVisible:boolean = false;
@@ -20,9 +22,11 @@ export class ProjectsComponent implements OnInit {
   addSection:string = "project";
   oneColumn:boolean = false;
 
-  constructor(private portfolioService:PortfolioService) { }
+  constructor(private portfolioService:PortfolioService,
+              private tokenService:TokenService) { }
 
   ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
   }
 
   openAddPopup (): void {

@@ -30,13 +30,13 @@
                 (click)="logout()"
             >Log Out</button>
         </div>
-        <p id="username"><span id="user-span">{{portfolio.user.username}}</span></p>
-        <div id="eye-div" [ngSwitch]="portfolio.visible" (click)="togglePortfolioVisibility()">
+        <p *ngIf="logged" id="username"><span id="user-span">{{portfolio.user.username}}</span></p>
+        <div *ngIf="logged" id="eye-div" [ngSwitch]="portfolio.visible" (click)="togglePortfolioVisibility()">
             <img *ngSwitchCase="true" id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-open.png" alt="Visibility-icon">
             <img *ngSwitchCase="false" id="eye-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-preview-close-one.png" alt="Visibility-icon">
         </div>
     </div>
-    <div id="bottom-right-div" (click)="openEditPopup()">
+    <div *ngIf="logged" id="bottom-right-div" (click)="openEditPopup()">
         <img id="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
     </div>
     <app-edit-item

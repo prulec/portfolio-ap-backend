@@ -5,6 +5,7 @@ import { OrderData } from 'src/app/model/OrderData';
 import { Portfolio } from 'src/app/model/Portfolio';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-experience',
@@ -13,15 +14,18 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 })
 export class ExperienceComponent implements OnInit {
 
+  logged:boolean = false;
   @Input() experienceList: Experience[] = [];
   @Input() portfolio:Portfolio = PORTFOLIO;
   addVisible:boolean = false;
   addTitle:string = "Experience";
   addSection:string = "experience";
 
-  constructor(private portfolioService:PortfolioService) { }
+  constructor(private portfolioService:PortfolioService,
+              private tokenService:TokenService) { }
 
   ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
   }
 
   openAddPopup (): void {

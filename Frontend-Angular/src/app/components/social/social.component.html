@@ -58,6 +58,7 @@
         <div id="social-list" cdkDropList (cdkDropListDropped)="drop($event)">
             <app-social-item 
                 *ngFor="let social of socialList"
+                [logged]="logged"
                 [social]="social"
                 [portfolio]="portfolio"
                 (onUpdate)="updateItem($event)"
@@ -74,7 +75,7 @@
         [src]="social.socialTypeData.iconUrl"
     >
 </div>
-<div id="openwindowbutton-div" (click)="openWindow()">
+<div *ngIf="logged" id="openwindowbutton-div" (click)="openWindow()">
     <div>
         <img 
             class="pencil" 

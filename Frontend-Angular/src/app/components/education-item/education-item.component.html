@@ -1,4 +1,4 @@
-<div class="education-item" cdkDrag>
+<div *ngIf="logged" class="education-item" cdkDrag>
     <div class="drop-placeholder" *cdkDragPlaceholder></div>
     <div class="logo-div">
         <div><p>{{education.logoUrl}}</p></div>
@@ -8,7 +8,7 @@
         <p><b>Período/Año: </b>{{education.educationTime}}</p>
         <p><b>Institución: </b>{{education.institution}}</p>
     </div>
-    <div class="edit-div">
+    <div *ngIf="logged" class="edit-div">
         <div class="trash-div" (click)="openDelete()">
             <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
         </div>
@@ -33,5 +33,16 @@
         <div class="arrows-div" cdkDragHandle>
             <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
         </div>
+    </div>
+</div>
+
+<div *ngIf="!logged" class="education-item">
+    <div class="logo-div">
+        <div><p>{{education.logoUrl}}</p></div>
+    </div>
+    <div class="datos-div">
+        <p><b>Título/Certificación/Curso: </b>{{education.title}}</p>
+        <p><b>Período/Año: </b>{{education.educationTime}}</p>
+        <p><b>Institución: </b>{{education.institution}}</p>
     </div>
 </div>

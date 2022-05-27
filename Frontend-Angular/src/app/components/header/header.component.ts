@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
               private router:Router) { }
 
   ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
   }
 
   togglePortfolioVisibility() {

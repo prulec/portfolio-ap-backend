@@ -16,6 +16,7 @@ export class SocialItemComponent implements OnInit {
   editVisible:boolean = false;
   deleteVisible:boolean = false;
   socialTypes:SocialType[] = [PORTFOLIO.socialList[0].socialTypeData];
+  @Input() logged:boolean = false;
   @Input() social:Social = PORTFOLIO.socialList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onUpdate:EventEmitter<Social> = new EventEmitter();

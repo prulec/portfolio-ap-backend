@@ -6,6 +6,7 @@ import { Project } from 'src/app/model/Project';
 import { ProjectImage } from 'src/app/model/ProjectImage';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Portfolio } from 'src/app/model/Portfolio';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-project-gallery',
@@ -14,6 +15,7 @@ import { Portfolio } from 'src/app/model/Portfolio';
 })
 export class ProjectGalleryComponent implements OnInit {
 
+  @Input() logged:boolean = false;
   @Input() project:Project = PORTFOLIO.projectList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Input() selectedImage:ProjectImage = PORTFOLIO.projectList[0].projectImageList[0];
@@ -30,8 +32,7 @@ export class ProjectGalleryComponent implements OnInit {
 
   constructor(private portfolioService:PortfolioService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onClose(){
     this.onCloseImagesWindow.emit();

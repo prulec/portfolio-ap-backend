@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Portfolio } from 'src/app/model/Portfolio';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-contact',
@@ -9,14 +10,16 @@ import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 })
 export class ContactComponent implements OnInit {
 
+  logged:boolean = false;
   @Input() portfolio:Portfolio = PORTFOLIO;
   contactFormVisible:boolean = false;
   editVisible: boolean = false;
   editTitle: string = "Email";
 
-  constructor() { }
+  constructor(private tokenService:TokenService) { }
 
   ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
   }
 
   openForm(){

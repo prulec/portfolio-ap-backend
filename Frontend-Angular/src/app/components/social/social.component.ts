@@ -7,6 +7,7 @@ import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Social } from 'src/app/model/Social';
 import { SocialData } from 'src/app/model/SocialData';
 import { SocialType } from 'src/app/model/SocialType';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-social',
@@ -15,6 +16,7 @@ import { SocialType } from 'src/app/model/SocialType';
 })
 export class SocialComponent implements OnInit {
 
+  logged:boolean = false;
   @Input() socialList:Social[] = PORTFOLIO.socialList;
   @Input() portfolio:Portfolio = PORTFOLIO;
   socialWindowVisible:boolean = false;
@@ -29,9 +31,12 @@ export class SocialComponent implements OnInit {
   https://github.com/prulec/portfolio/raw/main/images/Assets/GitHub%20(logo).png
   */
 
-  constructor(private portfolioService:PortfolioService) { }
+  constructor(private portfolioService:PortfolioService,
+              private tokenService:TokenService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
+  }
 
   getSocialTypes(){
     this.portfolioService.getSocialTypes().subscribe(

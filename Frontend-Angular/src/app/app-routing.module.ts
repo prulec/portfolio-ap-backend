@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 const routes: Routes = [
-  {path: '**/edit', component: PortfolioComponent},
-  {path: '**', component: PortfolioComponent}
+  {path: ':portfolioName/edit', component: PortfolioComponent},
+  {path: ':portfolioName', component: PortfolioComponent}
 ];
 
 @NgModule({

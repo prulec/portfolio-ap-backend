@@ -7,7 +7,7 @@
                 alt="Message-icon"
             >
         </div>
-        <div id="openwindowbutton-div" (click)="openEditPopup()">
+        <div *ngIf="logged" id="openwindowbutton-div" (click)="openEditPopup()">
             <div>
                 <img 
                     class="pencil" 

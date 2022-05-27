@@ -10,6 +10,7 @@ import { Portfolio } from 'src/app/model/Portfolio';
 })
 export class EducationItemComponent implements OnInit {
 
+  @Input() logged:boolean = false;
   @Input() education:Education = PORTFOLIO.educationList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();

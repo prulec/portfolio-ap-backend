@@ -1,4 +1,4 @@
-<div class="skill-container" cdkDrag>
+<div *ngIf="logged" class="skill-container" cdkDrag>
     <div class="drop-placeholder" *cdkDragPlaceholder></div>
     <div 
         class="skills-item" 
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="edit-div">
+    <div *ngIf="logged" class="edit-div">
         <div class="trash-div" (click)="openDelete()">
             <img class="trash" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-delete.png" alt="Edit-icon">
         </div>
@@ -50,6 +50,31 @@
             cdkDragHandle
         >
             <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!logged" class="skill-container">
+    <div 
+        class="skills-item" 
+        [style]="{'--level': skill.skillLevel}"
+    >
+        <div class="progress-div">
+            <div class="left-div">
+                <div class="full-div"></div>
+                <div class="empty-div"></div>
+            </div>        
+            <div class="right-div">
+                <div class="empty-div"></div>
+                <div class="full-div"></div>
+            </div>        
+            <div class="level-text-div"><p>{{skill.skillLevel}}</p></div>
+        </div>
+        <div class="data-div">
+            <div>
+                <h3>{{skill.name}}</h3>
+                <p>{{skill.levelTag}}</p>
+            </div>
         </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { Skill } from 'src/app/model/Skill';
 })
 export class SkillsItemComponent implements OnInit {
 
+  @Input() logged:boolean = false;
   @Input() skill:Skill = PORTFOLIO.skillList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();

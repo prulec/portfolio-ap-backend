@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Portfolio } from 'src/app/model/Portfolio';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { Project } from 'src/app/model/Project';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-projects-item',
@@ -11,6 +12,7 @@ import { Project } from 'src/app/model/Project';
 export class ProjectsItemComponent implements OnInit {
 
   projectGalleryVisible: boolean = false;
+  @Input() logged:boolean = false;
   @Input() project:Project = PORTFOLIO.projectList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();

@@ -10,6 +10,7 @@ import { Portfolio } from 'src/app/model/Portfolio';
 })
 export class ExperienceItemComponent implements OnInit {
 
+  @Input() logged:boolean = false;
   @Input() experience:Experience = PORTFOLIO.experienceList[0];
   @Input() portfolio:Portfolio = PORTFOLIO;
   @Output() onDelete:EventEmitter<any> = new EventEmitter();

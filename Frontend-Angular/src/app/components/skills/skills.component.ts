@@ -5,6 +5,7 @@ import { Portfolio } from 'src/app/model/Portfolio';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Skill } from 'src/app/model/Skill';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-skills',
@@ -13,6 +14,7 @@ import { Skill } from 'src/app/model/Skill';
 })
 export class SkillsComponent implements OnInit {
 
+  logged:boolean = false;
   @Input() skillList:Skill[] = [];
   @Input() portfolio:Portfolio = PORTFOLIO;
   addVisible:boolean = false;
@@ -20,9 +22,11 @@ export class SkillsComponent implements OnInit {
   addSection:string = "skill";
   oneColumn:boolean = false;
 
-  constructor(private portfolioService:PortfolioService) { }
+  constructor(private portfolioService:PortfolioService,
+              private tokenService:TokenService) { }
 
   ngOnInit(): void {
+    if (this.tokenService.isLogged()) this.logged = true;
   }
 
   openAddPopup (): void {

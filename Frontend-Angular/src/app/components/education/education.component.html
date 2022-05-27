@@ -1,7 +1,7 @@
 <div id="title">
     <div></div>
     <h2>EDUCACIÓN</h2>
-    <div class="add-div" (click)="openAddPopup()">
+    <div *ngIf="logged" class="add-div" (click)="openAddPopup()">
         <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
     </div>
     <app-add-item
@@ -17,6 +17,7 @@
 <div id="education-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-education-item
         *ngFor="let education of educationList"
+        [logged]="logged"
         [portfolio]="portfolio"
         [education]="education"
         (onDelete)="removeItem($event)"

@@ -1,7 +1,7 @@
 <div id="title">
     <div></div>
     <h2>EXPERIENCIA</h2>
-    <div class="add-div" (click)="openAddPopup()">
+    <div *ngIf="logged" class="add-div" (click)="openAddPopup()">
         <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
     </div>
     <app-add-item
@@ -17,6 +17,7 @@
 <div id="experience-div" cdkDropList (cdkDropListDropped)="drop($event)">
     <app-experience-item 
         *ngFor="let experience of experienceList"
+        [logged]="logged"
         [portfolio]="portfolio"
         [experience]="experience"
         (onDelete)="removeItem($event)"

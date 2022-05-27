@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { Portfolio } from 'src/app/model/Portfolio';
 import { PortfolioService } from 'src/app/services/portfolio.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -13,26 +13,32 @@ import { TokenService } from 'src/app/services/token.service';
 export class PortfolioComponent implements OnInit {
 
   logged:boolean = false;
+  portfolioName:string = "";
   portfolio:Portfolio = PORTFOLIO;
 
   constructor(private portfolioService:PortfolioService,
               private tokenService:TokenService,
-              private router:Router) { }
+              private router:Router,
+              private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.params.subscribe(
+      params => this.portfolioName = params['portfolioName']);
+  }
 
   ngOnInit(): void {
-    let portfolioName = this.router.url.slice(1).split("/")[0];
     if (this.tokenService.isLogged()) {
       let username = this.tokenService.getUsername();
-      this.portfolioService.getPortfolio(username, portfolioName).subscribe(data => {
+      this.portfolioService.getPortfolio(username, this.portfolioName).subscribe(data => {
         if (data!=null) {
           this.portfolio = data;
-          this.router.navigate([portfolioName + '/edit']);
-        } else console.log("NO DATA!");
+          this.router.navigate([this.portfolioName + '/edit']);
+        } else console.log(this.portfolioName + ": NO DATA!");
       });
     } else {
-      this.portfolioService.viewPortfolio(this.router.url.slice(1)).subscribe(data => {
-        if (data!=null) this.portfolio = data;
-        else console.log("NO DATA!");
+      this.portfolioService.viewPortfolio(this.portfolioName).subscribe(data => {
+        if (data!=null) {
+          this.portfolio = data;
+          this.router.navigate([this.portfolioName]);
+        } else console.log(this.portfolioName + ": NO DATA!");
       });
     }
   }
