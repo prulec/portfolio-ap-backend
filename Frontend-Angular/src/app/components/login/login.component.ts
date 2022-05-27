@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   password: string = "";
   errorMessage: string = "";
   loggedUser:User = {id:BigInt(0),username:"",password:"",firstName:"",lastName:"",email:"",portfolioList:[]};
+  portfolioList:Portfolio[] = [PORTFOLIO];
 
   constructor(private tokenService: TokenService,
               private authService:AuthService,
@@ -39,7 +40,10 @@ export class LoginComponent implements OnInit {
       this.loginFail = false;
       this.tokenService.getUsername();
       this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
-        u => this.loggedUser = u
+        u => {
+          this.loggedUser = u;
+          this.portfolioList = u.portfolioList;
+        }
       );
     }
   }
@@ -58,7 +62,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
           this.tokenService.getUsername();
           this.portfolioService.getUser(this.tokenService.getUsername()).subscribe(
-            u => this.loggedUser = u
+            u => {
+              this.loggedUser = u;
+              this.portfolioList = u.portfolioList;
+            }
           );
         }
       },
@@ -81,6 +88,10 @@ export class LoginComponent implements OnInit {
     this.username = "";
     this.password = "";
     this.router.navigate(['/']);
+  }
+
+  goTo(name:string){
+    window.open('/' + name, '_blank');
   }
 
 }
