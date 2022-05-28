@@ -1,7 +1,7 @@
 <div *ngIf="logged" class="education-item" cdkDrag>
     <div class="drop-placeholder" *cdkDragPlaceholder></div>
     <div class="logo-div">
-        <div><p>{{education.logoUrl}}</p></div>
+        <img [src]="education.logoUrl" alt="logoUrl">
     </div>
     <div class="datos-div">
         <p><b>Título/Certificación/Curso: </b>{{education.title}}</p>
