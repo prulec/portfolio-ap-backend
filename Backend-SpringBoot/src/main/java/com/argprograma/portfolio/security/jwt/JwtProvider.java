@@ -48,13 +48,13 @@ public class JwtProvider {
             Jwts.parser().setSigningKey(this.secret.getBytes()).parseClaimsJws(token);
             return true;
         } catch (MalformedJwtException e) {
-            logger.error("MalformedJwtException...");
+            logger.error("MalformedJwtException..." + e);
         } catch (UnsupportedJwtException e) {
-            logger.error("UnsupportedJwtException...");
+            logger.error("UnsupportedJwtException..." + e);
         } catch (ExpiredJwtException e) {
-            logger.error("ExpiredJwtException...");
+            logger.error("ExpiredJwtException..." + e);
         } catch (IllegalArgumentException e) {
-            logger.error("IllegalArgumentException...");
+            logger.error("IllegalArgumentException..." + e);
         } catch (SignatureException e) {
             logger.error("SignatureException... " + e);
         }
