@@ -1,12 +1,11 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { OrderData } from 'src/app/model/OrderData';
 import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { Project } from 'src/app/model/Project';
 import { ProjectImage } from 'src/app/model/ProjectImage';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { Portfolio } from 'src/app/model/Portfolio';
-import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-project-gallery',
@@ -29,6 +28,8 @@ export class ProjectGalleryComponent implements OnInit {
   editVisible:boolean = false;
   section:string = "projectimage";
   title:string = "Project image";
+  windowWidth:any = window.innerWidth;
+  limitWidth:number = 740;
 
   constructor(private portfolioService:PortfolioService) { }
 
@@ -93,6 +94,11 @@ export class ProjectGalleryComponent implements OnInit {
 
   toggleChangeOrder(){
     this.changeOrderActivated = !this.changeOrderActivated;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.windowWidth = event.target.innerWidth;
   }
 
 }

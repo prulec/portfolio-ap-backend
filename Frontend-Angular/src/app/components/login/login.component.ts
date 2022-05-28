@@ -91,7 +91,8 @@ export class LoginComponent implements OnInit {
   }
 
   goTo(name:string){
-    window.open('/' + name, '_blank');
+    this.router.navigate(['/' + name]);
+    //window.open('/' + name, '_blank');
   }
 
 }

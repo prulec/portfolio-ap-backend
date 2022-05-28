@@ -233,3 +233,43 @@ app-delete-item {
     min-height: 104px;
     background-color: #bfbfbf33;
 }
+
+
+
+/* MEDIA QUERY */
+
+@media (max-width: 740px) {
+
+    #gallery {
+        flex-direction: column;
+    }
+
+    .thumbnails-list {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex: 0 0 100px;
+    }
+
+    .thumbnails-list > .thumb-item {
+        justify-content: space-evenly;
+        min-width: 140px;
+        margin-bottom: 0px;
+        margin-right: 2px;
+    }
+    
+    .thumbnails-list > .selected {
+        border-top: 5px solid yellowgreen;
+        border-right: 0px;
+    }
+
+    .edit-div {
+        left: calc(50% - 75px);
+    }
+
+    .drop-placeholder {
+        height: 100px;
+        min-width: 144px;
+    }
+
+}

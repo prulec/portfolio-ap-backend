@@ -52,9 +52,37 @@
     </div>
 
     <div
-        *ngIf="logged"
+        *ngIf="logged && windowWidth>limitWidth"
         class="thumbnails-list"
         cdkDropList
+        (cdkDropListDropped)="drop($event)"
+    >
+        <div 
+            *ngFor="let image of project.projectImageList"
+            (click)="onSelect(image)"
+            (onDelete)="removeItem($event)"
+            class="thumb-item"
+            [ngClass]="{'selected': selectedImage===image}"
+            cdkDrag
+        >
+            <div class="drop-placeholder" *cdkDragPlaceholder></div>
+            <p>{{image.imageUrl}}</p>
+            <div class="handle-div" cdkDragHandle>
+                <div
+                    *ngIf="selectedImage===image && changeOrderActivated"
+                    class="arrows-div"
+                >
+                    <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Edit-icon">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div
+        *ngIf="logged && windowWidth<=limitWidth"
+        class="thumbnails-list"
+        cdkDropList
+        cdkDropListOrientation="horizontal"
         (cdkDropListDropped)="drop($event)"
     >
         <div 
