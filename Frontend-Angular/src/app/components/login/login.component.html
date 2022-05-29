@@ -15,6 +15,7 @@
             class="form-control"
             name="username"
             placeholder="Username"
+            (click)="disableFail()"
             [(ngModel)]="username"
             required
         >
@@ -26,10 +27,13 @@
             class="form-control"
             name="password"
             placeholder="Password"
+            (click)="disableFail()"
             [(ngModel)]="password"
             required
         >
     </div>
+
+    <div *ngIf="loginFail" class="alert alert-danger">{{errorMessage}}</div>
 
     <div id="buttons">
         <button *ngIf="logged" type="button" class="btn btn-danger" (click)="logout()">Logout</button>

@@ -4,7 +4,6 @@ import { PORTFOLIO } from 'src/app/constants/PORTFOLIO_CONST';
 import { LoginUser } from 'src/app/model/LoginUser';
 import { Portfolio } from 'src/app/model/Portfolio';
 import { User } from 'src/app/model/User';
-import { UserData } from 'src/app/model/UserData';
 import { AuthService } from 'src/app/services/auth.service';
 import { PortfolioService } from 'src/app/services/portfolio.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -69,11 +68,11 @@ export class LoginComponent implements OnInit {
           );
         }
       },
-      error: e => {
+      error: (e) => {
         this.logged = false;
         this.loginFail = true;
-        this.errorMessage = e.error.message;
-        console.log(this.errorMessage);
+        if (e.status === 401) this.errorMessage = "Incorrect credentials...";
+        else console.log(e);
       }
     });
   }
@@ -93,6 +92,10 @@ export class LoginComponent implements OnInit {
   goTo(name:string){
     this.router.navigate(['/' + name]);
     //window.open('/' + name, '_blank');
+  }
+
+  disableFail() {
+    this.loginFail = false;
   }
 
 }
