@@ -3,22 +3,27 @@
     display: flex;
     flex-direction: row-reverse;
     opacity: 100%;
-    width: 96%;
-    height: 90%;
+    width: 96vw;
+    height: 90vh;
     margin: 2%;
     border-radius: 10px;
-    overflow: hidden;
 }
 
 #preview-div {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
 }
 
 #image-div {
     display: flex;
     height: 100%;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+}
+
+#image-div > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit:contain;
 }
 
 #close-div {
@@ -166,17 +171,27 @@ app-delete-item {
 
 .thumbnails-list > .thumb-item {
     justify-content: space-evenly;
-    min-height: 100px;
+    height: 100px;
     margin-bottom: 2px;
-    background-color: bisque;
+    overflow: hidden;
 }
 
+.thumbnails-list > .thumb-item > img {
+    min-width: 100%;
+    height: 100%;
+    object-fit:contain;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+/*
 .thumbnails-list > .thumb-item > p {
     margin: 0;
     height: 100%;
     white-space: pre-wrap;
     word-break: break-word;
 }
+*/
 
 .thumbnails-list > .thumb-item > div {
     position: relative;
@@ -208,8 +223,9 @@ app-delete-item {
 
 /* DRAG DROP */
 
-.cdk-drag-preview {
-    background-color: bisque;
+.cdk-drag-preview > img {
+    max-height: 100%;
+    object-fit:contain;
 }
 
 .cdk-drag-preview .arrows-div {
@@ -242,6 +258,10 @@ app-delete-item {
 
     #gallery {
         flex-direction: column;
+    }
+
+    #preview-div {
+        max-height: 90%;
     }
 
     .thumbnails-list {

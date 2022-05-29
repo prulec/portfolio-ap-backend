@@ -2,7 +2,9 @@
     <div id="about" class="row">
         <div class="column col-12 col-sm-6 col-md-5 col-lg-4">
             <div id="photo-div">
-                <img id="photo-img" [src]="portfolio.photoUrl" alt="">
+                <div id="photo-img-div" >
+                    <img [src]="portfolio.photoUrl" alt="profile-image">
+                </div>
                 <div *ngIf="logged" class="pencil-div" (click)="openEditPopup(editPhotoUrlTitle)">
                     <img class="pencil" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Edit-write.png" alt="Edit-icon">
                 </div>

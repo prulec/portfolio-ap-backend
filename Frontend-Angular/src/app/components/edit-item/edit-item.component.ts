@@ -132,7 +132,7 @@ export class EditItemComponent implements OnInit {
         };
         this.portfolioService.updateItem(projectData,"project").subscribe();
         break;
-      case "Project Image":
+      case "Project image":
         let projectImageData:ProjectImageData = {
           id: this.item.id,
           title: this.item.title,
@@ -140,7 +140,7 @@ export class EditItemComponent implements OnInit {
           username: this.portfolio.user.username,
           projectId: this.project.id
         };
-        this.portfolioService.updateItem(projectImageData,"image").subscribe();
+        this.portfolioService.updateItem(projectImageData,"project/image").subscribe();
         break;
       default:
         break;

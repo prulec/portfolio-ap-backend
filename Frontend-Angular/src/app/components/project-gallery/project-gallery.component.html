@@ -1,7 +1,7 @@
 <div id="gallery">
     <div id="preview-div">
         <div id="image-div">
-            <h2>{{selectedImage.title}}</h2>
+            <img [src]="selectedImage.imageUrl" [alt]="selectedImage.title">
         </div>
         <div id="close-div" (click)="onClose()">
             <img src="https://github.com/prulec/portfolio/raw/main/images/Assets/Operate-handle-x.png" alt="Close btn">
@@ -15,6 +15,7 @@
             [section] = "addSection"
             [list] = "project.projectImageList"
             [project] = "project"
+            [portfolio]="portfolio"
             (onClose)="closeAddPopup()"
             (onAdd)="refresh($event)"
         ></app-add-item>
@@ -66,7 +67,7 @@
             cdkDrag
         >
             <div class="drop-placeholder" *cdkDragPlaceholder></div>
-            <p>{{image.imageUrl}}</p>
+            <img [src]="image.imageUrl" [alt]="image.title">
             <div class="handle-div" cdkDragHandle>
                 <div
                     *ngIf="selectedImage===image && changeOrderActivated"
@@ -94,7 +95,7 @@
             cdkDrag
         >
             <div class="drop-placeholder" *cdkDragPlaceholder></div>
-            <p>{{image.imageUrl}}</p>
+            <img [src]="image.imageUrl" [alt]="image.title">
             <div class="handle-div" cdkDragHandle>
                 <div
                     *ngIf="selectedImage===image && changeOrderActivated"
@@ -117,7 +118,7 @@
             class="thumb-item"
             [ngClass]="{'selected': selectedImage===image}"
         >
-            <p>{{image.imageUrl}}</p>
+            <img [src]="image.imageUrl" [alt]="image.title">
         </div>
     </div>
 

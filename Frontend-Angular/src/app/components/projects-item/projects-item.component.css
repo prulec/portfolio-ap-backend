@@ -14,23 +14,31 @@ app-project-gallery {
 
 .projects-item {
     position: relative;
-    border: #BFBFBF solid 2px;
-    border-radius: 10px;
     display: flex;
     flex-direction: row;
+    border: #BFBFBF solid 2px;
+    border-radius: 10px;
     background-color: #F3F3F3;
 }
 
 .thumbnail-div {
-    min-width: 160px;
+    flex: 0 0 160px;
     height: 160px;
-    margin: 5px;
+    margin: 5px 15px 5px 5px;
     border: #a3a3a3 solid 2px;
     border-radius: 10px;
-    background-color: #ffd56b5f;
+    overflow: hidden;
 }
 .thumbnail-div:hover{box-shadow: 0px 0px 4px black;}
 
+.thumbnail-div > img {
+    height: 100%;
+    object-fit: contain;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+/*
 .thumbnail-div > div {
     height: 100%;
     margin: 0px;
@@ -42,6 +50,7 @@ app-project-gallery {
     line-height: 20px;
     padding-bottom: 2px;
 }
+*/
 
 .datos-div > p {
     margin: 0px;

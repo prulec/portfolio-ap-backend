@@ -23,10 +23,18 @@
     height: 200px;
 }
 
-#photo-img {
-    max-width: 100%;
+#photo-img-div {
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
     border: black solid 3px;
+    overflow: hidden;
+}
+
+#photo-img-div > img {
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 .pencil {

@@ -8,9 +8,10 @@
 }
 
 .logo-div {
-    width: 80px;
-    height: 80px;
-    margin: 5px;
+    width: 90px;
+    height: 90px;
+    padding: 5px;
+    margin: 5px 15px 5px 5px;
     /*border: #a3a3a3 solid 2px;*/
     border-radius: 10px;
     /*background-color: #cb8cff5f;*/

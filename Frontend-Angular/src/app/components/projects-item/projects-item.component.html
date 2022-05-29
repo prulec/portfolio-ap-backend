@@ -16,7 +16,7 @@
     ></div>
     <div class="projects-item">
         <div class="thumbnail-div" (click)="openGallery()">
-            <div><p>{{project.projectImageList.length ? project.projectImageList[0].imageUrl : "No image"}}</p></div>
+            <img [src]="project.projectImageList.length ? project.projectImageList[0].imageUrl : ''" alt="Thumbnail">
         </div>
         <div class="datos-div">
             <p><b>Nombre: </b>{{project.name}}</p>
@@ -70,7 +70,7 @@
     </app-project-gallery>
     <div class="projects-item">
         <div class="thumbnail-div" (click)="openGallery()">
-            <div><p>{{project.projectImageList.length ? project.projectImageList[0].imageUrl : "No image"}}</p></div>
+            <img [src]="project.projectImageList.length ? project.projectImageList[0].imageUrl : ''" alt="Thumbnail">
         </div>
         <div class="datos-div">
             <p><b>Nombre: </b>{{project.name}}</p>
