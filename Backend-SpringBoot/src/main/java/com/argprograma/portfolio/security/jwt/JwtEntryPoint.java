@@ -20,7 +20,7 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
                          HttpServletResponse response, 
                          AuthenticationException authException) throws IOException, ServletException {
         logger.error("falla en método commence...");
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "UNAUTHORIZED Access Attempt");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
     }
     
 }

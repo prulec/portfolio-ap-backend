@@ -37,7 +37,7 @@ public class AuthController {
         if (bindingResult.hasErrors())
             return new ResponseEntity(new Message("Incorrect credentials..."), HttpStatus.BAD_REQUEST);
         if (!userService.existsByUsername(data.getUsername()))
-            return new ResponseEntity("The username doesn't exists...", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Message("The username doesn't exists..."), HttpStatus.BAD_REQUEST);
         Authentication authentication = 
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                         data.getUsername(), data.getPassword()));
