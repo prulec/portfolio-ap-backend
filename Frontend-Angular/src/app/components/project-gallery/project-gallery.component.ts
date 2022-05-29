@@ -58,6 +58,7 @@ export class ProjectGalleryComponent implements OnInit {
 
   removeItem(item:any){
     this.project.projectImageList = this.project.projectImageList.filter(i => i.id!=item.id);
+    if(this.project.projectImageList.length>0) this.selectedImage = this.project.projectImageList[0];
   }
 
   drop (event:CdkDragDrop<ProjectImage[]>){
