@@ -1,6 +1,13 @@
 <div id="title">
     <div></div>
     <h2>HABILIDADES</h2>
+    <div
+        [ngClass]="{'one-column': oneColumn}"
+        class="arrows-div"
+        (click)="toggleOneColumn()"
+    >
+        <img class="arrows" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Arrows-sort.png" alt="Order-icon">
+    </div>
     <div *ngIf="logged" class="add-div" (click)="openAddPopup()">
         <img class="add-img" src="https://github.com/prulec/portfolio/raw/main/images/Assets/Base-red-cross.png" alt="Add-icon">
     </div>
