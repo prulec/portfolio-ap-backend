@@ -3,6 +3,7 @@ package com.argprograma.portfolio.util;
 import com.argprograma.portfolio.model.User;
 import com.argprograma.portfolio.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,8 @@ public class CreateAdmin implements CommandLineRunner {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    private final String PASSWORD = "admin";
+    @Value("${admin.password}")
+    private String PASSWORD;
     
     @Override
     public void run(String... args) throws Exception {
