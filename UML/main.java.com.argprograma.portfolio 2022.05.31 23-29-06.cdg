@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="main.java.com.argprograma.portfolio">
+  <ClassDiagramComponents>
+    <Class name="SocialService" package="com.argprograma.portfolio.service" visibility="public" xPosition="1415.0" yPosition="1559.0">
+      <Fields>
+        <Field name="socialRepo" type="SocialRepository" visibility="private"/>
+        <Field name="portfolioService" type="IPortfolioService" visibility="private"/>
+        <Field name="socialTypeService" type="ISocialTypeService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createSocial" returnType="Social" visibility="public">
+          <Argument type="Social" name="social"/>
+        </Method>
+        <Method name="findSocialById" returnType="Social" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateSocial" returnType="Social" visibility="public">
+          <Argument type="Social" name="social"/>
+        </Method>
+        <Method name="changeOrderSocial" returnType="Social" visibility="public">
+          <Argument type="Social" name="social"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectImageService" package="com.argprograma.portfolio.service" visibility="public" xPosition="659.0" yPosition="942.0">
+      <Fields>
+        <Field name="projectImageRepo" type="ProjectImageRepository" visibility="private"/>
+        <Field name="projectService" type="IProjectService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createProjectImage" returnType="ProjectImage" visibility="public">
+          <Argument type="ProjectImage" name="projectImage"/>
+        </Method>
+        <Method name="findProjectImageById" returnType="ProjectImage" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateProjectImage" returnType="ProjectImage" visibility="public">
+          <Argument type="ProjectImage" name="projectImage"/>
+        </Method>
+        <Method name="changeOrderProjectImage" returnType="ProjectImage" visibility="public">
+          <Argument type="ProjectImage" name="projectImage"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UserService" package="com.argprograma.portfolio.service" visibility="public" xPosition="1811.0" yPosition="1512.0">
+      <Fields>
+        <Field name="userRepo" type="UserRepository" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createUser" returnType="User" visibility="public">
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="getUsers" returnType="List&lt;User&gt;" visibility="public"/>
+        <Method name="findUserByUsername" returnType="User" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="findUserById" returnType="User" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateUser" returnType="User" visibility="public">
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="deleteUser" returnType="void" visibility="public">
+          <Argument type="User" name="user"/>
+        </Method>
+        <Method name="existsByUsername" returnType="boolean" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SocialTypeService" package="com.argprograma.portfolio.service" visibility="public" xPosition="1020.0" yPosition="1531.0">
+      <Fields>
+        <Field name="socialTypeRepo" type="SocialTypeRepository" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createSocialType" returnType="SocialType" visibility="public">
+          <Argument type="SocialType" name="socialType"/>
+        </Method>
+        <Method name="findSocialTypeById" returnType="SocialType" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="findSocialTypeByName" returnType="SocialType" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getSocialTypes" returnType="List&lt;SocialType&gt;" visibility="public"/>
+        <Method name="updateSocialType" returnType="SocialType" visibility="public">
+          <Argument type="SocialType" name="socialType"/>
+        </Method>
+        <Method name="deleteSocialType" returnType="void" visibility="public">
+          <Argument type="SocialType" name="socialType"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="EducationService" package="com.argprograma.portfolio.service" visibility="public" xPosition="1569.0" yPosition="103.0">
+      <Fields>
+        <Field name="educationRepo" type="EducationRepository" visibility="private"/>
+        <Field name="portfolioService" type="IPortfolioService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createEducation" returnType="Education" visibility="public">
+          <Argument type="Education" name="education"/>
+        </Method>
+        <Method name="findEducationById" returnType="Education" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateEducation" returnType="Education" visibility="public">
+          <Argument type="Education" name="education"/>
+        </Method>
+        <Method name="changeOrderEducation" returnType="Education" visibility="public">
+          <Argument type="Education" name="education"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ProjectService" package="com.argprograma.portfolio.service" visibility="public" xPosition="1068.0" yPosition="619.0">
+      <Fields>
+        <Field name="projectRepo" type="ProjectRepository" visibility="private"/>
+        <Field name="portfolioService" type="IPortfolioService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createProject" returnType="Project" visibility="public">
+          <Argument type="Project" name="project"/>
+        </Method>
+        <Method name="findProjectById" returnType="Project" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateProject" returnType="Project" visibility="public">
+          <Argument type="Project" name="project"/>
+        </Method>
+        <Method name="changeOrderProject" returnType="Project" visibility="public">
+          <Argument type="Project" name="project"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+        <Method name="disconnectProjectImage" returnType="Project" visibility="public">
+          <Argument type="ProjectImage" name="projectImage"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PortfolioService" package="com.argprograma.portfolio.service" visibility="public" xPosition="2277.0" yPosition="484.0">
+      <Fields>
+        <Field name="portfolioRepo" type="PortfolioRepository" visibility="private"/>
+        <Field name="userService" type="IUserService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createPortfolio" returnType="Portfolio" visibility="public">
+          <Argument type="Portfolio" name="portfolio"/>
+        </Method>
+        <Method name="findPortfolioById" returnType="Portfolio" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="findPortfolioByName" returnType="Portfolio" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="updatePortfolio" returnType="Portfolio" visibility="public">
+          <Argument type="Portfolio" name="portfolio"/>
+        </Method>
+        <Method name="deletePortfolio" returnType="void" visibility="public">
+          <Argument type="Portfolio" name="portfolio"/>
+        </Method>
+        <Method name="disconnectSocial" returnType="Portfolio" visibility="public">
+          <Argument type="Social" name="social"/>
+        </Method>
+        <Method name="disconnectExperience" returnType="Portfolio" visibility="public">
+          <Argument type="Experience" name="experience"/>
+        </Method>
+        <Method name="disconnectEducation" returnType="Portfolio" visibility="public">
+          <Argument type="Education" name="education"/>
+        </Method>
+        <Method name="disconnectSkill" returnType="Portfolio" visibility="public">
+          <Argument type="Skill" name="skill"/>
+        </Method>
+        <Method name="disconnectProject" returnType="Portfolio" visibility="public">
+          <Argument type="Project" name="project"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SkillService" package="com.argprograma.portfolio.service" visibility="public" xPosition="646.0" yPosition="1199.0">
+      <Fields>
+        <Field name="skillRepo" type="SkillRepository" visibility="private"/>
+        <Field name="portfolioService" type="IPortfolioService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createSkill" returnType="Skill" visibility="public">
+          <Argument type="Skill" name="skill"/>
+        </Method>
+        <Method name="findSkillById" returnType="Skill" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateSkill" returnType="Skill" visibility="public">
+          <Argument type="Skill" name="skill"/>
+        </Method>
+        <Method name="changeOrderSkill" returnType="Skill" visibility="public">
+          <Argument type="Skill" name="skill"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ExperienceService" package="com.argprograma.portfolio.service" visibility="public" xPosition="991.0" yPosition="366.0">
+      <Fields>
+        <Field name="experienceRepo" type="ExperienceRepository" visibility="private"/>
+        <Field name="portfolioService" type="IPortfolioService" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createExperience" returnType="Experience" visibility="public">
+          <Argument type="Experience" name="experience"/>
+        </Method>
+        <Method name="findExperienceById" returnType="Experience" visibility="public">
+          <Argument type="Long" name="id"/>
+        </Method>
+        <Method name="updateExperience" returnType="Experience" visibility="public">
+          <Argument type="Experience" name="experience"/>
+        </Method>
+        <Method name="changeOrderExperience" returnType="Experience" visibility="public">
+          <Argument type="Experience" name="experience"/>
+          <Argument type="int" name="newOrder"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Education" package="com.argprograma.portfolio.model" visibility="public" xPosition="1924.0" yPosition="347.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="logoUrl" type="String" visibility="private"/>
+        <Field name="institution" type="String" visibility="private"/>
+        <Field name="educationTime" type="String" visibility="private"/>
+        <Field name="title" type="String" visibility="private"/>
+        <Field name="portfolio" type="Portfolio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Portfolio" package="com.argprograma.portfolio.model" visibility="public" xPosition="2255.0" yPosition="1011.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="visible" type="boolean" visibility="private"/>
+        <Field name="bannerUrl" type="String" visibility="private"/>
+        <Field name="photoUrl" type="String" visibility="private"/>
+        <Field name="jobTitle" type="String" visibility="private"/>
+        <Field name="pStatement" type="String" visibility="private"/>
+        <Field name="user" type="User" visibility="private"/>
+        <Field name="socialSet" type="Set&lt;Social&gt;" visibility="private"/>
+        <Field name="experienceSet" type="Set&lt;Experience&gt;" visibility="private"/>
+        <Field name="educationSet" type="Set&lt;Education&gt;" visibility="private"/>
+        <Field name="skillSet" type="Set&lt;Skill&gt;" visibility="private"/>
+        <Field name="projectSet" type="Set&lt;Project&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="ProjectImage" package="com.argprograma.portfolio.model" visibility="public" xPosition="862.0" yPosition="730.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="title" type="String" visibility="private"/>
+        <Field name="imageUrl" type="String" visibility="private"/>
+        <Field name="project" type="Project" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Experience" package="com.argprograma.portfolio.model" visibility="public" xPosition="1482.0" yPosition="448.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="logoUrl" type="String" visibility="private"/>
+        <Field name="enterprise" type="String" visibility="private"/>
+        <Field name="experienceTime" type="String" visibility="private"/>
+        <Field name="position" type="String" visibility="private"/>
+        <Field name="tasks" type="String" visibility="private"/>
+        <Field name="portfolio" type="Portfolio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="SocialType" package="com.argprograma.portfolio.model" visibility="public" xPosition="1257.0" yPosition="1333.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="iconUrl" type="String" visibility="private"/>
+        <Field name="socialSet" type="Set&lt;Social&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Skill" package="com.argprograma.portfolio.model" visibility="public" xPosition="980.0" yPosition="1183.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="skillLevel" type="Integer" visibility="private"/>
+        <Field name="levelTag" type="String" visibility="private"/>
+        <Field name="portfolio" type="Portfolio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Social" package="com.argprograma.portfolio.model" visibility="public" xPosition="1515.0" yPosition="1323.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="url" type="String" visibility="private"/>
+        <Field name="socialType" type="SocialType" visibility="private"/>
+        <Field name="portfolio" type="Portfolio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Project" package="com.argprograma.portfolio.model" visibility="public" xPosition="1245.0" yPosition="863.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="itemOrder" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="projectTime" type="String" visibility="private"/>
+        <Field name="link" type="String" visibility="private"/>
+        <Field name="description" type="String" visibility="private"/>
+        <Field name="portfolio" type="Portfolio" visibility="private"/>
+        <Field name="projectImageSet" type="Set&lt;ProjectImage&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="User" package="com.argprograma.portfolio.model" visibility="public" xPosition="2175.0" yPosition="1490.0">
+      <Fields>
+        <Field name="id" type="Long" visibility="private"/>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="firstName" type="String" visibility="private"/>
+        <Field name="lastName" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="portfolioSet" type="Set&lt;Portfolio&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="experienceSet" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.Experience" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Experience&gt;"/>
+    <HasRelation name="portfolio" source="com.argprograma.portfolio.model.Education" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="socialType" source="com.argprograma.portfolio.model.Social" target="com.argprograma.portfolio.model.SocialType" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="project" source="com.argprograma.portfolio.model.ProjectImage" target="com.argprograma.portfolio.model.Project" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.ProjectService" target="com.argprograma.portfolio.model.Project" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.PortfolioService" target="com.argprograma.portfolio.model.Experience" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="portfolio" source="com.argprograma.portfolio.model.Social" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="projectImageSet" source="com.argprograma.portfolio.model.Project" target="com.argprograma.portfolio.model.ProjectImage" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;ProjectImage&gt;"/>
+    <UseRelation source="com.argprograma.portfolio.service.EducationService" target="com.argprograma.portfolio.model.Education" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.ExperienceService" target="com.argprograma.portfolio.model.Experience" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="portfolio" source="com.argprograma.portfolio.model.Project" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.PortfolioService" target="com.argprograma.portfolio.model.Skill" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="portfolio" source="com.argprograma.portfolio.model.Experience" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.ProjectImageService" target="com.argprograma.portfolio.model.Project" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="projectSet" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.Project" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Project&gt;"/>
+    <UseRelation source="com.argprograma.portfolio.service.PortfolioService" target="com.argprograma.portfolio.model.Social" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="portfolioSet" source="com.argprograma.portfolio.model.User" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Portfolio&gt;"/>
+    <UseRelation source="com.argprograma.portfolio.service.PortfolioService" target="com.argprograma.portfolio.model.Portfolio" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.SocialTypeService" target="com.argprograma.portfolio.model.Social" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="user" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.User" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.UserService" target="com.argprograma.portfolio.model.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="educationSet" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.Education" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Education&gt;"/>
+    <HasRelation name="socialSet" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.Social" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Social&gt;"/>
+    <UseRelation source="com.argprograma.portfolio.service.SkillService" target="com.argprograma.portfolio.model.Skill" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.PortfolioService" target="com.argprograma.portfolio.model.Project" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="socialSet" source="com.argprograma.portfolio.model.SocialType" target="com.argprograma.portfolio.model.Social" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Social&gt;"/>
+    <HasRelation name="skillSet" source="com.argprograma.portfolio.model.Portfolio" target="com.argprograma.portfolio.model.Skill" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Set&lt;Skill&gt;"/>
+    <HasRelation name="portfolio" source="com.argprograma.portfolio.model.Skill" target="com.argprograma.portfolio.model.Portfolio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.argprograma.portfolio.service.SocialService" target="com.argprograma.portfolio.model.Social" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
